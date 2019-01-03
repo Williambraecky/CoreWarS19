@@ -1,3 +1,7 @@
+asm
+corewar
+*.cor
+
 # Prerequisites
 *.d
 
