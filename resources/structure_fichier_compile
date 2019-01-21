@@ -1,0 +1,5 @@
+Commence toujours par COREWAR_EXEC_MAGIC
+Ensuite PROG_NAME_LENGTH + 4 bytes contenant le nom
+Puis la taille en byte du fichier compilé contenu dans un int
+Ensuite COMMENT_LENGTH + 4 bytes contenant le commentaire
+Puis le nombre de byte précisé avant contenant le bytecode compilé
