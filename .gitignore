@@ -56,3 +56,5 @@ Mkfile.old
 dkms.conf
 asm
 corewar
+.DS_STORE
+**/*.cor
