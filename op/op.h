@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/01/21 18:27:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:59:32 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
-
 
 # define REG_CODE				1
 # define DIR_CODE				2
@@ -70,7 +69,7 @@ struct				s_op
 	char			op_code;
 	int				unknown;
 	char			*description;
-	int				unknown2;
+	int				code_octet; //A valider
 	int				unknown3;
 };
 
