@@ -2,7 +2,11 @@ OPERATIONS:
 
 PC: La position actuelle du processus
 
-Octet de codage: ???
+Octet de codage: Octet qui donne la taille des Arguments
+0b00: Pas d'arg
+0b01:T_REG -> 1
+0b10:T_DIR -> 2
+0b11:t_IND -> 4
 
 T_DIR: Valeur statique
 T_REG: Adresse registre
