@@ -1,5 +1,3 @@
-asm
-corewar
 *.cor
 
 # Prerequisites
@@ -54,7 +52,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-asm
-corewar
 .DS_STORE
 **/*.cor
