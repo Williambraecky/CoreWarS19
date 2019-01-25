@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 17:11:43 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/25 17:18:15 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	parse_name_comment(t_asm *asm_t)
 {
 	char	*str;
 	int		ret;
-	char	*property;
 
 	str = NULL;
 	while ((ret = get_next_line(asm_t->fd, &str)) == 1 && ++(asm_t->line))
@@ -26,7 +25,7 @@ static int	parse_name_comment(t_asm *asm_t)
 		if (ft_strlen(str))
 		{
 			if (ft_strstartswith(str, ".name"))
-				asm_t->champ.header.name = read_property(asm_t, str);
+				;// asm_t->champ.header.name = read_property(asm_t, str);
 			else if (ft_strstartswith(str, ".comment"))
 				;
 		}
