@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/01/21 18:59:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/25 13:17:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ struct				s_op
 	int				nb_arg;
 	t_arg_type		types[3];
 	char			op_code;
-	int				unknown;
+	int				cycle_cost;
 	char			*description;
-	int				code_octet; //A valider
+	int				code_octet;
 	int				unknown3;
 };
 
@@ -84,9 +84,9 @@ struct				s_op
 typedef struct		s_header
 {
 	unsigned int	magic;
-	char			prog_name[PROG_NAME_LENGTH + 1];
+	char			prog_name[PROG_NAME_LENGTH + 4];
 	unsigned int	prog_size;
-	char			comment[COMMENT_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 4];
 }					t_header;
 
 #endif
