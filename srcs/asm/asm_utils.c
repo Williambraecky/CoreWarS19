@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:55:22 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 15:05:15 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:11:13 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		asm_add_replace(t_asm *asm_t, char *name, int position)
 		sizeof(t_label) * (asm_t->nb_replace + 1))))
 		return (-1);
 	new[asm_t->nb_replace++] = label;
-	free(asm_t->labels);
+	free(asm_t->replace);
 	asm_t->replace = new;
 	return (1);
 }
