@@ -6,11 +6,16 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:08:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 17:07:46 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:57:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** handle this type of error
+** Invalid parameter 0 type register for instruction live
+*/
 
 /*
 ** Generic error handler

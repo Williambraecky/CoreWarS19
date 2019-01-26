@@ -6,13 +6,17 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 16:30:27 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 17:09:19 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/26 17:35:48 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int			strtrimset(char **str)
+/*
+** Trim string and assign it to pointer
+*/
+
+int		strtrimset(char **str)
 {
 	char *new;
 
@@ -24,47 +28,43 @@ int			strtrimset(char **str)
 	return (1);
 }
 
-static char	*first_non_space(char *str)
+/*
+** Process if the string has an unfinished quote
+*/
+
+int		has_unfinished_quote(char *str)
+{
+	char	*tmp;
+
+	if (!str)
+		return (0);
+	tmp = ft_strchr(str, '\"');
+	if (!tmp)
+		return (0);
+	tmp = ft_strchr(tmp + 1, '\"');
+	if (!tmp)
+		return (1);
+	return (has_unfinished_quote(tmp + 1));
+}
+
+/*
+** Returns a pointer to the first non space character in a string
+*/
+
+char	*first_non_space(char *str)
 {
 	while ((*str == ' ' || *str == '\t' || *str == '\r') && *str)
 		str++;
 	return (str);
 }
 
-char		*read_property(t_asm *asm_t, char *line)
-{
-	size_t	i;
-	char	*end;
-	char	*ret;
+/*
+** libft has strisbumber but it doesn't stop at the first non number
+*/
 
-	i = 0;
-	while (line[i] != ' ' && line[i])
-		i++;
-	while (line[i] == ' ' && line[i])
-		i++;
-	if (!line[i])
-	{
-		free(line);
-		syntax_error(asm_t, (int)i + 1, "ENDLINE", NULL);
-	}
-	if (line[i] != '\"')
-	{
-		free(line);
-		lexical_error(asm_t, (int)i + 1);
-	}
-	i++;
-	end = ft_strchr(line + i, '\"');
-	if (end == NULL)
-	{
-		free(line);
-		syntax_error(asm_t, (int)i, "ENDLINE", NULL);
-	}
-	if (end + 1 != '\0')
-	{
-		free(line);
-		syntax_error(asm_t, (int)i, *first_non_space(line) == '\"' ? "STRING"
-		: "INSTRUCTION", first_non_space(line));
-	}
-	ret = ft_strsub(line, i, end - line + i);
-	return (ret);
+int		str_is_number(char *str)
+{
+	if (*str == '-' && ft_isdigit(*(str + 1)))
+		return (1);
+	return (ft_isdigit(*str));
 }
