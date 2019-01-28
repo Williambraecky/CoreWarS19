@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 18:39:21 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:51:02 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ t_token		get_next_token(char *line, size_t i)
 	}
 	return ((t_token){.type = LEX_ERROR});
 }
+
+/*
+** TODO: do this but with global tables in another file
+*/
 
 static char	*string_for_type(t_type type)
 {
@@ -81,6 +85,12 @@ static void	print_token(t_token token)
 	ft_printf("Token type %s ; Token size %zu ; Token string \"%s\"\n",
 		string_for_type(token.type), token.size, token.string);
 }
+
+/*
+** TODO: keep tokens to be processed later
+** TODO: handle errors (LEX AND MEM)
+** TODO: calc position with i
+*/
 
 void		asm_parse(t_asm *asm_t)
 {
