@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/26 16:03:54 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/28 12:23:54 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	write_champ(t_asm *asm_t, char *filename)
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)))
 		exit_error(asm_t, "Could not open file");
 	ft_printf("Writing output program to %s\n", filename);
-	if (write(fd, &asm_t->champ,
-		sizeof(t_header) + reverse_int32(asm_t->champ.header.prog_size)) == -1)
+	if (write(fd, &asm_t->champ.header, sizeof(t_header)) == -1 ||
+		write(fd, asm_t->code, asm_t->champ.header.prog_size) == -1)
 		exit_error(asm_t, "Error writing to file");
 	if (close(fd) == -1)
 		exit_error(asm_t, "Error closing file");

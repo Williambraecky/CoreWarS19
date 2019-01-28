@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   comment_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 14:09:17 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 11:28:45 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/01/28 13:53:40 by wbraeckm          #+#    #+#             */
+/*   Updated: 2019/01/28 17:30:41 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** Free future stuff
-*/
-
-void	free_asm(t_asm *asm_t)
+int		comment_of_type(char *line, size_t i)
 {
-	if (asm_t->replace)
-		ft_memdel((void**)&asm_t->replace);
-	if (asm_t->labels)
-		ft_memdel((void**)&asm_t->labels);
-	if (asm_t->file)
-		ft_strdel(&asm_t->file);
+	return (ft_strstartswith(line + i, ".comment"));
+}
+
+t_token	comment_make_token(char *line, size_t i)
+{
+	t_token	ret;
+
+	(void)line;
+	(void)i;
+	ret.type = COMMAND_COMMENT;
+	ret.size = 8;
+	ret.string = ft_strdup(".comment");
+	if (!ret.string)
+		ret.type = MEM_ERROR;
+	return (ret);
 }

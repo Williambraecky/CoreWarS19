@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   string_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 14:09:17 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 11:28:45 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/01/28 14:05:18 by wbraeckm          #+#    #+#             */
+/*   Updated: 2019/01/28 14:10:48 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** Free future stuff
-*/
-
-void	free_asm(t_asm *asm_t)
+int		string_of_type(char *line, size_t i)
 {
-	if (asm_t->replace)
-		ft_memdel((void**)&asm_t->replace);
-	if (asm_t->labels)
-		ft_memdel((void**)&asm_t->labels);
-	if (asm_t->file)
-		ft_strdel(&asm_t->file);
+	return (line[i] == '\"');
+}
+
+t_token	string_make_token(char *line, size_t i)
+{
+	t_token	ret;
+	char	*end;
+
+	ret.type = STRING;
+	end = ft_strchr(line + i + 1, '\"');
+	if (end != NULL)
+	{
+		ret.string = ft_strsub(line, i, (end + 1) - (line + i));
+		if (!ret.string)
+			ret.type = MEM_ERROR;
+		else
+			ret.size = ft_strlen(ret.string);
+	}
+	else
+		ret.type = LEX_ERROR;
+	return (ret);
 }
