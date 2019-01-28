@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 13:39:06 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 13:54:46 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:51:18 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_token	end_make_token(char *line, size_t i)
 	(void)line;
 	(void)i;
 	ret.type = END;
-	ret.string = ft_strdup("\0");
+	ret.string = ft_strdup("");
 	if (ret.string == NULL)
 		ret.type = MEM_ERROR;
 	return (ret);
