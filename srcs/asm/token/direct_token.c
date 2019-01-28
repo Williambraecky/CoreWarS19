@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:33:42 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 14:50:50 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:34:01 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		direct_of_type(char *line, size_t i)
 	if (line[i] != DIRECT_CHAR)
 		return (0);
 	i++;
+	if (line[i] == '-')
+		i++;
 	while (line[i])
 	{
 		if (ft_strchr(SEPARATOR_CHARS, line[i]))
@@ -35,6 +37,8 @@ t_token	direct_make_token(char *line, size_t i)
 
 	ret.type = DIRECT;
 	j = i + 1;
+	if (line[j] == '-')
+		j++;
 	while (line[j])
 	{
 		if (ft_strchr(SEPARATOR_CHARS, line[j]))
