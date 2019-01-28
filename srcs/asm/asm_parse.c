@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 17:32:13 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:39:21 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		asm_parse(t_asm *asm_t)
 
 	gnl_to_one_string(asm_t);
 	i = 0;
-	while (asm_t->file[i])
+	while (i <= (size_t)asm_t->file_size)
 	{
 		current = get_next_token(asm_t->file, i);
 		i += current.size;
