@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/25 17:08:00 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:38:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int			parse_dump(t_vm *vm, char **argv)
 {
-	if (ft_strcmp(*argv, "-dump"))
+	if (!ft_strcmp(*argv, "-dump"))
 	{
 		argv++;
-		vm->dump = ft_atoi(*argv);
+		vm->dump = n_bytes_to_uint((unsigned char *) argv, 4);
 		if (vm->dump < 1)
 			error_exit(vm, "Wrong dump value.");
 		return (1);
@@ -27,7 +27,7 @@ int			parse_dump(t_vm *vm, char **argv)
 
 int			parse_n(t_vm *vm, char **argv)
 {
-	if (ft_strcmp(*argv, "-n"))
+	if (!ft_strcmp(*argv, "-n"))
 	{
 		argv++;
 		vm->n = ft_atoi(*argv);
@@ -45,18 +45,20 @@ char		**parse_command(t_vm *vm, char **argv)
 	char **new_pos;
 
 	new_pos = argv;
-	if (!(*argv))
+	if (!(*argv) &&  printf("1\n"))
 		return (argv);
-	else if (parse_dump(vm, argv))
+	else if (vm->nbr_champ == MAX_PLAYERS && printf("2\n"))
+		error_exit(vm, "Too many players!");
+	else if (parse_dump(vm, argv) && printf("3\n"))
 		new_pos = argv + 2;
-	else if (parse_n(vm, argv))
-		new_pos = argv + 2;
-	else if (*argv)
+	else if (parse_n(vm, argv) && printf("4\n"))
+		new_pos = argv + 3;
+	else if (*argv && printf("5\n"))
 	{
 		read_champ(vm, argv, 0);
 		new_pos = argv + 1;
 	}
-	else
+	else if (printf("6\n"))
 		return (new_pos);
 	return (parse_command(vm, new_pos));
 }

@@ -6,7 +6,7 @@
 #    By: nrouvroy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/22 14:23:31 by nrouvroy          #+#    #+#              #
-#    Updated: 2019/01/25 17:08:59 by sde-spie         ###   ########.fr        #
+#    Updated: 2019/01/29 11:45:14 by sde-spie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,10 @@ SRC			:=	corewar.c\
 				op.c\
 				parse_command.c\
 				utils.c\
-				read_champ.c
+				read_champ.c\
+				prepare_battle.c\
+				create_process.c\
+				init_vm.c
 
 OBJ			:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

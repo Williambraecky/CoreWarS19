@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/25 17:11:20 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:32:58 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ void		parse_code(t_vm *vm,  unsigned char *buff)
 {
 	int		i;
 	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;
 	while (i < vm->champs[vm->nbr_champ].code.header.prog_size && buff[i] == 0)
 		i++;
-	while (i < vm->champs[vm->nbr_champ].code.header.prog_size)
+	k = i;
+	while (i < vm->champs[vm->nbr_champ].code.header.prog_size + k)
 		vm->champs[vm->nbr_champ].code.prog[j++] = buff[i++];
 }
 
@@ -67,7 +69,5 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 	read(fd, buff, size_code);
 	parse_header(vm, buff);
 	parse_code(vm, &buff[PROG_NAME_LENGTH + COMMENT_LENGTH + 8]);
-	
-	
 	vm->nbr_champ++;
 }
