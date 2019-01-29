@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 16:38:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:33:04 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ char		**parse_command(t_vm *vm, char **argv)
 	char **new_pos;
 
 	new_pos = argv;
-	if (!(*argv) &&  printf("1\n"))
+	if (!(*argv))
 		return (argv);
-	else if (vm->nbr_champ == MAX_PLAYERS && printf("2\n"))
+	else if (vm->nbr_champ == MAX_PLAYERS)
 		error_exit(vm, "Too many players!");
-	else if (parse_dump(vm, argv) && printf("3\n"))
+	else if (parse_dump(vm, argv))
 		new_pos = argv + 2;
-	else if (parse_n(vm, argv) && printf("4\n"))
+	else if (parse_n(vm, argv))
 		new_pos = argv + 3;
-	else if (*argv && printf("5\n"))
+	else if (*argv)
 	{
 		read_champ(vm, argv, 0);
 		new_pos = argv + 1;
 	}
-	else if (printf("6\n"))
+	else
 		return (new_pos);
 	return (parse_command(vm, new_pos));
 }

@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 16:46:52 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:15:36 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,13 @@ void			init_process(t_vm *vm)
 	int		i;
 
 	i = -1;
-	ft_printf("nbrchamp = %d\n", vm->nbr_champ);
+	vm->arena.process = (t_process *)malloc(sizeof(t_process) * NBR_PROCESS);
 	while (++i < vm->nbr_champ)
 	{
 		vm->arena.process[i] = *create_process(vm);
-		printf("post create process\n");
 		vm->arena.process[i].index_champ = vm->champs[i].number;
 		vm->arena.process[i].registre[0] = vm->champs[i].number;
 		vm->arena.process[i].index_arena = (i * MEM_SIZE / vm->nbr_champ);
-		printf("end champ %d\n", i);
 	}
 }
 
@@ -68,7 +66,7 @@ void			paste_memory(t_vm *vm)
 	int		start_index;
 
 	i = -1;
-	while (++i < MEM_SIZE)
+	while (++i < MEM_SIZE / 4)
 		vm->arena.arena[i] = 0;
 	i = -1;
 	while (++i < vm->nbr_champ)
@@ -76,7 +74,10 @@ void			paste_memory(t_vm *vm)
 		start_index = (i * MEM_SIZE / vm->nbr_champ);
 		j = -1;
 		while (++j < vm->champs[i].code.header.prog_size)
-			vm->arena.arena[i + start_index] = vm->champs[i].code.prog[j];
+		{
+			vm->arena.arena[j + start_index] = vm->champs[i].code.prog[j];
+			vm->arena.arena_owner[j + start_index] = i;
+		}
 	}
 }
 
