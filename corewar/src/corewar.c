@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:41:44 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:17:45 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ void		print_memory(t_vm vm)
 	}
 }
 
+void		print_process(t_vm vm)
+{
+	int	i = 0;
+	while (i < vm.arena.nbr_process)
+	{
+		printf("index champ = %d\n", vm.arena.process[i].index_champ);
+		printf("index arena = %ld\n", vm.arena.process[i].index_arena);
+		printf("number = %d\n", vm.arena.process[i++].number);
+	}
+
+}
+
 void		time_for_battle(t_vm *vm)
 {
 	
@@ -64,6 +76,7 @@ int		main(int argc, char **argv)
 	argv++;
 	argv = parse_command(&vm, argv);
 	prepare_battle(&vm);
+	print_process(vm);
 //	print_champs(vm);
 	print_memory(vm);
 //	time_for_battle(&vm);
