@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 10:23:27 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 17:35:44 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:18:45 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void		do_cycle(t_vm *vm)
 	vm->arena.total_cycle++;
 	vm->arena.cycle_since_check++;
 	manage_processes(vm);
-//	check_end_cycle(vm);
+	check_end_cycle(vm);
 }

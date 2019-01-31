@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 17:18:43 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:32:24 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		time_for_battle(t_vm *vm)
 	int		index;
 
 	introduce_champs(*vm);
-	while (vm->arena.nbr_process_alive && dump_check(*vm))
+	while (vm->arena.nbr_process_alive)
 		do_cycle(vm);
 	index = vm->arena.winner;
 	if (index == -1)

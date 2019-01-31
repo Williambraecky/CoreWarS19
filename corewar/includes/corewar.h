@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 17:35:27 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:18:37 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -60,6 +60,8 @@ typedef struct		s_arena
 	t_process		*process;
 	int				nbr_process;
 	int				nbr_process_alive;
+	int				lives_since_last_check;
+	int				check_count;
 	int				winner;
 }					t_arena;
 
@@ -178,5 +180,11 @@ void			op_aff(t_vm *vm, t_process *process);
 */
 
 void			op_get_params(t_vm *vm, t_process *process);
+
+/*
+** cycle_check.c
+*/
+
+void			check_end_cycle(t_vm *vm);
 
 #endif
