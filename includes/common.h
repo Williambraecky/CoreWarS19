@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:24:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 11:02:04 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/30 23:34:36 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ struct			s_champ
 /*
 ** Utils
 */
-
+void			ft_o_exit(char *str);
 int				reverse_int32(int i);
 short			reverse_int16(short s);
 
