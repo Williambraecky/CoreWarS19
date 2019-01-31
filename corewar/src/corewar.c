@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 18:17:45 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/30 14:28:40 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,17 @@ void		print_process(t_vm vm)
 
 void		time_for_battle(t_vm *vm)
 {
-	
+	int		index;
+
+	introduce_champs(*vm);
+	while (vm->arena.nbr_process_alive && dump_check(*vm))
+		do_cycle(vm);
+	index = vm->arena.winner;
+	if (index == -1)
+		ft_printf("No winner as no contestant did a live.\n");
+	else
+		ft_printf("Player %d (%s) won!\n", vm->champs[index].number,\
+			vm->champs[index].code.header.prog_name);
 }
 
 int		main(int argc, char **argv)
@@ -76,9 +86,9 @@ int		main(int argc, char **argv)
 	argv++;
 	argv = parse_command(&vm, argv);
 	prepare_battle(&vm);
-	print_process(vm);
+//	print_process(vm);
 //	print_champs(vm);
-	print_memory(vm);
-//	time_for_battle(&vm);
+//	print_memory(vm);
+	time_for_battle(&vm);
 //	free_all(vm);
 }

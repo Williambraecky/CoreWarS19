@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:56:23 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 16:33:02 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/30 10:49:02 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ unsigned int	n_bytes_to_uint(unsigned char *header, unsigned int nbr)
 		header++;
 	}
 	return (ret);
+}
+
+int				dump_check(t_vm vm)
+{
+	if (vm.dump < 0)
+		return (1);
+	else if (vm.arena.total_cycle < vm.dump)
+		return (1);
+	else
+		return (0);
 }

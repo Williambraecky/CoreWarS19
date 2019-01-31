@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vm.c                                          :+:      :+:    :+:   */
+/*   introduce_champs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 11:44:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/30 18:10:15 by sde-spie         ###   ########.fr       */
+/*   Created: 2019/01/30 08:57:23 by sde-spie          #+#    #+#             */
+/*   Updated: 2019/01/30 11:37:50 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-void		init_vm(t_vm *vm)
+void		introduce_champs(t_vm vm)
 {
-	vm->dump = -1;
-	vm->nbr_champ = 0;
-	vm->n = 0;
-	vm->arena.cycle_to_die = CYCLE_TO_DIE;
-	vm->arena.cycle_since_check = 0;
-	vm->arena.nbr_process = 0;
-	vm->arena.nbr_process_alive = 0;
-	vm->arena.winner = -1;
-	vm->dump = -1;
-	vm->arena.total_cycle = 0;
+	int		no;
+
+	no = -1;
+	ft_printf("Introducing contestants...\n");
+	while (++no < vm.nbr_champ)
+		ft_printf("Player %d, weighing %d bytes, %s (\"%s\") !\n",\
+			vm.champs[no].number,\
+			vm.champs[no].code.header.prog_size,\
+			vm.champs[no].code.header.prog_name,\
+			vm.champs[no].code.header.comment);
 }

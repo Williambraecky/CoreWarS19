@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:13:08 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 16:55:06 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/30 09:35:14 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_process		*create_process(t_vm *vm)
 	if (!(new = (t_process *)malloc(sizeof(t_process))))
 		error_exit(vm, "Error while mallocing new process.");
 	vm->arena.nbr_process++;
+	vm->arena.nbr_process_alive++;
 	new->index_arena = 0;
 	new->index_champ = 0;
 	new->cycle = 0;
