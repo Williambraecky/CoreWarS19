@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/01/31 03:19:19 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/01/31 03:46:02 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		ft_o_exit("Usage : ./online champion.[s|cor]\n");
 	ft_strcpy(client.filename, ft_comp_champ(argv[1]));
+	//TODO check the .cor file exists
 	printf("filename : %s\n",client.filename);
 	ft_memset(client.buffer, '0', sizeof(client.buffer));
 	if ((client.sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 	if (connect(client.sockfd, (struct sockaddr*)&client.serv_addr, sizeof(client.serv_addr)) < 0)
 		ft_o_exit("\nERROR : connect failed\n");
 	ft_printf("connected\n");
-	usleep(500000);
+	usleep(100000);
 	if ((n = read(client.sockfd, client.buffer, sizeof(client.buffer) - 1)) > 0)
 	{
 		client.buffer[n] = 0;
@@ -72,28 +73,23 @@ int main(int argc, char **argv)
 	}
 	if (n < 0)
 		ft_printf("\nERROR : Read error\n");
-	sleep(1);
+	usleep(50000);
 	ft_strcpy(client.buffer, client.filename);
 	send(client.sockfd, client.buffer, ft_strlen(client.filename), 0);
 	usleep(50000);
 	ft_strcpy(client.buffer, "START_CODE_CHAMPION\0");
 	send(client.sockfd, client.buffer, O_BUFFSIZE, 0);
 	usleep(50000);
-	//TODO while (n = read(fd from filename));
+	//TODO while (n = read(fd from .cor file));
 	ft_strcpy(client.buffer, "CHAMPION_DUMMY_CODE\0");
 	send(client.sockfd, client.buffer, O_BUFFSIZE, 0);
 	usleep(50000);
 	ft_strcpy(client.buffer, "END_CODE_CHAMPION\0");
 	send(client.sockfd, client.buffer, O_BUFFSIZE, 0);
-	while (1)
-		;
-	/*
-	while (1)
+	while ((n = read(client.sockfd, client.buffer, O_BUFFSIZE)) > 0)
 	{
-		ft_strcpy(client.buffer, argv[1]);
-		send(client.sockfd, client.buffer, ft_strlen(client.buffer), 0);
-		ft_printf("message sent\n");
-		usleep(500000);
-	}*/
+		client.buffer[n] = 0;
+		ft_printf("%s", client.buffer);
+	}
 	return (0);
 }
