@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/01/21 18:59:33 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/31 16:17:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ t_op	g_op_tab[17] =
 		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0},
 	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
 		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0},
-	{"zjmp", 1, {T_IND}, 9, 20, "jump if one", 0, 1},
+	{"zjmp", 1, {T_DIR}, 9, 20, "jump if one", 0, 1},
 	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
 		"load index", 1, 1},
 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
 		"store index", 1, 1},
-	{"fork", 1, {T_IND}, 12, 800, "fork", 0, 1},
+	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
 	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
 	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 		"long load index", 1, 1},

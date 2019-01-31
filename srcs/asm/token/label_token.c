@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:14:34 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 17:33:14 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:25:07 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ t_token	label_make_token(char *line, size_t i)
 	else
 		ret.size = ft_strlen(ret.string);
 	return (ret);
+}
+
+void	process_label(t_asm *asm_t, t_token token, size_t *i)
+{
+	t_label	*label;
+
+	label = get_label(asm_t, token.string);
+	if (!label)
+		asm_add_label(asm_t, token.string, asm_t->champ.header.prog_size);
+	(*i)++;
 }
