@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/01/28 12:27:49 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:26:02 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ struct				s_op
 	int				cycle_cost;
 	char			*description;
 	int				code_octet;
-	int				unknown3;
+	int				label_size;
 };
 
 /*

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:27:49 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 18:34:10 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/31 16:50:16 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int		indirect_of_type(char *line, size_t i)
 {
+	if (line[i] == '-')
+		i++;
 	if (!ft_isdigit(line[i]))
 		return (0);
 	i++;
-	if (line[i] == '-')
-		i++;
 	while (line[i])
 	{
 		if (ft_strchr(SEPARATOR_CHARS, line[i]))
@@ -51,4 +51,12 @@ t_token	indirect_make_token(char *line, size_t i)
 	else
 		ret.size = ft_strlen(ret.string);
 	return (ret);
+}
+
+void	process_indirect(t_asm *asm_t, t_token token)
+{
+	short	s;
+
+	s = (short)ft_atoi(token.string);
+	code_write_bytes(asm_t, (t_u8*)&s, 2);
 }
