@@ -6,11 +6,26 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/01/31 03:21:49 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/01/31 04:14:22 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "online.h"
+
+void	game_start(t_server serv, struct sockaddr_in address)
+{
+	int i;
+
+	(void)address;
+	printf("Starting the game\n");
+	i = -1;
+	while (++i < MAX_PLAYERS)
+	{
+		ft_strcpy(serv.buffer, "Starting the game\n\0");
+		send(serv.client_socket[i], serv.buffer, O_BUFFSIZE, 0);
+		usleep(25000);
+	}
+}
 
 int main(void)
 {
@@ -75,7 +90,7 @@ int main(void)
 					serv.client_socket[i] = serv.new_socket;
 					printf("added to our list of sockets as %d\n", i);
 					strcpy(serv.msg, "you are now connected as player [\0");
-					ft_strcat(serv.msg, ft_itoa(i + 1));
+					ft_strcat(serv.msg, ft_itoa(i));
 					ft_strcat(serv.msg, "]");
 					ft_strcpy(serv.buffer, serv.msg);
 					if ((size_t)send(serv.new_socket, serv.buffer, ft_strlen(serv.msg), 0) != ft_strlen(serv.msg))
@@ -119,7 +134,7 @@ int main(void)
 					}
 					else
 					{
-						printf("champion code for player : %d\n", i + 1);
+						printf("champion code for player : %d\n", i);
 						j = -1;
 						if (!ft_strstr(serv.buffer, "START_CODE_CHAMPION"))
 						{
@@ -136,6 +151,12 @@ int main(void)
 								ft_o_exit("\nERROR : Champ too long\n");
 							ft_memcpy(serv.client_champion[i] + j * O_BUFFSIZE, serv.buffer, O_BUFFSIZE);
 						}
+						i = -1;
+						while (++i < MAX_PLAYERS)
+						if (serv.client_filename[i][0] == 0 || serv.client_champion[i][0] == 0)
+							break;
+						if (i == MAX_PLAYERS)
+							game_start(serv, address);
 					}
 				}
 			}
