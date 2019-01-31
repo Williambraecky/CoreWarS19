@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/30 14:28:40 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:18:43 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		main(int argc, char **argv)
 {
 	t_vm	vm;
 
-	if (argc < 2 || argc > 16)
+	if (argc < 2)
 		return (error_usage());
 	ft_memset((void *)&vm, 0, sizeof(t_vm));
 	init_vm(&vm);

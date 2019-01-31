@@ -6,29 +6,38 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 11:36:15 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:35:27 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
 # define COREWAR_H
-# define MAX_NBR_ARGS	4
 # include "../../libft/includes/libft.h"
 # include "op.h"
 # include <fcntl.h>
 
 typedef char		t_arg_type;
+typedef struct		s_instruct
+{
+	char			op_code;
+	void			(*op)();
+	int				cycle_exec;
+	int				nb_arg;
+	t_arg_type		types[3];
+	int				unknown;
+	int				code_octet; //A valider
+	int				unknown3;
+}					t_instruct;
+
 
 typedef struct		s_process
 {
 	size_t			index_arena;
 	int				index_champ;
-	int				cycle;
 	char			alive;
 	t_instruct		instruction;
 	int				registre[REG_NUMBER];
 	int				pc;
 	char			carry;
-	int				lives;
 	int				lives_since_check;
 	int				number;
 }					t_process;
@@ -47,7 +56,7 @@ typedef struct		s_arena
 	char			arena_owner[MEM_SIZE];
 	int				total_cycle;
 	int				cycle_to_die;
-	int				cycle_since_check;;
+	int				cycle_since_check;
 	t_process		*process;
 	int				nbr_process;
 	int				nbr_process_alive;
@@ -71,18 +80,6 @@ typedef struct		s_vm
 	int				nbr_champ;
 	int				n;
 }					t_vm;
-
-typedef struct		s_instruct
-{
-	char			op_code;
-	void			(*op)(t_vm *, t_process *);
-	int				cycle_exec;
-	int				nb_arg;
-	t_arg_type		types[3];
-	int				unknown;
-	int				code_octet; //A valider
-	int				unknown3;
-}					t_instruct;
 
 /*
  ** parse_command.c
@@ -155,7 +152,7 @@ void			do_cycle(t_vm *vm);
 t_instruct		read_instruction(t_vm *vm, int pc);
 
 /*
-** instructions.c
+** op.c
 */
 
 void			op_null(t_vm *vm, t_process *process);
@@ -175,5 +172,11 @@ void			op_lld(t_vm *vm, t_process *process);
 void			op_lldi(t_vm *vm, t_process *process);
 void			op_lfork(t_vm *vm, t_process *process);
 void			op_aff(t_vm *vm, t_process *process);
+
+/*
+** op_get_params.c
+*/
+
+void			op_get_params(t_vm *vm, t_process *process);
 
 #endif

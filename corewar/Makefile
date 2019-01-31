@@ -6,7 +6,7 @@
 #    By: nrouvroy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/22 14:23:31 by nrouvroy          #+#    #+#              #
-#    Updated: 2019/01/31 10:52:46 by sde-spie         ###   ########.fr        #
+#    Updated: 2019/01/31 17:35:42 by sde-spie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ LIB_INC		+=	$(INC)
 SRC			:=	corewar.c\
 				error.c\
 				op.c\
+				op_get_params.c\
 				parse_command.c\
 				utils.c\
 				read_champ.c\

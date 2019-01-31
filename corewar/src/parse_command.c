@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/30 10:49:26 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:43:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int			parse_dump(t_vm *vm, char **argv)
 {
+	// gerer si deux dunp dans les args
 	if (!ft_strcmp(*argv, "-dump"))
 	{
 		argv++;
