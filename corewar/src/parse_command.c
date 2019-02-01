@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 13:43:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:58:05 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ int			parse_n(t_vm *vm, char **argv)
 	return (0);
 }
 
+int			parse_visu(t_vm *vm, char **argv)
+{
+	if (!ft_strcmp(*argv, "-visu"))
+	{
+		vm->visu = 1;
+		return (1);
+	}
+	return (0);
+}
+
 char		**parse_command(t_vm *vm, char **argv)
 {
 	char **new_pos;
@@ -54,6 +64,8 @@ char		**parse_command(t_vm *vm, char **argv)
 		new_pos = argv + 2;
 	else if (parse_n(vm, argv))
 		new_pos = argv + 3;
+	else if (parse_visu(vm, argv))
+		new_pos = argv + 1;
 	else if (*argv)
 	{
 		read_champ(vm, argv, 0);

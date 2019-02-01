@@ -6,16 +6,18 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 11:15:03 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:26:05 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
 # define COREWAR_H
 # include "../../libft/includes/libft.h"
 # include "op.h"
+# include "struct.h"
 # include <fcntl.h>
 # include <curses.h>
 # include <term.h>
+
 
 typedef char		t_arg_type;
 typedef struct		s_instruct
@@ -25,9 +27,7 @@ typedef struct		s_instruct
 	int				cycle_exec;
 	int				nb_arg;
 	t_arg_type		types[3];
-	int				unknown;
-	int				code_octet; //A valider
-	int				unknown3;
+	t_arg_type		value[3];
 }					t_instruct;
 
 
@@ -73,6 +73,7 @@ typedef struct		s_champ
 	t_code			code;
 	int				number;
 	int				lives;
+	int				lives_since_last_check;
 }					t_champ;
 
 
@@ -83,6 +84,7 @@ typedef struct		s_vm
 	int				dump;
 	int				nbr_champ;
 	int				n;
+	int				visu;
 }					t_vm;
 
 /*
@@ -195,4 +197,19 @@ void			check_end_cycle(t_vm *vm);
 */
 
 void			free_all(t_vm *vm);
+
+/*
+** visu.c
+*/
+
+void			init_visu(WINDOW **window);
+void			print_visu(t_vm *vm, WINDOW **window, int mode);
+
+void			print_19(WINDOW *window);
+void			print_19ai(WINDOW *window);
+void			print_data(t_vm *vm, WINDOW *window);
+void			print_winner(t_vm *vm, WINDOW *window);
+void			print_header(t_vm *vm, WINDOW *window);
+void			print_memory(t_vm *vm, WINDOW *window);
+
 #endif

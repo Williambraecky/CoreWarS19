@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 11:45:21 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 21:52:16 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ void			paste_memory(t_vm *vm)
 	int		start_index;
 
 	i = -1;
-	while (++i < MEM_SIZE / 4)
+	while (++i < MEM_SIZE)
+	{
 		vm->arena.arena[i] = 0;
+		vm->arena.arena_owner[i] = 0;
+	}
 	i = -1;
 	while (++i < vm->nbr_champ)
 	{
@@ -78,7 +81,7 @@ void			paste_memory(t_vm *vm)
 		while (++j < vm->champs[i].code.header.prog_size)
 		{
 			vm->arena.arena[j + start_index] = vm->champs[i].code.prog[j];
-			vm->arena.arena_owner[j + start_index] = i;
+			vm->arena.arena_owner[j + start_index] = i + 1;
 		}
 	}
 }

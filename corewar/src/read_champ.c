@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 11:47:48 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:32:00 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 
 	size_code = sizeof(t_code);
 	champ = &vm->champs[vm->nbr_champ];
+	champ->lives = 0;
+	champ->lives_since_last_check = 0;
 	if (mode)
 		champ->number = vm->n;
 	else

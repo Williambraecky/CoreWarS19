@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 11:49:10 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:36:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_champs(t_vm vm)
 	}
 }
 
-void		print_memory(t_vm vm)
+void		print_memory2(t_vm vm)
 {
 	int i = -1;
 
@@ -64,17 +64,20 @@ void		print_process(t_vm vm)
 
 }
 
-void		time_for_battle(t_vm *vm)
+void		time_for_battle(t_vm *vm, WINDOW **windows)
 {
 	int		index;
 
-	introduce_champs(*vm);
+	vm->visu ? 0 : introduce_champs(*vm);
 	while (vm->arena.nbr_process_alive)
+	{
 		do_cycle(vm);
+		vm->visu ? print_visu(vm, windows, 1) : 0;
+	}
 	index = vm->arena.winner;
-	if (index == -1)
+	if (index == -1 && !vm->visu)
 		ft_printf("No winner as no contestant did a live.\n");
-	else
+	else if (!vm->visu)
 		ft_printf("Player %d (%s) won!\n", vm->champs[index].number,\
 			vm->champs[index].code.header.prog_name);
 }
@@ -82,6 +85,7 @@ void		time_for_battle(t_vm *vm)
 int		main(int argc, char **argv)
 {
 	t_vm	vm;
+	WINDOW	*window[5];
 
 	if (argc < 2)
 		return (error_usage());
@@ -90,9 +94,11 @@ int		main(int argc, char **argv)
 	argv++;
 	argv = parse_command(&vm, argv);
 	prepare_battle(&vm);
+	vm.visu ? init_visu(window) : 0;
 //	print_process(vm);
 //	print_champs(vm);
-//	print_memory(vm);
-	time_for_battle(&vm);
+//	print_memory2(vm);
+	time_for_battle(&vm, window);
+	vm.visu ? endwin() : 0;
 	free_all(&vm);
 }
