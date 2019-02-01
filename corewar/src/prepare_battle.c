@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 17:15:36 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 11:45:21 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ void			order_champs(t_vm *vm)
 
 void			init_process(t_vm *vm)
 {
-	int		i;
+	int			i;
+	t_process	*pro;
+	int			j;
 
 	i = -1;
 	vm->arena.process = (t_process *)malloc(sizeof(t_process) * NBR_PROCESS);
+	pro = vm->arena.process;
 	while (++i < vm->nbr_champ)
 	{
-		vm->arena.process[i] = *create_process(vm);
-		vm->arena.process[i].index_champ = vm->champs[i].number;
-		vm->arena.process[i].registre[0] = vm->champs[i].number;
-		vm->arena.process[i].index_arena = (i * MEM_SIZE / vm->nbr_champ);
+		set_process(vm, &vm->arena.process[i]);
+		pro[i].index_champ = vm->champs[i].number;
+		pro[i].registre[0] = vm->champs[i].number;
 	}
 }
 

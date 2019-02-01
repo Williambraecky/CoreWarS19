@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/29 16:32:58 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 11:47:48 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 	unsigned char	buff[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
 
 	size_code = sizeof(t_code);
-	champ = (t_champ *)malloc(sizeof(t_champ));
+	champ = &vm->champs[vm->nbr_champ];
 	if (mode)
 		champ->number = vm->n;
 	else
 		champ->number = find_number(vm);
-	vm->champs[vm->nbr_champ] = *champ;
 	if ((fd = open(*argv, O_RDONLY)) < 0)
 		error_exit(vm, "Error reading file.");
 	read(fd, buff, size_code);

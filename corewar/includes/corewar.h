@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 18:18:37 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/01 11:15:03 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -14,6 +14,8 @@
 # include "../../libft/includes/libft.h"
 # include "op.h"
 # include <fcntl.h>
+# include <curses.h>
+# include <term.h>
 
 typedef char		t_arg_type;
 typedef struct		s_instruct
@@ -126,7 +128,8 @@ void			prepare_battle(t_vm *vm);
  ** create_process.c
  */
 
-t_process		*create_process(t_vm *vm);
+//t_process		*create_process(t_vm *vm);
+void			set_process(t_vm *vm, t_process *process);
 
 /*
  ** init_vm.c
@@ -187,4 +190,9 @@ void			op_get_params(t_vm *vm, t_process *process);
 
 void			check_end_cycle(t_vm *vm);
 
+/*
+** free.c
+*/
+
+void			free_all(t_vm *vm);
 #endif
