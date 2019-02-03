@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 15:59:06 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:04:35 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	check_data(t_asm *asm_t)
 }
 
 /*
-** TODO: post process error handling (ex: name too long comment too long etc)
+** TODO: Write to correct file
 */
 
 int			main(int argc, char **argv)

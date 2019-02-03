@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 14:17:46 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:07:56 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void		process_instruction(t_asm *asm_t, t_token token, size_t *i)
 	t_op	*op;
 	int		instruction_pos;
 
+	if (!(asm_t->flags & NAME_FLAG) || !(asm_t->flags & COMMENT_FLAG))
+		syntax_error(asm_t, token);
 	(*i)++;
 	op = get_op(token.string);
 	if (!op)

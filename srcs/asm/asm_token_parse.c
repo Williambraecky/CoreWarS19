@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:47:45 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 17:18:39 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:14:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,11 @@ void		asm_token_parse(t_asm *asm_t)
 			syntax_error(asm_t, current);
 		else
 			i++;
+	}
+	if (!(asm_t->flags & NAME_FLAG) || !(asm_t->flags & COMMENT_FLAG)
+		|| !asm_t->code)
+	{
+		asm_t->flags |= END_SYNTAX_ERR;
+		syntax_error(asm_t, asm_t->tokens[i]);
 	}
 }
