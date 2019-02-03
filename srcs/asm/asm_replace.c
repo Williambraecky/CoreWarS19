@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:44 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 18:28:29 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 14:18:07 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ token [TOKEN][%.3d:%.3d] %s \"%s\"\n",
 		token.string + 2, token.pos.y, token.pos.x, type_get_string(token.type),
 		token.string);
 	free_asm(asm_t);
-	exit(0);
+	exit(1);
 }
 
 static void	handle_replace(t_asm *asm_t, t_label replace, t_label *found)

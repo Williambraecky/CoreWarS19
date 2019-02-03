@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 18:27:12 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 14:18:28 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static void	write_champ(t_asm *asm_t, char *filename)
 }
 
 /*
-** TODO: write output to correct file
-** TODO: write actual data lol
+** TODO: post process error handling (ex: name too long comment too long etc)
 */
 
 int			main(int argc, char **argv)
@@ -45,13 +44,13 @@ int			main(int argc, char **argv)
 	if (argc == 1)
 	{
 		ft_printf_fd(2, "Usage: %s <sourcefile.s>\n", argv[0]);
-		exit(0);
+		exit(1);
 	}
 	ft_memset(&asm_t, 0, sizeof(asm_t));
 	if ((asm_t.fd = open(argv[argc - 1], O_RDONLY)) == -1)
 	{
 		ft_printf_fd(2, "Can't read source file %s\n", argv[argc - 1]);
-		exit(0);
+		exit(1);
 	}
 	asm_t.champ.header.magic = reverse_int32(COREWAR_EXEC_MAGIC);
 	asm_parse(&asm_t);
