@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:15:46 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:29:57 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void			asm_parse(t_asm *asm_t)
 		if (current.type == LEX_ERROR || current.type == MEM_ERROR)
 			handle_error(asm_t, current);
 		i += current.size;
+		if (current.type == END)
+			break ;
 		if (i < (size_t)asm_t->file_size)
 			i += first_non_space(asm_t->file + i) - (asm_t->file + i);
 		if (i < (size_t)asm_t->file_size && asm_t->file[i] == '#')

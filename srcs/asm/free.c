@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:09:17 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 15:23:20 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:25:19 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ void		free_asm(t_asm *asm_t)
 		free_tokens(asm_t);
 	if (asm_t->code)
 		ft_memdel((void**)&asm_t->code);
+	if (asm_t->filename)
+		ft_strdel(&asm_t->filename);
 }
