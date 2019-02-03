@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:14:34 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 15:25:07 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:06:53 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	process_label(t_asm *asm_t, t_token token, size_t *i)
 {
 	t_label	*label;
 
+	if (!(asm_t->flags & NAME_FLAG) || !(asm_t->flags & COMMENT_FLAG))
+		syntax_error(asm_t, token);
 	label = get_label(asm_t, token.string);
 	if (!label)
 		asm_add_label(asm_t, token.string, asm_t->champ.header.prog_size);

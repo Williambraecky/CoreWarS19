@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 13:56:52 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:14:32 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define COMMENT_TOO_LONG 1 << 1
 # define NAME_FLAG 1 << 2
 # define NAME_TOO_LONG 1 << 3
+# define END_SYNTAX_ERR 1 << 4
 
 /*
 ** Typedefs
