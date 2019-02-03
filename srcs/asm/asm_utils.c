@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:55:22 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 17:43:35 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 14:12:32 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ int		asm_add_label(t_asm *asm_t, char *name, int position)
 	t_label	label;
 	t_label	*new;
 
-	if (!name)
-		return (-1); //TODO: validate before sending to function
-	if (!(label.name = ft_strdup(name)))
+	if (!name || !(label.name = ft_strdup(name)))
 		exit_error(asm_t, "Out of memory");
 	label.position = position;
 	if (!(new = ft_realloc(asm_t->labels, sizeof(t_label) * asm_t->nb_labels,

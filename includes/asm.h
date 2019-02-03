@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 18:21:41 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 13:56:52 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ enum		e_type
 	DIRECT_LABEL = 512,
 	INDIRECT = 1024,
 	SEPARATOR = 2048,
-	COMMENT = 4096, // Unused ?
+	COMMENT = 4096,
 	END = 8192
 };
 
