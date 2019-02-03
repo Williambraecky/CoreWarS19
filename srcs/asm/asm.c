@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 14:18:28 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 15:59:06 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ static void	write_champ(t_asm *asm_t, char *filename)
 		exit_error(asm_t, "Error closing file");
 }
 
+static void	check_data(t_asm *asm_t)
+{
+	if (asm_t->flags & NAME_TOO_LONG)
+	{
+		ft_printf_fd(2, "Champion name too long (Max length %d)\n",
+			PROG_NAME_LENGTH);
+		free_asm(asm_t);
+		exit(1);
+	}
+	else if (asm_t->flags & COMMENT_TOO_LONG)
+	{
+		ft_printf_fd(2, "Champion comment too long (Max length %d)\n",
+			COMMENT_LENGTH);
+		free_asm(asm_t);
+		exit(1);
+	}
+}
+
 /*
 ** TODO: post process error handling (ex: name too long comment too long etc)
 */
@@ -56,6 +74,7 @@ int			main(int argc, char **argv)
 	asm_parse(&asm_t);
 	asm_token_parse(&asm_t);
 	asm_replace_labels(&asm_t);
+	check_data(&asm_t);
 	write_champ(&asm_t, "test_file");
 	free_asm(&asm_t);
 	return (0);

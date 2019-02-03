@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 11:54:08 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 12:05:33 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 15:56:08 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	ensure_enough_space(t_asm *asm_t)
 void		code_write_byte(t_asm *asm_t, t_u8 byte)
 {
 	ensure_enough_space(asm_t);
+	if (!asm_t->code)
+		exit_error(asm_t, "Could not ensure enough space for code\n");
 	asm_t->code[asm_t->champ.header.prog_size++] = byte;
 }
 
