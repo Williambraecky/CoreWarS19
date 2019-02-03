@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:24:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/18 14:27:37 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/18 14:28:42 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_champ	t_champ;
 struct			s_champ
 {
 	t_header	header;
-	t_u8		code[CHAMP_MAX_SIZE + 1]; // + 1 just in case
+	t_u8		code[CHAMP_MAX_SIZE + 1];
 };
 
 /*
