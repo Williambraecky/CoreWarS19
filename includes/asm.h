@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:14:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:24:04 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ struct		s_asm
 	int		flags;
 	int		fd;
 	int		line;
+	char	*filename;
 	char	*file;
 	int		file_size;
 	t_token	*tokens;

@@ -6,23 +6,23 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:04:35 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 16:26:55 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	write_champ(t_asm *asm_t, char *filename)
+static void	write_champ(t_asm *asm_t)
 {
 	int				fd;
 	unsigned int	size;
 
-	if (!filename)
-		exit_error(asm_t, "Invalid file name");
-	if (!(fd = open(filename, O_RDWR | O_CREAT | O_TRUNC,
+	if (!asm_t->filename)
+		exit_error(asm_t, "Out of memory");
+	if (!(fd = open(asm_t->filename, O_RDWR | O_CREAT | O_TRUNC,
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)))
 		exit_error(asm_t, "Could not open file");
-	ft_printf("Writing output program to %s\n", filename);
+	ft_printf("Writing output program to %s\n", asm_t->filename);
 	size = asm_t->champ.header.prog_size;
 	asm_t->champ.header.prog_size =
 	reverse_int32(asm_t->champ.header.prog_size);
@@ -30,7 +30,14 @@ static void	write_champ(t_asm *asm_t, char *filename)
 		write(fd, asm_t->code, size) == -1)
 		exit_error(asm_t, "Error writing to file");
 	if (close(fd) == -1)
-		exit_error(asm_t, "Error closing file");
+		exit_error(asm_t, "Error closing write file");
+}
+
+static char	*gen_filename(char *orig_file)
+{
+	if (!ft_strstr(orig_file, ".s"))
+		return (ft_strdup(".cor"));
+	return (ft_strsrepl(orig_file, ".s", ".cor"));
 }
 
 static void	check_data(t_asm *asm_t)
@@ -75,7 +82,10 @@ int			main(int argc, char **argv)
 	asm_token_parse(&asm_t);
 	asm_replace_labels(&asm_t);
 	check_data(&asm_t);
-	write_champ(&asm_t, "test_file");
+	asm_t.filename = gen_filename(argv[argc - 1]);
+	write_champ(&asm_t);
+	if (close(asm_t.fd) == -1)
+		exit_error(&asm_t, "Error closing read file");
 	free_asm(&asm_t);
 	return (0);
 }
