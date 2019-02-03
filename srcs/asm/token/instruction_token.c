@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 18:13:13 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/03 13:38:08 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_token		instruction_make_token(char *line, size_t i)
 	{
 		if (!ft_strchr(LABEL_CHARS, line[j]))
 		{
+			ret.string = NULL;
 			ret.type = LEX_ERROR;
 			ret.pos = str_calc_pos(line, j);
 			return (ret);
