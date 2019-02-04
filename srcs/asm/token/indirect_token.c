@@ -6,15 +6,11 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:27:49 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:36:18 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:46:14 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-** TODO: optimize of_type return lex error in make_token
-*/
 
 int		indirect_of_type(char *line, size_t i)
 {
@@ -22,15 +18,6 @@ int		indirect_of_type(char *line, size_t i)
 		i++;
 	if (!ft_isdigit(line[i]))
 		return (0);
-	i++;
-	while (line[i])
-	{
-		if (ft_strchr(SEPARATOR_CHARS, line[i]))
-			break ;
-		else if (!ft_isdigit(line[i]))
-			return (0);
-		i++;
-	}
 	return (1);
 }
 
@@ -45,7 +32,7 @@ t_token	indirect_make_token(char *line, size_t i)
 		j++;
 	while (line[j])
 	{
-		if (ft_strchr(SEPARATOR_CHARS, line[j]))
+		if (!ft_isdigit(line[j]))
 			break ;
 		j++;
 	}
