@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:29:57 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:28:27 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ static void		handle_error(t_asm *asm_t, t_token token)
 	exit_error(asm_t, "Out of memory");
 }
 
+static void		skip_comments(t_asm *asm_t, size_t *i)
+{
+	if (*i >= (size_t)asm_t->file_size || asm_t->file[*i] != '#')
+		return ;
+	while (asm_t->file[*i] && asm_t->file[*i] != '\n')
+		(*i)++;
+}
+
+/*
+** TODO: Always skip comments
+*/
+
 void			asm_parse(t_asm *asm_t)
 {
 	size_t	i;
@@ -61,6 +73,7 @@ void			asm_parse(t_asm *asm_t)
 	i = 0;
 	while (i < (size_t)asm_t->file_size)
 	{
+		skip_comments(asm_t, &i);
 		current = get_next_token(asm_t->file, i);
 		if (current.type != LEX_ERROR)
 			current.pos = str_calc_pos(asm_t->file, i);
@@ -72,9 +85,6 @@ void			asm_parse(t_asm *asm_t)
 			break ;
 		if (i < (size_t)asm_t->file_size)
 			i += first_non_space(asm_t->file + i) - (asm_t->file + i);
-		if (i < (size_t)asm_t->file_size && asm_t->file[i] == '#')
-			while (asm_t->file[i] && asm_t->file[i] != '\n')
-				i++;
 	}
 	asm_add_token(asm_t, (t_token){.type = END,
 		.string = NULL, .pos = str_calc_pos(asm_t->file, i)});
