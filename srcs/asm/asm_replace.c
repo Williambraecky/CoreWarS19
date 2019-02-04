@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:44 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 14:18:07 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 22:02:10 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	handle_error(t_asm *asm_t, t_token token)
 {
-	ft_printf_fd(2, "No such label %s while attempting to dereference \
+	ft_printf_fd(1, "No such label %s while attempting to dereference \
 token [TOKEN][%.3d:%.3d] %s \"%s\"\n",
 		token.string + 2, token.pos.y, token.pos.x, type_get_string(token.type),
 		token.string);
