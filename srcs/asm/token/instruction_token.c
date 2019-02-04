@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:30:09 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 22:21:31 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			instruction_of_type(char *line, size_t i)
 {
-	return (line[i] && line[i] != '\n');
+	return (ft_strchr(LABEL_CHARS, line[i]) != NULL);
 }
 
 /*
@@ -32,12 +32,7 @@ t_token		instruction_make_token(char *line, size_t i)
 		line[j] == '\t' || line[j] == '\r' || line[j] == ','))
 	{
 		if (!ft_strchr(LABEL_CHARS, line[j]))
-		{
-			ret.string = NULL;
-			ret.type = LEX_ERROR;
-			ret.pos = str_calc_pos(line, j);
-			return (ret);
-		}
+			break ;
 		j++;
 	}
 	ret.string = ft_strsub(line, i, j - i);
@@ -99,7 +94,7 @@ void		process_instruction(t_asm *asm_t, t_token token, size_t *i)
 		code_write_byte(asm_t, gen_code_octet(asm_t, *i));
 	if (process_instruction_args(asm_t, op, i, instruction_pos) != op->nb_arg)
 	{
-		ft_printf_fd(2, "Invalid parameter count for instruction %s\n",
+		ft_printf_fd(1, "Invalid parameter count for instruction %s\n",
 			op->name);
 		free_asm(asm_t);
 		exit(1);
