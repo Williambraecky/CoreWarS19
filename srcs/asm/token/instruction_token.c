@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:07:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:30:09 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_token		instruction_make_token(char *line, size_t i)
 	ret.type = INSTRUCTION;
 	j = i;
 	while (line[j] && !(line[j] == ' ' || line[j] == '\n' ||
-		line[j] == '\t' || line[j] == '\r'))
+		line[j] == '\t' || line[j] == '\r' || line[j] == ','))
 	{
 		if (!ft_strchr(LABEL_CHARS, line[j]))
 		{

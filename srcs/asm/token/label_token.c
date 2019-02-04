@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:14:34 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:06:53 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:30:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int		label_of_type(char *line, size_t i)
 {
+	size_t	j;
+
+	j = i;
 	while (line[i] && line[i] != LABEL_CHAR)
 		if (!ft_strchr(LABEL_CHARS, line[i++]))
 			return (0);
-	return (line[i] == LABEL_CHAR);
+	return (line[i] == LABEL_CHAR && j != i);
 }
 
 t_token	label_make_token(char *line, size_t i)
