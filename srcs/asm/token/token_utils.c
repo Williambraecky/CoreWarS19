@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 12:34:47 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 17:56:24 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:15:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_type		g_type_table[] =
 	DIRECT,
 	DIRECT_LABEL,
 	INDIRECT,
+	INDIRECT_LABEL,
 	SEPARATOR,
 	COMMENT,
 	END
@@ -45,6 +46,7 @@ char		*g_string_table[] =
 	"DIRECT",
 	"DIRECT_LABEL",
 	"INDIRECT",
+	"INDIRECT_LABEL",
 	"SEPARATOR",
 	"COMMENT",
 	"END"
@@ -96,7 +98,7 @@ void		asm_add_token(t_asm *asm_t, t_token token)
 
 static t_u8	get_param_code(t_token token)
 {
-	if (token.type == INDIRECT)
+	if (token.type == INDIRECT || token.type == INDIRECT_LABEL)
 		return (IND_CODE);
 	else if (token.type == DIRECT || token.type == DIRECT_LABEL)
 		return (DIR_CODE);

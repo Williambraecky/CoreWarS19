@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:24:04 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:24:45 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ enum		e_type
 	DIRECT = 256,
 	DIRECT_LABEL = 512,
 	INDIRECT = 1024,
-	SEPARATOR = 2048,
-	COMMENT = 4096,
-	END = 8192
+	INDIRECT_LABEL = 2048,
+	SEPARATOR = 4096,
+	COMMENT = 8192,
+	END = 16384,
 };
 
 struct		s_asm
@@ -192,6 +193,9 @@ void		process_dlabel(t_asm *asmt_t, t_token token, int label_size,
 int			indirect_of_type(char *line, size_t i);
 t_token		indirect_make_token(char *line, size_t i);
 void		process_indirect(t_asm *asmt_t, t_token token);
+int			ilabel_of_type(char *line, size_t i);
+t_token		ilabel_make_token(char *line, size_t i);
+void		process_ilabel(t_asm *asm_t, t_token token, int instruction_pos);
 int			instruction_of_type(char *line, size_t i);
 t_token		instruction_make_token(char *line, size_t i);
 void		process_instruction(t_asm *asm_t, t_token token, size_t *i);

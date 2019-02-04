@@ -23,6 +23,7 @@ t_define	g_def_table[] =
 	{DIRECT, direct_of_type, direct_make_token},
 	{DIRECT_LABEL, dlabel_of_type, dlabel_make_token},
 	{INDIRECT, indirect_of_type, indirect_make_token},
+	{INDIRECT_LABEL, ilabel_of_type, ilabel_make_token},
 	{INSTRUCTION, instruction_of_type, instruction_make_token},
 	{ENDLINE, endline_of_type, endline_make_token},
 	{END, end_of_type, end_make_token},

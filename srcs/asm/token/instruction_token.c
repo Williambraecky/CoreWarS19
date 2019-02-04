@@ -53,7 +53,8 @@ static int	type_is_param(t_type type)
 	return (type == REGISTER
 		|| type == DIRECT
 		|| type == DIRECT_LABEL
-		|| type == INDIRECT);
+		|| type == INDIRECT
+		|| type == INDIRECT_LABEL);
 }
 
 static int	process_instruction_args(t_asm *asm_t, t_op *op, size_t *i,
