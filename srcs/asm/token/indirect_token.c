@@ -6,11 +6,15 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:27:49 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 16:50:16 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:36:18 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** TODO: optimize of_type return lex error in make_token
+*/
 
 int		indirect_of_type(char *line, size_t i)
 {
