@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:28:27 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 22:19:28 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void		handle_error(t_asm *asm_t, t_token token)
 
 static void		skip_comments(t_asm *asm_t, size_t *i)
 {
-	if (*i >= (size_t)asm_t->file_size || asm_t->file[*i] != '#')
+	if (*i >= (size_t)asm_t->file_size ||
+		(asm_t->file[*i] != '#' && asm_t->file[*i] != ';'))
 		return ;
 	while (asm_t->file[*i] && asm_t->file[*i] != '\n')
 		(*i)++;
@@ -70,7 +71,7 @@ void			asm_parse(t_asm *asm_t)
 	t_token	current;
 
 	gnl_to_one_string(asm_t);
-	i = 0;
+	i = first_non_space(asm_t->file) - asm_t->file;
 	while (i < (size_t)asm_t->file_size)
 	{
 		skip_comments(asm_t, &i);
