@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:44:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 14:58:27 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 14:01:34 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void		init_vm(t_vm *vm)
 	vm->dump = -1;
 	vm->arena.total_cycle = 0;
 	vm->arena.lives_since_last_check = 0;
+	vm->visu_pause = 0;
+	vm->visu_speed = 50;
 }

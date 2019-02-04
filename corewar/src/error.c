@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:45:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 11:15:06 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:52:39 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void		error_arg(void)
 {
 	ft_printf("Error arguments\n");
-	exit (0);
+	exit(0);
 }
 
 void		error_exit(t_vm *vm, char *msg)
 {
+	if (vm->visu)
+		endwin();
 	ft_printf("%s\n", msg);
 	free_all(vm);
-	exit (0);
+	exit(0);
 }
 
 int			error_usage(void)

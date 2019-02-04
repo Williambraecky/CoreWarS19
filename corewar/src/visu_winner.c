@@ -6,93 +6,82 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:05:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 19:57:32 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:50:44 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-void		print_on_window(WINDOW *window, char **line, int size)
+void		set_line1(char **line)
 {
-	int	i;
-	int	x;
-	int	y;
-
-	getyx(window, y, x);
-	i = -1;
-	y++;
-	x++;
-	while (++i < size)
-	{
-		wmove(window, y + i, x);
-		wprintw(window, "%s", line[i]);
-	}
+	line[0] = "            `...-::::---------.---....`.";
+	line[1] = "         ./hso+/-..``        `-:/++-` ./s+:";
+	line[2] = "         :+:ooso/+/:::......-:/+sso/+o:/oms";
+	line[3] = " ..      /.-...-...-:-.-::////:/:/:+hh+shmN      `-";
+	line[4] = "`o.:..-. .++:.:+/:::::::--:::-:::/+shysshd.`.-::/s/`";
+	line[5] = "-y/--------+-``+:.---++::-::--:.-.-:/:.-so/o+/:--/s";
+	line[6] = ":y`:` .::-:o:``/``..`/:`.``...-```:o+-./ho/:/.  -:y-";
+	line[7] = "-m-:  //`/d+/ `:   ``:-` `````.`../o+-.+h+`./s  .:y.";
+	line[8] = " y/.:  -//-.s-`:     :`   `   . ../+/--ss-://. `-y+";
+	line[9] = " `o/.:      +: /     :`   `   .`-./o:-:y:     .:o:";
+	line[10] = "  `s/-:`    .s : `   :`   `   .`-.//::+y     -:+.";
+	line[11] = "    :s::-    +`:. `  -`   `   ....:o:/y-   .+/-";
+	line[12] = "     `:o/:.  -/`/ `  .`   ` ``..../o/+o   :o+.";
+	line[13] = "       `+:::  o`-:`  `-   ``` .`..//:y- .o++.";
+	line[14] = "        `//-:../ :-.  .    ```....+/+o`+h/.";
+	line[15] = "          ./+::/``:..`..      ...:o/d+ho.";
+	line[16] = "            `+o/o .-.`.:``   `--:sosys-";
+	line[17] = "              `+o/`.-.`:.  ``..-++ys/";
+	line[18] = "               `s+s:....+` `..-ooys/";
+	line[19] = "               :/y+-+/-.-o//+oyy+./+:";
+	line[20] = "                     -+ssooohy+`";
+	line[21] = "                    :--::///++oo`";
+	line[22] = "                    `:+:-:://oys";
 }
 
-void		print_19(WINDOW *window)
+void		set_line2(char **line)
 {
-	char	*line[13];
-
-	line[0] = "                              ";
-	line[1] = "      .-----`  --------.      ";
-	line[2] = "    .yMMMMMM- `MMMMMMMMMh-    ";
-	line[3] = "  .yMMMMMMMM- `MMMMMMMMMMMh-  ";
-	line[4] = " .sssshMMMMM-  :dMMm+  +MMMN  ";
-	line[5] = "      :MMMMM-    :dMMm++MMMN  ";
-	line[6] = "      :MMMMM-      ....oMMMN  ";
-	line[7] = "      :MMMMM-          +MMMN  ";
-	line[8] = "      :MMMMM-  :yhhhhhhmMMMN  ";
-	line[9] = "      :MMMMM-   .sMMMMMMMMMN  ";
-	line[10] = "      :MMMMM-     .+ooooooo+  ";
-	line[11] = "      :MMMMM-                 ";
-	line[12] = "      :mmmmm-                 ";
-	print_on_window(window, line, 13);
+	line[23] = "                      +/::+y//:";
+	line[24] = "                     `::.`+s-o-";
+	line[25] = "                  `----+ `yh::/o/-`";
+	line[26] = "             `://:-.-/:  .sso:-/ssd+//";
+	line[27] = "             /+/o./++.` .:soso+/ydmd+o/";
+	line[28] = "            .///o+so-.--++osssyy+odsoyy`";
+	line[29] = "            ::--:-oy:..-++ossydho/-:osos";
+	line[30] = "           .--::+-.----:+oysoo+:--:osyyh+";
+	line[31] = "           :`..------..-------::/::-.---+";
+	line[32] = "           o``..--.....```  ```` ``/----o:";
+	line[33] = "          ::``..-`                 /....oo";
+	line[34] = "         `+--```..                `/-.--sy.";
+	line[35] = "         /::-```.:..---------:---.--::/:so+";
+	line[36] = "        .o:+:.---------.----:--::-:::///oo+/";
+	line[37] = "        o+-........-...--:---------------:os.";
+	line[38] = "       -o-..--.--:-------....-----:::://++:os";
+	line[39] = "       o:............---------......--::::::o:";
+	line[40] = "      `:...-------------..------------:::::::-";
 }
 
-void		print_19ai(WINDOW *window)
-{
-	char	*line[12];
-
-	line[0] = "       -hNNNNNN-  ommmmmmmmmh/              -h: -dNNNNh.              ";
-	line[1] = "    `:hMMMMMMMM:  sMMMMMMMMMMMd+`          /mNNo``yNNNNm:             ";
-	line[2] = "   :hNNNNMMMMMM:  /mMMMNsooomMMMm-       `oNNNNNh. +NNNNNo`           ";
-	line[3] = "  `.....:MMMMMM:   `+mMMNs. yMMMM/      .yNNNNNNNm: -dNNNNy.          ";
-	line[4] = "        .MMMMMM:     `/hddh/hMMMM/     -dNNNd:sNNNNo``sNNNNm:         ";
-	line[5] = "        .MMMMMM:            yMMMM/    /mNNNs`  +mNNNy. /mNNNNo`       ";
-	line[6] = "        .MMMMMM:   `````````hMMMM/  `sNNNm+     -dNNNm: -hNNNNy.      ";
-	line[7] = "        .MMMMMM:  `+dmmmmmmmNMMMM/ .hNNNd-       `sNNNNo``sNNNNd:     ";
-	line[8] = "        .MMMMMM:    .oNMMMMMMMMMM/-dNNNy.          /mNNNh. /mNNNNo    ";
-	line[9] = "        .MMMMMM:      ./+++++++++sNNNNo`            -dNNNm: .hNNNNy.  ";
-	line[10] = "        .MMMMMM:               `sNNNNh+++++++++/     `sNNNNo `oNNNNm: ";
-	line[11] = "        .MMMMMM:              `hNNNNNNNNNNNNNNNNy`     /mNNNy` :mNNNN+";
-	print_on_window(window, line, 12);
-	wrefresh(window);
-}
 
 void		print_winner(t_vm *vm, WINDOW *window)
 {
-	werase(window);
-	wrefresh(window);
+	char	*line[41];
 
-}
-
-void		print_header(t_vm *vm, WINDOW *window)
-{
-	werase(window);
-	wmove(window, 2, 75);
-	wprintw(window, "%s", "GET READY FOR THE BATTLE OF THE YEAR");
-	wmove(window, 4, 71);
-	wprintw(window, "%s", " _____ ___________ _____ _    _  ___ ______");
-	wmove(window, 5, 71);
-	wprintw(window, "%s", "/  __ \\  _  | ___ \\  ___| |  | |/ _ \\| ___ \\");
-	wmove(window, 6, 71);
-	wprintw(window, "%s", "| /  \\/ | | | |_/ / |__ | |  | / /_\\ \\ |_/ /");
-	wmove(window, 7, 71);
-	wprintw(window, "%s", "| |   | | | |    /|  __|| |/\\| |  _  |    /");
-	wmove(window, 8, 71);
-	wprintw(window, "%s", "| \\__/\\ \\_/ / |\\ \\| |___\\  /\\  / | | | |\\ \\");
-	wmove(window, 9, 71);
-	wprintw(window, "%s", " \\____/\\___/\\_| \\_\\____/ \\/  \\/\\_| |_|_| \\_|");
-	wmove(window, 11, 75);
+	if (vm->arena.winner == -1)
+	{
+		set_line1(line);
+		set_line2(line);
+		wattron(window, COLOR_PAIR(6));
+		print_on_window(window, line, 41);
+		wmove(window, 44, 19);
+		wprintw(window, "PLAYER %d WON!!", vm->champs[vm->arena.winner].number);
+		wattroff(window, COLOR_PAIR(6));
+		wattron(window, COLOR_PAIR(vm->arena.winner));
+		wmove(window, 46, 16);
+		wprintw(window, "%s", vm->champs[vm->arena.winner].code.header.prog_name);
+		wattroff(window, COLOR_PAIR(vm->arena.winner));
+	}
+	else
+		wprintw(window, "%s", "NO WINNER AS NO CONTESTANT DID A LIVE.");
 	wrefresh(window);
 }
+

@@ -6,12 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:42:30 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/31 14:15:03 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:55:07 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-
 
 static const t_instruct		g_op_list[17] = {
 	{0, op_null, 1, 0, {0, 0, 0}, 0, 0, 0},
@@ -32,7 +31,6 @@ static const t_instruct		g_op_list[17] = {
 	{15, op_lfork, 1000, 1, {0, 0, 0}, 0, 0, 0},
 	{16, op_aff, 2, 1, {0, 0, 0}, 0, 0, 0}
 };
-
 
 t_instruct	read_instruction(t_vm *vm, int pc)
 {

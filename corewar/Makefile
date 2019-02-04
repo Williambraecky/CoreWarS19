@@ -6,7 +6,7 @@
 #    By: nrouvroy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/22 14:23:31 by nrouvroy          #+#    #+#              #
-#    Updated: 2019/02/01 16:41:50 by sde-spie         ###   ########.fr        #
+#    Updated: 2019/02/04 15:08:12 by sde-spie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,12 @@ SRC			:=	corewar.c\
 				free.c\
 				visu.c\
 				visu_memory.c\
-				visu_winner.c
+				visu_winner.c\
+				visu_design.c
 
 OBJ			:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-CC			:=	gcc -lncurses -g
+CC			:=	gcc -g -lncurses
 CFG			:=	-O3
 CFG			+=	-Wall -Wextra
 CFG			+=	#-fsanitize=address

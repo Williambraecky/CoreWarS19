@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 14:58:05 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:54:26 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int			parse_dump(t_vm *vm, char **argv)
 {
-	// gerer si deux dunp dans les args
 	if (!ft_strcmp(*argv, "-dump"))
 	{
 		argv++;
-		vm->dump = n_bytes_to_uint((unsigned char *) argv, 4);
+		vm->dump = n_bytes_to_uint((unsigned char *)argv, 4);
 		if (vm->dump < 1)
 			error_exit(vm, "Wrong dump value.");
 		return (1);

@@ -6,14 +6,13 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 18:36:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:52:04 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-
-
-void	print_champs(t_vm vm)
+/*
+void		print_champs(t_vm vm)
 {
 	int	players;
 
@@ -61,8 +60,7 @@ void		print_process(t_vm vm)
 		printf("alive = %d\n", vm.arena.process[i++].alive);
 		printf("_________\n");
 	}
-
-}
+}*/
 
 void		time_for_battle(t_vm *vm, WINDOW **windows)
 {
@@ -71,7 +69,7 @@ void		time_for_battle(t_vm *vm, WINDOW **windows)
 	vm->visu ? 0 : introduce_champs(*vm);
 	while (vm->arena.nbr_process_alive)
 	{
-		do_cycle(vm);
+		vm->visu_pause == 0 ? do_cycle(vm) : 1;
 		vm->visu ? print_visu(vm, windows, 1) : 0;
 	}
 	index = vm->arena.winner;
@@ -80,9 +78,11 @@ void		time_for_battle(t_vm *vm, WINDOW **windows)
 	else if (!vm->visu)
 		ft_printf("Player %d (%s) won!\n", vm->champs[index].number,\
 			vm->champs[index].code.header.prog_name);
+	else
+		print_visu(vm, windows, 0);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_vm	vm;
 	WINDOW	*window[5];
@@ -99,6 +99,7 @@ int		main(int argc, char **argv)
 //	print_champs(vm);
 //	print_memory2(vm);
 	time_for_battle(&vm, window);
+	ft_printf("taille = %ld\n", sizeof(vm));
 	vm.visu ? endwin() : 0;
 	free_all(&vm);
 }

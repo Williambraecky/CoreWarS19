@@ -6,11 +6,12 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 20:26:05 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:09:37 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
 # define COREWAR_H
+# define ABS(x) ((x) < 0 ? -(x) : (x))
 # include "../../libft/includes/libft.h"
 # include "op.h"
 # include "struct.h"
@@ -85,6 +86,8 @@ typedef struct		s_vm
 	int				nbr_champ;
 	int				n;
 	int				visu;
+	char			visu_pause;
+	int				visu_speed;
 }					t_vm;
 
 /*
@@ -205,11 +208,11 @@ void			free_all(t_vm *vm);
 void			init_visu(WINDOW **window);
 void			print_visu(t_vm *vm, WINDOW **window, int mode);
 
-void			print_19(WINDOW *window);
 void			print_19ai(WINDOW *window);
 void			print_data(t_vm *vm, WINDOW *window);
 void			print_winner(t_vm *vm, WINDOW *window);
 void			print_header(t_vm *vm, WINDOW *window);
 void			print_memory(t_vm *vm, WINDOW *window);
+void			print_on_window(WINDOW * window, char **line, int index);
 
 #endif

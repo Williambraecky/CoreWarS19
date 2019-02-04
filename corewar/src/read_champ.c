@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/01 20:32:00 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/04 18:37:13 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 	size_t			size_code;
 	unsigned char	buff[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
 
-	size_code = sizeof(t_code);
+	size_code = sizeof(t_header);
 	champ = &vm->champs[vm->nbr_champ];
 	champ->lives = 0;
 	champ->lives_since_last_check = 0;
@@ -66,9 +66,12 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 	else
 		champ->number = find_number(vm);
 	if ((fd = open(*argv, O_RDONLY)) < 0)
-		error_exit(vm, "Error reading file.");
+		error_exit(vm, "Error: can't read source file.");
 	read(fd, buff, size_code);
 	parse_header(vm, buff);
-	parse_code(vm, &buff[PROG_NAME_LENGTH + COMMENT_LENGTH + 8]);
+	size_code = CHAMP_MAX_SIZE;
+	if (read(fd, buff, size_code + 1) != champ->code.header.prog_size)
+		error_exit(vm, "Error: Code size differ from what its header says.");
+	parse_code(vm, buff);
 	vm->nbr_champ++;
 }
