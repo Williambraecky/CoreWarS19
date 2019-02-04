@@ -33,7 +33,7 @@ t_token	label_make_token(char *line, size_t i)
 	if (!ret.string)
 		ret.type = MEM_ERROR;
 	else
-		ret.size = ft_strlen(ret.string);
+		ret.size = j - i + 1;
 	return (ret);
 }
 

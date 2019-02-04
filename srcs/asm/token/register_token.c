@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:20:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 17:16:36 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:30:39 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_token	register_make_token(char *line, size_t i)
 	if (!ret.string)
 		ret.type = MEM_ERROR;
 	else
-		ret.size = ft_strlen(ret.string);
+		ret.size = j - i;
 	return (ret);
 }
 
