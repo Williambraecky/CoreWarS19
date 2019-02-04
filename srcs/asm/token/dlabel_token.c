@@ -6,11 +6,15 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:48:20 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/31 18:22:19 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:33:23 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** TODO: Optimize of_type return lex error in make_token
+*/
 
 int		dlabel_of_type(char *line, size_t i)
 {

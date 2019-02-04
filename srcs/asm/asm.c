@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:26:55 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:44:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ static void	check_data(t_asm *asm_t)
 		exit(1);
 	}
 }
-
-/*
-** TODO: Write to correct file
-*/
 
 int			main(int argc, char **argv)
 {
