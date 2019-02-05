@@ -6,11 +6,21 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:57:43 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:30:51 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int			parse_sounds(t_vm *vm, char **argv)
+{
+	if (!ft_strcmp(*argv, "-sounds"))
+	{
+		vm->sounds = 1;
+		return (1);
+	}
+	return (0);
+}
 
 int			parse_dump(t_vm *vm, char **argv)
 {
@@ -61,6 +71,8 @@ char		**parse_command(t_vm *vm, char **argv)
 		error_exit(vm, "Too many players!");
 	else if (parse_dump(vm, argv))
 		new_pos = argv + 2;
+	else if (parse_sounds(vm, argv))
+		new_pos = argv + 1;
 	else if (parse_n(vm, argv))
 		new_pos = argv + 3;
 	else if (parse_visu(vm, argv))

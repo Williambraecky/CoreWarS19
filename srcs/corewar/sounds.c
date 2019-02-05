@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:16:34 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:58:33 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:39:02 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int			play_victory(t_vm *vm)
 {
 	if (vm->sounds)
 	{
-		system("killall afplay");
-		system("afplay sounds/victory.wav&");
+		system("pkill afplay");
+		system("afplay srcs/sounds/victory.wav &> /dev/null &");
 	}
 	return (1);
 }
@@ -26,8 +26,9 @@ int			play_death(t_vm *vm)
 {
 	if (vm->sounds && vm->sounds_death)
 	{
-		system("killall afplay");
-		system("afplay sounds/death.wav&");
+		usleep(1000000);
+		system("pkill afplay");
+		system("afplay srcs/sounds/death.wav &> /dev/null &");
 	}
 	return (1);
 }
