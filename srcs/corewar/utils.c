@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:56:23 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/30 10:49:02 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:21:38 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 int				find_number(t_vm *vm)
 {
@@ -34,20 +34,21 @@ int				find_number(t_vm *vm)
 
 unsigned int	n_bytes_to_uint(unsigned char *header, unsigned int nbr)
 {
-	int					i;
+	unsigned int		i;
 	unsigned int		ret;
 	unsigned int		mask;
 
 	ret = 0;
 	if (nbr > 4)
 		exit (0);
-	i = -1;
-	while (++i < nbr)
+	i = 0;
+	while (i < nbr)
 	{
 		ret = ret << 8;
 		mask = (unsigned int)*header;
 		ret = ret | mask;
 		header++;
+		i++;
 	}
 	return (ret);
 }

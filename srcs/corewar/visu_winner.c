@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:05:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 09:55:31 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:59:05 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		set_line1(char **line)
 {

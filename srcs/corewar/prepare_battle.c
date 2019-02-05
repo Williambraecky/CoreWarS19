@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/04 12:02:33 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:22:36 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void			check_error(t_vm *vm)
 {
@@ -48,7 +48,6 @@ void			init_process(t_vm *vm)
 {
 	int			i;
 	t_process	*pro;
-	int			j;
 
 	i = -1;
 	vm->arena.process = (t_process *)malloc(sizeof(t_process) * NBR_PROCESS);
@@ -64,7 +63,7 @@ void			init_process(t_vm *vm)
 void			paste_memory(t_vm *vm)
 {
 	int		i;
-	int		j;
+	unsigned int		j;
 	int		start_index;
 
 	i = -1;
@@ -77,12 +76,13 @@ void			paste_memory(t_vm *vm)
 	while (++i < vm->nbr_champ)
 	{
 		start_index = (i * MEM_SIZE / vm->nbr_champ);
-		j = -1;
-		while (++j < vm->champs[i].code.header.prog_size)
+		j = 0;
+		while (j < vm->champs[i].code.header.prog_size)
 		{
 			vm->arena.arena[j + start_index] = vm->champs[i].code.prog[j];
 			vm->arena.arena_owner[j + start_index] = i + 1;
 			vm->arena.arena_owner[j + start_index] *= (j == 0 ? -1 : 1);
+			j++;
 		}
 	}
 }

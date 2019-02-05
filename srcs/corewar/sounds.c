@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:16:34 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 13:40:34 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:58:33 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 int			play_victory(t_vm *vm)
 {

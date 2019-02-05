@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:15:18 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:56:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		time_for_battle(t_vm *vm, WINDOW **windows)
 {

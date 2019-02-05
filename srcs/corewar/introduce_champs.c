@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 08:57:23 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/01/30 11:37:50 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:57:23 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		introduce_champs(t_vm vm)
 {
