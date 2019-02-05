@@ -6,15 +6,11 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 15:49:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:24:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:02:35 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-** NOTE: may keep for future
-*/
 
 static t_u8	get_type_for(t_type type)
 {
@@ -39,11 +35,6 @@ int			instruction_check_param(t_op *op, t_token param, int param_count)
 		return (0);
 	return (op->types[param_count] & type);
 }
-
-/*
-** This function just needs to read and write the good data on the code
-** NOTE: unknown labels are added to the replace map
-*/
 
 void		process_parameter(t_asm *asm_t, t_token parameter, int label_size,
 	int instruction_pos)

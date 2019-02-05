@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 22:19:28 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 14:59:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ static void		skip_comments(t_asm *asm_t, size_t *i)
 	while (asm_t->file[*i] && asm_t->file[*i] != '\n')
 		(*i)++;
 }
-
-/*
-** TODO: Always skip comments
-*/
 
 void			asm_parse(t_asm *asm_t)
 {

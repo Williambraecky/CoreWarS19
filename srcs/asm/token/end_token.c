@@ -6,15 +6,11 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 13:39:06 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:30:29 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:10:05 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-** Functions related to END type
-*/
 
 int		end_of_type(char *line, size_t i)
 {

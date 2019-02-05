@@ -47,10 +47,6 @@ t_token	dlabel_make_token(char *line, size_t i)
 	return (ret);
 }
 
-/*
-** NOTE: need to add to replace table if label is missing
-*/
-
 void	process_dlabel(t_asm *asm_t, t_token token, int label_size,
 	int instruction_pos)
 {
