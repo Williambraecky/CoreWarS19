@@ -62,7 +62,7 @@ void	process_dlabel(t_asm *asm_t, t_token token, int label_size,
 	{
 		s = 0;
 		asm_add_replace(asm_t,
-			(t_label){.name = ft_strjoin(token.string + 2, ":"),
+			(t_repl){.name = ft_strjoin(token.string + 2, ":"),
 			.position = instruction_pos, .token = token,
 			.label_size = label_size,
 			.code_pos = asm_t->champ.header.prog_size});

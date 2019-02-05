@@ -6,25 +6,20 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:55:22 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 14:12:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:09:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** Add unknown label to be replaced at the end of parsing
-** NOTE: replace name is not duplicated
-*/
-
-int		asm_add_replace(t_asm *asm_t, t_label label)
+int		asm_add_replace(t_asm *asm_t, t_repl label)
 {
-	t_label	*new;
+	t_repl	*new;
 
 	if (!label.name)
 		exit_error(asm_t, "Out of memory");
-	if (!(new = ft_realloc(asm_t->replace, sizeof(t_label) * asm_t->nb_replace,
-		sizeof(t_label) * (asm_t->nb_replace + 1))))
+	if (!(new = ft_realloc(asm_t->replace, sizeof(t_repl) * asm_t->nb_replace,
+		sizeof(t_repl) * (asm_t->nb_replace + 1))))
 		exit_error(asm_t, "Out of memory");
 	new[asm_t->nb_replace++] = label;
 	asm_t->replace = new;

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:44 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 22:02:10 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:07:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ token [TOKEN][%.3d:%.3d] %s \"%s\"\n",
 	exit(1);
 }
 
-static void	handle_replace(t_asm *asm_t, t_label replace, t_label *found)
+static void	handle_replace(t_asm *asm_t, t_repl replace, t_label *found)
 {
 	int		s;
 	size_t	i;
@@ -43,7 +43,7 @@ static void	handle_replace(t_asm *asm_t, t_label replace, t_label *found)
 void		asm_replace_labels(t_asm *asm_t)
 {
 	size_t	i;
-	t_label	replace;
+	t_repl	replace;
 	t_label	*found;
 
 	i = 0;
