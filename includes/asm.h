@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 15:07:11 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:42:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ struct		s_asm
 	size_t	nb_replace;
 	t_label	*labels;
 	size_t	nb_labels;
-	t_champ	champ;
+	t_cham	champ;
 	t_u8	*code;
 	size_t	current_code_max;
 };
