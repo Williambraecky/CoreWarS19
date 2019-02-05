@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:48:20 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 22:00:45 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:06:54 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,9 @@ t_token	dlabel_make_token(char *line, size_t i)
 	j = i + 2;
 	while (line[j])
 	{
-		if (ft_strchr(SEPARATOR_CHARS, line[j]))
+		if (ft_strchr(SEPARATOR_CHARS, line[j])
+		|| !ft_strchr(LABEL_CHARS, line[j]))
 			break ;
-		else if (!ft_strchr(LABEL_CHARS, line[j]))
-		{
-			ret.string = NULL;
-			ret.type = LEX_ERROR;
-			ret.pos = str_calc_pos(line, j);
-			return (ret);
-		}
 		j++;
 	}
 	ret.string = ft_strsub(line, i, j - i);
