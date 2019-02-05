@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:24:45 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:07:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 
 typedef struct s_asm	t_asm;
 typedef struct s_label	t_label;
+typedef struct s_repl	t_repl;
 typedef struct s_token	t_token;
 typedef struct s_pos	t_pos;
 typedef enum e_type		t_type;
@@ -84,7 +85,7 @@ struct		s_asm
 	t_token	*tokens;
 	size_t	nb_tokens;
 	size_t	max_tokens;
-	t_label	*replace;
+	t_repl	*replace;
 	size_t	nb_replace;
 	t_label	*labels;
 	size_t	nb_labels;
@@ -107,13 +108,19 @@ struct		s_token
 	char	*string;
 };
 
-struct		s_label
+struct		s_repl
 {
 	char	*name;
 	int		position;
 	int		code_pos;
 	int		label_size;
 	t_token	token;
+};
+
+struct		s_label
+{
+	char	*name;
+	int		position;
 };
 
 /*
@@ -134,7 +141,7 @@ struct		s_define
 void		free_asm(t_asm *asm_t);
 void		exit_error(t_asm *asm_t, char *error);
 int			asm_add_label(t_asm *asm_t, char *name, int position);
-int			asm_add_replace(t_asm *asm_t, t_label label);
+int			asm_add_replace(t_asm *asm_t, t_repl label);
 t_label		*get_label(t_asm *asm_t, char *name);
 void		asm_parse(t_asm *asm_t);
 char		*read_property(t_asm *asm_t, char *line);

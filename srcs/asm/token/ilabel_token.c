@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 21:03:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:24:47 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:07:21 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	process_ilabel(t_asm *asm_t, t_token token, int instruction_pos)
 	{
 		s = 0;
 		asm_add_replace(asm_t,
-			(t_label){.name = ft_strjoin(token.string + 1, ":"),
+			(t_repl){.name = ft_strjoin(token.string + 1, ":"),
 			.position = instruction_pos, .token = token,
 			.label_size = 1,
 			.code_pos = asm_t->champ.header.prog_size});
