@@ -6,26 +6,21 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:20:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:30:39 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:16:46 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** TODO: cleanup code
-*/
-
 int		register_of_type(char *line, size_t i)
 {
 	size_t	j;
 
-	if (line[i] != 'r')
+	if (line[i++] != 'r')
 		return (0);
-	i++;
-	if (!ft_isdigit(line[i]))
+	if (!ft_isdigit(line[i++]))
 		return (0);
-	j = 0;
+	j = 1;
 	while (line[i] && j < 4)
 	{
 		if (ft_strchr(SEPARATOR_CHARS, line[i]))
