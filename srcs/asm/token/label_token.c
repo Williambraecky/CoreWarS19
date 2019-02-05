@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:14:34 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 17:33:14 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/04 21:30:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int		label_of_type(char *line, size_t i)
 {
+	size_t	j;
+
+	j = i;
 	while (line[i] && line[i] != LABEL_CHAR)
 		if (!ft_strchr(LABEL_CHARS, line[i++]))
 			return (0);
-	return (line[i] == LABEL_CHAR);
+	return (line[i] == LABEL_CHAR && j != i);
 }
 
 t_token	label_make_token(char *line, size_t i)
@@ -33,6 +36,18 @@ t_token	label_make_token(char *line, size_t i)
 	if (!ret.string)
 		ret.type = MEM_ERROR;
 	else
-		ret.size = ft_strlen(ret.string);
+		ret.size = j - i + 1;
 	return (ret);
+}
+
+void	process_label(t_asm *asm_t, t_token token, size_t *i)
+{
+	t_label	*label;
+
+	if (!(asm_t->flags & NAME_FLAG) || !(asm_t->flags & COMMENT_FLAG))
+		syntax_error(asm_t, token);
+	label = get_label(asm_t, token.string);
+	if (!label)
+		asm_add_label(asm_t, token.string, asm_t->champ.header.prog_size);
+	(*i)++;
 }

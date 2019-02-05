@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlabel_token.c                                     :+:      :+:    :+:   */
+/*   ilabel_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 14:48:20 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 15:06:54 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/02/04 21:03:55 by wbraeckm          #+#    #+#             */
+/*   Updated: 2019/02/05 15:07:21 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		dlabel_of_type(char *line, size_t i)
+int		ilabel_of_type(char *line, size_t i)
 {
-	if (line[i] != DIRECT_CHAR || line[i + 1] != LABEL_CHAR)
+	if (line[i] != LABEL_CHAR || !ft_strchr(LABEL_CHARS, line[i + 1]))
 		return (0);
-	return (ft_strchr(LABEL_CHARS, line[i + 2]) != NULL);
+	return (1);
 }
 
-t_token	dlabel_make_token(char *line, size_t i)
+t_token	ilabel_make_token(char *line, size_t i)
 {
 	t_token	ret;
 	size_t	j;
 
-	ret.type = DIRECT_LABEL;
-	j = i + 2;
+	ret.type = INDIRECT_LABEL;
+	j = i + 1;
 	while (line[j])
 	{
-		if (ft_strchr(SEPARATOR_CHARS, line[j])
-		|| !ft_strchr(LABEL_CHARS, line[j]))
+		if (!ft_strchr(LABEL_CHARS, line[j]))
 			break ;
 		j++;
 	}
@@ -41,23 +40,22 @@ t_token	dlabel_make_token(char *line, size_t i)
 	return (ret);
 }
 
-void	process_dlabel(t_asm *asm_t, t_token token, int label_size,
-	int instruction_pos)
+void	process_ilabel(t_asm *asm_t, t_token token, int instruction_pos)
 {
-	t_label	*label;
+	t_label *label;
 	int		s;
 
-	label = get_label(asm_t, token.string + 2);
+	label = get_label(asm_t, token.string + 1);
 	if (label == NULL)
 	{
 		s = 0;
 		asm_add_replace(asm_t,
-			(t_repl){.name = ft_strjoin(token.string + 2, ":"),
+			(t_repl){.name = ft_strjoin(token.string + 1, ":"),
 			.position = instruction_pos, .token = token,
-			.label_size = label_size,
+			.label_size = 1,
 			.code_pos = asm_t->champ.header.prog_size});
 	}
 	else
 		s = (int)(label->position - instruction_pos);
-	code_write_bytes(asm_t, (t_u8*)&s, label_size ? 2 : 4);
+	code_write_bytes(asm_t, (t_u8*)&s, 2);
 }

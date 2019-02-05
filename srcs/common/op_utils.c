@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_token.c                                        :+:      :+:    :+:   */
+/*   op_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 13:39:06 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 15:10:05 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/01/31 13:54:35 by wbraeckm          #+#    #+#             */
+/*   Updated: 2019/01/31 13:54:55 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "common.h"
 
-int		end_of_type(char *line, size_t i)
+extern t_op	g_op_tab[17];
+
+t_op	*get_op(char *str)
 {
-	return (line[i] == '\0');
-}
+	size_t	i;
 
-t_token	end_make_token(char *line, size_t i)
-{
-	t_token	ret;
-
-	(void)line;
-	(void)i;
-	ret.type = END;
-	ret.string = NULL;
-	ret.size = 0;
-	return (ret);
+	i = 0;
+	while (g_op_tab[i].name)
+	{
+		if (ft_strequ(g_op_tab[i].name, str))
+			return (&g_op_tab[i]);
+		i++;
+	}
+	return (NULL);
 }

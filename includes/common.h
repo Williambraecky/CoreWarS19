@@ -25,7 +25,7 @@ typedef struct s_champ	t_champ;
 struct			s_champ
 {
 	t_header	header;
-	t_u8		code[CHAMP_MAX_SIZE + 1]; // + 1 just in case
+	t_u8		code[CHAMP_MAX_SIZE + 1];
 };
 
 /*
@@ -34,5 +34,6 @@ struct			s_champ
 void			ft_o_exit(char *str);
 int				reverse_int32(int i);
 short			reverse_int16(short s);
+t_op			*get_op(char *str);
 
 #endif

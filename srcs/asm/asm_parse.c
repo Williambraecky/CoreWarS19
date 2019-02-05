@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:52:41 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 18:51:02 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 14:59:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ t_define	g_def_table[] =
 	{DIRECT, direct_of_type, direct_make_token},
 	{DIRECT_LABEL, dlabel_of_type, dlabel_make_token},
 	{INDIRECT, indirect_of_type, indirect_make_token},
+	{INDIRECT_LABEL, ilabel_of_type, ilabel_make_token},
 	{INSTRUCTION, instruction_of_type, instruction_make_token},
 	{ENDLINE, endline_of_type, endline_make_token},
 	{END, end_of_type, end_make_token},
 	{LEX_ERROR, NULL, NULL}
 };
 
-t_token		get_next_token(char *line, size_t i)
+static t_token	get_next_token(char *line, size_t i)
 {
 	size_t	j;
 
@@ -40,74 +41,48 @@ t_token		get_next_token(char *line, size_t i)
 			return (g_def_table[j].make_token(line, i));
 		j++;
 	}
-	return ((t_token){.type = LEX_ERROR});
+	return ((t_token){.type = LEX_ERROR, .string = NULL,
+		.pos = str_calc_pos(line, i)});
 }
 
-/*
-** TODO: do this but with global tables in another file
-*/
-
-static char	*string_for_type(t_type type)
+static void		handle_error(t_asm *asm_t, t_token token)
 {
-	if (type == MEM_ERROR)
-		return ("MEM_ERROR");
-	else if (type == LEX_ERROR)
-		return ("LEX_ERROR");
-	else if (type == ENDLINE)
-		return ("ENDLINE");
-	else if (type == COMMAND_NAME)
-		return ("COMMAND_NAME");
-	else if (type == COMMAND_COMMENT)
-		return ("COMMAND_COMMENT");
-	else if (type == STRING)
-		return ("STRING");
-	else if (type == LABEL)
-		return ("LABEL");
-	else if (type == INSTRUCTION)
-		return ("INSTRUCTION");
-	else if (type == REGISTER)
-		return ("REGISTER");
-	else if (type == DIRECT)
-		return ("DIRECT");
-	else if (type == DIRECT_LABEL)
-		return ("DIRECT_LABEL");
-	else if (type == INDIRECT)
-		return ("INDIRECT");
-	else if (type == SEPARATOR)
-		return ("SEPARATOR");
-	else if (type == COMMENT)
-		return ("COMMENT");
-	return ("END");
+	if (token.type == LEX_ERROR)
+		lexical_error(asm_t, token.pos);
+	exit_error(asm_t, "Out of memory");
 }
 
-static void	print_token(t_token token)
+static void		skip_comments(t_asm *asm_t, size_t *i)
 {
-	ft_printf("Token type %s ; Token size %zu ; Token string \"%s\"\n",
-		string_for_type(token.type), token.size, token.string);
+	if (*i >= (size_t)asm_t->file_size ||
+		(asm_t->file[*i] != '#' && asm_t->file[*i] != ';'))
+		return ;
+	while (asm_t->file[*i] && asm_t->file[*i] != '\n')
+		(*i)++;
 }
 
-/*
-** TODO: keep tokens to be processed later
-** TODO: handle errors (LEX AND MEM)
-** TODO: calc position with i
-*/
-
-void		asm_parse(t_asm *asm_t)
+void			asm_parse(t_asm *asm_t)
 {
 	size_t	i;
 	t_token	current;
 
 	gnl_to_one_string(asm_t);
-	i = 0;
-	while (i <= (size_t)asm_t->file_size)
+	i = first_non_space(asm_t->file) - asm_t->file;
+	while (i < (size_t)asm_t->file_size)
 	{
+		skip_comments(asm_t, &i);
 		current = get_next_token(asm_t->file, i);
+		if (current.type != LEX_ERROR)
+			current.pos = str_calc_pos(asm_t->file, i);
+		asm_add_token(asm_t, current);
+		if (current.type == LEX_ERROR || current.type == MEM_ERROR)
+			handle_error(asm_t, current);
 		i += current.size;
-		i += first_non_space(asm_t->file + i) - (asm_t->file + i);
-		if (asm_t->file[i] == '#')
-			while (asm_t->file[i] && asm_t->file[i] != '\n')
-				i++;
-		print_token(current);
-		free(current.string);
+		if (current.type == END)
+			break ;
+		if (i < (size_t)asm_t->file_size)
+			i += first_non_space(asm_t->file + i) - (asm_t->file + i);
 	}
+	asm_add_token(asm_t, (t_token){.type = END,
+		.string = NULL, .pos = str_calc_pos(asm_t->file, i)});
 }

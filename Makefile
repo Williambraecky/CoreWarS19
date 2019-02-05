@@ -6,7 +6,7 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 12:18:28 by wbraeckm          #+#    #+#              #
-#    Updated: 2019/01/30 23:11:38 by nrouvroy         ###   ########.fr        #
+#    Updated: 2019/02/05 15:33:16 by sde-spie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_VM = vm
 NAME_SERV = server
 NAME_CLIENT = online
 CC = gcc
-FLAGS = -O3 -Wall -Wextra -Werror
+FLAGS = -O3 #-Wall -Wextra -Werror
 INCLUDES = ./includes/
 SRCSFOLDER = ./srcs/
 OBJFOLDER = ./obj/
@@ -74,7 +74,7 @@ $(NAME_ASM): $(OBJSUBS) $(OBJ)
 $(NAME_VM): $(OBJSUBS) $(OBJ)
 	@printf $(cccyan)
 	@printf "Compiling $(NAME_VM) "
-	@$(CC) $(FLAGS) -o $(NAME_VM) $(VMOBJ) -I$(INCLUDES) \
+	@$(CC) $(FLAGS) -o -lncurses $(NAME_VM) $(VMOBJ) -I$(INCLUDES) \
 -I$(LIBINCLUDES) $(LIBFT)
 	@printf $(cclightgray)[$(ccgreenhard)√$(cclightgray)]$(ccreset)
 	@printf "                                                     \n"

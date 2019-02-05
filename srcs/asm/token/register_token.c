@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:20:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/28 17:19:17 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:16:46 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 int		register_of_type(char *line, size_t i)
 {
-	if (line[i] != 'r')
+	size_t	j;
+
+	if (line[i++] != 'r')
 		return (0);
-	i++;
-	while (line[i])
+	if (!ft_isdigit(line[i++]))
+		return (0);
+	j = 1;
+	while (line[i] && j < 4)
 	{
 		if (ft_strchr(SEPARATOR_CHARS, line[i]))
 			break ;
 		else if (!ft_isdigit(line[i]))
 			return (0);
 		i++;
+		j++;
 	}
-	return (1);
+	return (j >= 1 && j < 3);
 }
 
 t_token	register_make_token(char *line, size_t i)
@@ -45,6 +50,21 @@ t_token	register_make_token(char *line, size_t i)
 	if (!ret.string)
 		ret.type = MEM_ERROR;
 	else
-		ret.size = ft_strlen(ret.string);
+		ret.size = j - i;
 	return (ret);
+}
+
+void	process_register(t_asm *asm_t, t_token token)
+{
+	t_u8	octet;
+	size_t	i;
+
+	octet = 0;
+	i = 1;
+	while (token.string[i])
+	{
+		octet *= 10;
+		octet += token.string[i++] - '0';
+	}
+	code_write_byte(asm_t, octet);
 }

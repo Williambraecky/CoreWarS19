@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 16:30:27 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/26 17:35:48 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:13:43 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,26 @@ int		str_is_number(char *str)
 	if (*str == '-' && ft_isdigit(*(str + 1)))
 		return (1);
 	return (ft_isdigit(*str));
+}
+
+t_pos	str_calc_pos(char *str, size_t i)
+{
+	t_pos	pos;
+	size_t	j;
+
+	pos.x = 1;
+	pos.y = 1;
+	j = 0;
+	while (j < i)
+	{
+		if (str[j] == '\n')
+		{
+			pos.x = 1;
+			pos.y++;
+		}
+		else
+			pos.x++;
+		j++;
+	}
+	return (pos);
 }
