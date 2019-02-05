@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:04:28 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/29 15:30:52 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/01/26 17:19:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ char	*ft_strsrepl(char *str, char *match, char *replacement);
 char	*ft_strsreplall(char *str, char *match, char *replacement);
 void	ft_freesplit(char **split);
 size_t	ft_strcountchar(char *str, char c);
+char	*ft_strndup(char *str, size_t n);
 
 #endif

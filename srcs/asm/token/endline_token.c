@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   endline_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 12:24:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:16:15 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/01/28 15:26:00 by wbraeckm          #+#    #+#             */
+/*   Updated: 2019/01/28 15:27:28 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#include "asm.h"
 
-# include "op.h"
-# include "libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-typedef unsigned char	t_u8;
-typedef struct s_champ	t_champ;
-
-struct			s_champ
+int		endline_of_type(char *line, size_t i)
 {
-	t_header	header;
-	t_u8		code[CHAMP_MAX_SIZE + 1];
-};
+	return (line[i] == '\n');
+}
 
-/*
-** Utils
-*/
+t_token	endline_make_token(char *line, size_t i)
+{
+	t_token	ret;
 
-int				reverse_int32(int i);
-short			reverse_int16(short s);
-t_op			*get_op(char *str);
-
-#endif
+	(void)line;
+	(void)i;
+	ret.type = ENDLINE;
+	ret.string = ft_strdup("\n");
+	if (!ret.string)
+		ret.type = MEM_ERROR;
+	else
+		ret.size = 1;
+	return (ret);
+}
