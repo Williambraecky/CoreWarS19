@@ -6,12 +6,12 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 12:18:28 by wbraeckm          #+#    #+#              #
-#    Updated: 2019/02/05 15:33:16 by sde-spie         ###   ########.fr        #
+#    Updated: 2019/02/05 15:43:54 by wbraeckm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_ASM = asm
-NAME_VM = vm
+NAME_VM = corewar
 NAME_SERV = server
 NAME_CLIENT = online
 CC = gcc
@@ -33,7 +33,7 @@ LONGEST = $(shell echo $(notdir $(SRCS)) | tr " " "\n" | \
 
 ASMOBJ = $(shell find srcs/common srcs/asm -type f | grep -E "\.c$$" \
 | sed -e 's/^srcs/obj/g' | sed 's/.c$$/.o/g')
-VMOBJ = $(shell find srcs/common srcs/vm -type f | grep -E "\.c$$" \
+VMOBJ = $(shell find srcs/common srcs/corewar -type f | grep -E "\.c$$" \
 | sed -e 's/^srcs/obj/g' | sed 's/.c$$/.o/g')
 SERVOBJ = $(shell find srcs/common srcs/server -type f | grep -E "\.c$$" \
 | sed -e 's/^srcs/obj/g' | sed 's/.c$$/.o/g')
@@ -74,7 +74,7 @@ $(NAME_ASM): $(OBJSUBS) $(OBJ)
 $(NAME_VM): $(OBJSUBS) $(OBJ)
 	@printf $(cccyan)
 	@printf "Compiling $(NAME_VM) "
-	@$(CC) $(FLAGS) -o -lncurses $(NAME_VM) $(VMOBJ) -I$(INCLUDES) \
+	@$(CC) $(FLAGS) -lncurses -o $(NAME_VM) $(VMOBJ) -I$(INCLUDES) \
 -I$(LIBINCLUDES) $(LIBFT)
 	@printf $(cclightgray)[$(ccgreenhard)√$(cclightgray)]$(ccreset)
 	@printf "                                                     \n"

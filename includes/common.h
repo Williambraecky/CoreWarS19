@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:24:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/30 23:34:36 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:42:43 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <fcntl.h>
 
 typedef unsigned char	t_u8;
-typedef struct s_champ	t_champ;
+typedef struct s_cham	t_cham;
 
-struct			s_champ
+struct			s_cham
 {
 	t_header	header;
 	t_u8		code[CHAMP_MAX_SIZE + 1];
