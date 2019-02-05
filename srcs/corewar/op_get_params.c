@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.h                                               :+:      :+:    :+:   */
+/*   op_get_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 12:25:04 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 12:25:18 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/01/31 17:33:10 by sde-spie          #+#    #+#             */
+/*   Updated: 2019/01/31 18:34:12 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_H
-# define VM_H
+#include "../includes/corewar.h"
 
-# include "common.h"
-
-#endif
+void		op_get_params(t_vm *vm, t_process *process)
+{
+	
+}
