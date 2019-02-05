@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 12:25:58 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/01/25 12:34:46 by wbraeckm         ###   ########.fr       */
+/*   Created: 2019/02/01 10:24:34 by sde-spie          #+#    #+#             */
+/*   Updated: 2019/02/01 11:48:36 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/corewar.h"
 
-int	main(int argc, char **argv)
+void		free_all(t_vm *vm)
 {
-	ft_printf("Cc moi c la vm\n");
-	(void)argc;
-	(void)argv;
-	return (0);
+	free(vm->arena.process);
 }
