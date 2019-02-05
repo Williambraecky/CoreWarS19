@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 10:23:27 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 12:03:03 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:56:54 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		manage_processes(t_vm *vm)
 {

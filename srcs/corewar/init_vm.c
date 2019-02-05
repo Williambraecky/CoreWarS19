@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:44:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/04 14:01:34 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:57:15 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		init_vm(t_vm *vm)
 {

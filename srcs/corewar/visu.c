@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:28:19 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 13:53:50 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:24:37 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		init_visu(WINDOW **window)
 {
@@ -56,7 +56,7 @@ void		press_key(t_vm *vm, char mode)
 		error_exit(vm, "You left the battlefield!");
 }
 
-void		print_data2(t_vm *vm, WINDOW *window)
+void		print_data2(WINDOW *window)
 {
 	werase(window);
 	wrefresh(window);
@@ -72,17 +72,17 @@ void		print_visu(t_vm *vm, WINDOW **window, int mode)
 		print_19ai(window[0]);
 		print_memory(vm, window[1]);
 		print_data(vm, window[2]);
-		print_header(vm, window[4]);
+		print_header(window[4]);
 		usleep(50000 - (vm->visu_speed * 100));
 	}
 	else
 	{
 		werase(window[2]);
-		print_data2(vm, window[5]);
+		print_data2(window[5]);
 		print_19ai(window[0]);
 		print_memory(vm, window[1]);
 		print_winner(vm, window[3]);
-		print_header(vm, window[4]);
+		print_header(window[4]);
 		press_key(vm, 0);
 	}
 }

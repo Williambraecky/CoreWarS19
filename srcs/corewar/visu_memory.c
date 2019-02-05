@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 18:19:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 14:17:58 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:58:59 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 int			setup_color(t_vm *vm, int i)
 {

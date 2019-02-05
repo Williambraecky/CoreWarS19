@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:17:33 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:23:52 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -221,7 +221,7 @@ void			print_visu(t_vm *vm, WINDOW **window, int mode);
 void			print_19ai(WINDOW *window);
 void			print_data(t_vm *vm, WINDOW *window);
 void			print_winner(t_vm *vm, WINDOW *window);
-void			print_header(t_vm *vm, WINDOW *window);
+void			print_header(WINDOW *window);
 void			print_memory(t_vm *vm, WINDOW *window);
 void			print_on_window(WINDOW * window, char **line, int index);
 

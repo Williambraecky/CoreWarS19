@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 14:54:21 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:19:40 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 void		parse_header(t_vm *vm, unsigned char *buff)
 {
@@ -38,9 +38,9 @@ void		parse_header(t_vm *vm, unsigned char *buff)
 
 void		parse_code(t_vm *vm,  unsigned char *buff)
 {
-	int		i;
-	int		j;
-	int		k;
+	unsigned int		i;
+	int					j;
+	int					k;
 
 	i = 0;
 	j = 0;

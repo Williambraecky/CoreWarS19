@@ -6,11 +6,11 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/04 15:54:26 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:57:43 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "corewar.h"
 
 int			parse_dump(t_vm *vm, char **argv)
 {

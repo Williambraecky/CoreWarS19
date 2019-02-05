@@ -6,7 +6,7 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 12:18:28 by wbraeckm          #+#    #+#              #
-#    Updated: 2019/02/18 14:29:33 by nrouvroy         ###   ########.fr        #
+#    Updated: 2019/02/18 14:30:07 by nrouvroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_VM = corewar
 NAME_SERV = server
 NAME_CLIENT = online
 CC = gcc
-FLAGS = -O3 #-Wall -Wextra -Werror
+FLAGS = -O3 -Wall -Wextra -Werror
 INCLUDES = ./includes/
 SRCSFOLDER = ./srcs/
 OBJFOLDER = ./obj/
