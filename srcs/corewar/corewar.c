@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:56:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:25:32 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int			main(int argc, char **argv)
 {
 	t_vm	vm;
 	WINDOW	*window[5];
+	char	name[PROG_NAME_LENGTH];
+	int		i;
 
 	if (argc < 2)
 		return (error_usage());
@@ -45,8 +47,14 @@ int			main(int argc, char **argv)
 	init_vm(&vm);
 	argv++;
 	argv = parse_command(&vm, argv);
-	prepare_battle(&vm);
+	i = PROG_NAME_LENGTH;
+	while (i--)
+		name[i] = vm.champs[0].code.header.prog_name[i];
 	vm.visu ? init_visu(window) : 0;
+	i = PROG_NAME_LENGTH;
+	while (i--)
+		vm.champs[0].code.header.prog_name[i] = name[i];
+	prepare_battle(&vm);
 	time_for_battle(&vm, window);
 	vm.visu ? endwin() : 0;
 	free_all(&vm);

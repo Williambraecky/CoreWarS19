@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 17:23:52 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:10:23 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -15,9 +15,7 @@
 # include "../../libft/includes/libft.h"
 # include "common.h"
 # include "struct.h"
-# include <fcntl.h>
 # include <curses.h>
-# include <term.h>
 
 
 typedef char		t_arg_type;
