@@ -6,7 +6,7 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 12:18:28 by wbraeckm          #+#    #+#              #
-#    Updated: 2019/02/18 14:30:07 by nrouvroy         ###   ########.fr        #
+#    Updated: 2019/02/18 14:30:27 by nrouvroy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_VM = corewar
 NAME_SERV = server
 NAME_CLIENT = online
 CC = gcc
-FLAGS = -O3 -Wall -Wextra -Werror
+FLAGS = -O3 -Wall -Wextra -Werror #-fsanitize=address
 INCLUDES = ./includes/
 SRCSFOLDER = ./srcs/
 OBJFOLDER = ./obj/
@@ -48,7 +48,7 @@ cccyan = "\033[0;96m"
 ccreset = "\033[0;0m"
 cclightgray = "\033[0;37m"
 
-all: lib $(NAME_ASM) $(NAME_VM) $(NAME_SERV) $(NAME_CLIENT)
+all:  $(NAME_ASM) $(NAME_VM) $(NAME_SERV) $(NAME_CLIENT)
 
 $(OBJFOLDER)/%.o:$(SRCSFOLDER)/%.c
 	@printf $(ccblue)
@@ -104,7 +104,7 @@ clean:
 fclean: clean
 	@printf $(ccred)
 	rm -rf $(NAME_ASM) $(NAME_VM) $(NAME_SERV) $(NAME_CLIENT)
-	@make -C $(LIBFOLDER) fclean
+	#@make -C $(LIBFOLDER) fclean
 	@printf $(ccreset)
 
 re: fclean all

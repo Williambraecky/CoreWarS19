@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 18:19:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:58:59 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/06 13:46:20 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		print_player(t_vm *vm, WINDOW *window, int index)
 	wmove(window, y_ref++ + decal, 2);
 	wprintw(window, "Player -%d: ", champ.number);
 	wattron(window, COLOR_PAIR(index + 1));
-	wprintw(window,"%s\n", champ.code.header.prog_name);
+	wprintw(window,"%s", champ.code.header.prog_name);
 //	wprintw(window,"%d\n", champ.code.header.prog_size);
 	wattroff(window, COLOR_PAIR(index + 1));
 	wmove(window, y_ref++ + decal, 6);
@@ -102,7 +102,7 @@ void		print_data(t_vm *vm, WINDOW *window)
 	wmove(window, 12 + decal, 2);
 	wprintw(window, "Speed: %d", vm->visu_speed);
 	wmove(window, 61, 2);
-	wprintw(window, "COMMANDS :\n\tSPACE - Pause/Start\n");
-	wprintw(window, "\tESC : Quit\n\t+ : Speed up\n\t- : Speed down");
+	wprintw(window, "COMMANDS :\n\tSPACE \t: Pause/Start\n");
+	wprintw(window, "\tESC \t: Quit\n\t+ \t: Speed up\n\t- \t: Speed down");
 	wrefresh(window);
 }

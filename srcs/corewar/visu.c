@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:28:19 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 17:24:37 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:11:36 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		init_visu(WINDOW **window)
 	window[0] = newwin(14, 74, 1, 198); //19
 	window[1] = newwin(66, 195, 16, 3); //memory
 	window[2] = newwin(66, 74, 15, 197); // data
-	window[5] = newwin(66, 74, 15, 197); // data
+	window[5] = newwin(66, 74, 15, 197); // data vide
 	window[3] = newwin(63, 65, 18, 207); //winner
 	window[4] = newwin(12, 197, 1, 1); //header
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
@@ -31,7 +31,7 @@ void		init_visu(WINDOW **window)
 	init_color(COLOR_MAGENTA, 999, 999, 0);
 	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
 	box(window[0], 0, 0);
-	box(stdscr, 0, 0);
+//	box(stdscr, 0, 0);
 	keypad(stdscr, TRUE);
 }
 
