@@ -6,14 +6,15 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/06 23:40:45 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/06 23:44:31 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "online.h"
 
-void	ft_game_start_cli(t_client *client)
+void	ft_game_start_cli(t_client client)
 {
+	(void) client;
 	//TODO finish this part
 	//get players
 	//laumch corewar
@@ -147,6 +148,6 @@ void	ft_client_2(t_client client)
 		client.buffer[n] = 0;
 		ft_printf("%s", client.buffer);
 		if (ft_strstr((char*)client.buffer, "Starting"))
-			return(ft_game_start_cli(t_client client));
+			return(ft_game_start_cli(client));
 	}
 }
