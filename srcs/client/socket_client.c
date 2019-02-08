@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 17:16:13 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:20:14 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	ft_create_file(t_client client, int i)
 {
+	char	cmd[O_BUFFSIZE + 7];
 	int	fd;
 
 	if ((fd = open((char*)client.champ[i].filename,
 					O_WRONLY | O_CREAT)) == -1)
-		system(ft_strcat("rm -f ",(char*)client.champ[i].filename));
+	{
+		ft_strcat(cmd, "rm -f ");
+		system(ft_strcat(cmd, (char*)client.champ[i].filename));
+	}
 	if ((fd = open((char*)client.champ[i].filename,
 					O_WRONLY | O_CREAT)) == -1)
 		ft_o_exit("\nERROR : writing champ\n");
