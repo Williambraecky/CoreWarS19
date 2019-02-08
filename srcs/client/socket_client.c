@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 17:08:51 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:16:13 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	ft_create_file(t_client client, int i)
 {
 	int	fd;
 
+	if ((fd = open((char*)client.champ[i].filename,
+					O_WRONLY | O_CREAT)) == -1)
+		system(ft_strcat("rm -f ",(char*)client.champ[i].filename));
 	if ((fd = open((char*)client.champ[i].filename,
 					O_WRONLY | O_CREAT)) == -1)
 		ft_o_exit("\nERROR : writing champ\n");
@@ -35,14 +38,10 @@ void	ft_game_start_cli(t_client client)
 		ft_memcpy(client.champ[i].filename, client.buffer, O_BUFFSIZE);
 		read(client.sockfd, client.buffer, O_BUFFSIZE);
 		ft_memcpy(client.champ[i].code, client.buffer, O_BUFFSIZE);
-		usleep(50000);
 	}
 	i = 0;
 	while (++i <= MAX_PLAYERS)
-	{
 		ft_create_file(client, i);
-		usleep(25000);
-	}
 }
 
 char	*ft_comp_champ(char *filename)
