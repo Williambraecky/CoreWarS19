@@ -6,19 +6,38 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/06 23:44:31 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:28:03 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "online.h"
 
+void	ft_create_file(t_client client, int i)
+{
+	int		n;
+	FILE	*fptr;
+
+	if ((fptr = fopen((char*)client.champ[i].filename, "wb")) == NULL)
+		ft_o_exit("\nERROR : writing champ\n");
+	fwrite(client.champ[i].code, ft_n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH), 1, fptr);
+	fclose(fptr);
+}
+
 void	ft_game_start_cli(t_client client)
 {
-	(void) client;
-	//TODO finish this part
-	//get players
-	//laumch corewar
-	//remove players?
+	int		i;
+
+	i = 0;
+	while (++i <= MAX_PLAYERS)
+	{
+		read(client.sockfd, client.buffer, O_BUFFSIZE);
+		ft_memcpy(client.champ[i].filename, client.buffer, O_BUFFSIZE);
+		read(client.sockfd, client.buffer, O_BUFFSIZE);
+		ft_memcpy(client.champ[i].code, client.buffer, O_BUFFSIZE);
+	}
+	i = 0;
+	while (++i <= MAX_PLAYERS)
+		ft_create_file(client, i);
 }
 
 char	*ft_comp_champ(char *filename)
@@ -148,6 +167,6 @@ void	ft_client_2(t_client client)
 		client.buffer[n] = 0;
 		ft_printf("%s", client.buffer);
 		if (ft_strstr((char*)client.buffer, "Starting"))
-			return(ft_game_start_cli(client));
+			return (ft_game_start_cli(client));
 	}
 }
