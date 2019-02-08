@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 16:28:03 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:20:14 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 void	ft_create_file(t_client client, int i)
 {
-	int		n;
-	FILE	*fptr;
+	char	cmd[O_BUFFSIZE + 7];
+	int	fd;
 
-	if ((fptr = fopen((char*)client.champ[i].filename, "wb")) == NULL)
+	if ((fd = open((char*)client.champ[i].filename,
+					O_WRONLY | O_CREAT)) == -1)
+	{
+		ft_strcat(cmd, "rm -f ");
+		system(ft_strcat(cmd, (char*)client.champ[i].filename));
+	}
+	if ((fd = open((char*)client.champ[i].filename,
+					O_WRONLY | O_CREAT)) == -1)
 		ft_o_exit("\nERROR : writing champ\n");
-	fwrite(client.champ[i].code, ft_n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH), 1, fptr);
-	fclose(fptr);
+	printf("code champ %i : %x\n", i, client.champ[i].code[1]);
+	write(fd, client.champ[i].code, n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH, 4) + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH);
+	close(fd);
 }
 
 void	ft_game_start_cli(t_client client)
