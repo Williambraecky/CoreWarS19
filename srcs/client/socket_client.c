@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 16:32:27 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:40:48 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	ft_create_file(t_client client, int i)
 {
-	int		n;
-	FILE	*fptr;
+	int	fd;
 
-	if ((fptr = fopen((char*)client.champ[i].filename, "wb")) == NULL)
+	if ((fd = open((char*)client.champ[i].filename, O_WRONLY)) == -1)
 		ft_o_exit("\nERROR : writing champ\n");
-	fwrite(client.champ[i].code, n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH) + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH, 1, fptr);
-	fclose(fptr);
+	write(fd, client.champ[i].code, n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH, 4) + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH);
+	close(fd);
 }
 
 void	ft_game_start_cli(t_client client)
