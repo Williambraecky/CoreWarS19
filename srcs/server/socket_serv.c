@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/06 23:41:03 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:10:26 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	game_start_serv(t_server *serv, struct sockaddr_in *address)
 {
 	int	i;
+	int	j;
 
 	(void)address;
 	printf("Starting the game\n");
@@ -23,9 +24,15 @@ void	game_start_serv(t_server *serv, struct sockaddr_in *address)
 	{
 		ft_memcpy(serv->buffer, "Starting the game\n\0", 25);
 		send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
-		usleep(25000);
+		j = -1;
+		while (++j < MAX_PLAYERS)
+		{
+			ft_memcpy(serv->buffer, serv->champ[j].filename, O_BUFFSIZE);
+			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
+			ft_memcpy(serv->buffer, serv->champ[j].code, O_BUFFSIZE);
+			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
+		}
 	}
-	//TODO send players
 }
 
 void	ft_init_serv(t_server *serv, struct sockaddr_in *address, int *i)
@@ -40,7 +47,7 @@ void	ft_init_serv(t_server *serv, struct sockaddr_in *address, int *i)
 	if ((serv->master_socket = socket(AF_INET, SOCK_STREAM, 0)) == 0)
 		ft_o_exit("\nERROR : creating the socket\n");
 	serv->opt = TRUE;
-	if (setsockopt(serv->master_socket, SOL_SOCKET, SO_REUSEADDR ,
+	if (setsockopt(serv->master_socket, SOL_SOCKET, SO_REUSEADDR,
 				(char *)&serv->opt, sizeof(serv->opt)) < 0)
 		ft_o_exit("\nERROR : fixing the port\n");
 	ft_memset(&(*address), '0', sizeof(*address));
@@ -48,12 +55,12 @@ void	ft_init_serv(t_server *serv, struct sockaddr_in *address, int *i)
 	address->sin_family = AF_INET;
 	address->sin_addr.s_addr = INADDR_ANY;
 	address->sin_port = htons(PORT);
-	if (bind(serv->master_socket, (struct sockaddr*) address,
+	if (bind(serv->master_socket, (struct sockaddr*)address,
 				sizeof(*address)) < 0)
 		ft_o_exit("\nERROR : bind failed\n");
-	if (listen(serv->master_socket, ((MAX_PLAYERS + 1) * 4)) < 0)
+	if (listen(serv->master_socket, (MAX_PLAYERS + 1) * 4) < 0)
 		ft_o_exit("\nERROR : Failed to listen\n");
-	serv->addrlen = (socklen_t)sizeof(*address);
+	serv->addrlen = (socklen_t)(sizeof(*address));
 }
 
 void	ft_set_fd(t_server *serv)
@@ -86,14 +93,11 @@ void	ft_new_co(t_server *serv)
 		{
 			serv->client_socket[i] = serv->new_socket;
 			printf("player %d connected \n", i);
-			strcpy(serv->msg, "you are now connected as player [\0");
-			ft_strcat(serv->msg, ft_itoa(i));
-			ft_strcat(serv->msg, "]");
-			ft_memcpy(serv->buffer, serv->msg, ft_strlen(serv->msg));
-			if ((size_t)send(serv->new_socket, serv->buffer,
-						ft_strlen(serv->msg), 0) != ft_strlen(serv->msg))
-				printf("\nERROR : confirmation message send\n");
-			break;
+			ft_memcpy(serv->buffer, "you are now connected as player [\0", 35);
+			ft_strcat((char*)serv->buffer, ft_itoa(i));
+			ft_strcat((char*)serv->buffer, "]");
+			send(serv->new_socket, serv->buffer, O_BUFFSIZE, 0);
+			break ;
 		}
 	}
 	if (i == MAX_PLAYERS)
@@ -108,7 +112,7 @@ void	ft_get_msg(t_server *serv, struct sockaddr_in *address, int i)
 {
 	int	j;
 
-	getpeername(serv->sd, (struct sockaddr*) address, &(serv->addrlen));
+	getpeername(serv->sd, (struct sockaddr*)address, &(serv->addrlen));
 	serv->buffer[serv->n] = 0;
 	if (serv->champ[i].filename[0] == 0)
 		ft_memcpy(serv->champ[i].filename, serv->buffer, MAX_O_SIZ);
@@ -119,14 +123,14 @@ void	ft_get_msg(t_server *serv, struct sockaddr_in *address, int i)
 		while ((serv->n = read(serv->sd, serv->buffer, MAX_O_SIZ)) > 0)
 		{
 			if (ft_strstr((char*)serv->buffer, "END_CODE_CHAMPION"))
-				break;
+				break ;
 			ft_memcpy(serv->champ[i].code, serv->buffer, O_BUFFSIZE);
 		}
 		j = -1;
 		while (++j < MAX_PLAYERS)
 			if (serv->champ[j].filename[0] == 0 ||
 					serv->champ[j].code[2] == 0xea)
-				break;
+				break ;
 		if (j == MAX_PLAYERS)
 			game_start_serv(serv, address);
 	}
@@ -150,11 +154,11 @@ void	ft_find_fd(t_server *serv, struct sockaddr_in *address, int i)
 	}
 }
 
-int main(void)
+int		main(void)
 {
-	int	i;
+	int					i;
 	struct sockaddr_in	address;
-	t_server	serv;
+	t_server			serv;
 
 	ft_init_serv(&serv, &address, &i);
 	while (TRUE)
@@ -166,7 +170,7 @@ int main(void)
 		if (FD_ISSET(serv.master_socket, &serv.readfds))
 		{
 			if ((serv.new_socket = accept(serv.master_socket,
-							(struct sockaddr*) &address, &serv.addrlen)) < 0)
+							(struct sockaddr*)&address, &serv.addrlen)) < 0)
 				ft_o_exit("\nERROR : accept failed\n");
 			ft_new_co(&serv);
 		}

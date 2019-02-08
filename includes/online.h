@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:14:45 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/06 23:10:30 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:00:29 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef ONLINE_H
@@ -47,7 +47,6 @@ struct s_server
 	int					opt;
 	int					n;
 	unsigned char		buffer[O_BUFFSIZE];
-	char				msg[500];
 	fd_set				readfds;
 };
 
