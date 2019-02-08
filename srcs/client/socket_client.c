@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 16:56:24 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:03:26 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ void	ft_game_start_cli(t_client client)
 		ft_memcpy(client.champ[i].filename, client.buffer, O_BUFFSIZE);
 		read(client.sockfd, client.buffer, O_BUFFSIZE);
 		ft_memcpy(client.champ[i].code, client.buffer, O_BUFFSIZE);
+		usleep(50000);
 	}
 	i = 0;
 	while (++i <= MAX_PLAYERS)
+	{
 		ft_create_file(client, i);
+		usleep(25000);
+	}
 }
 
 char	*ft_comp_champ(char *filename)

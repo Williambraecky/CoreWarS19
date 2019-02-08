@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 16:10:26 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:01:46 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	game_start_serv(t_server *serv, struct sockaddr_in *address)
 			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
 			ft_memcpy(serv->buffer, serv->champ[j].code, O_BUFFSIZE);
 			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
+			usleep(50000);
 		}
 	}
 }
