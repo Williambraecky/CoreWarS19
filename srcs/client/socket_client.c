@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 17:03:26 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:08:51 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_create_file(t_client client, int i)
 	if ((fd = open((char*)client.champ[i].filename,
 					O_WRONLY | O_CREAT)) == -1)
 		ft_o_exit("\nERROR : writing champ\n");
+	printf("code champ %i : %x\n", i, client.champ[i].code[1]);
 	write(fd, client.champ[i].code, n_bytes_to_uint(client.champ[i].code + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH, 4) + 16 + PROG_NAME_LENGTH + COMMENT_LENGTH);
 	close(fd);
 }
