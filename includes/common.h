@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:24:36 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 15:42:43 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:27:42 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void			ft_o_exit(char *str);
 int				reverse_int32(int i);
 short			reverse_int16(short s);
 t_op			*get_op(char *str);
-
+unsigned int	n_bytes_to_uint(unsigned char *header, unsigned int nbr);
 #endif

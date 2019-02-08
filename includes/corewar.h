@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/06 14:10:23 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:27:53 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -115,7 +115,6 @@ int				error_usage(void);
  */
 
 int				find_number(t_vm *vm);
-unsigned int	n_bytes_to_uint(unsigned char *str, unsigned int nbr);
 int				dump_check(t_vm vm);
 
 /*
