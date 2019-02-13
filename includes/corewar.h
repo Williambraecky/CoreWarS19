@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/08 16:27:53 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:41:38 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -26,7 +26,10 @@ typedef struct		s_instruct
 	int				cycle_exec;
 	int				nb_arg;
 	t_arg_type		types[3];
-	t_arg_type		value[3];
+	int				value[3];
+	int				code_octet;
+	int				label_size;
+	int				adv;
 }					t_instruct;
 
 
@@ -36,13 +39,12 @@ typedef struct		s_process
 	int				index_champ;
 	char			alive;
 	t_instruct		instruction;
-	int				registre[REG_NUMBER];
+	int				registre[REG_NUMBER + 1];
 	int				pc;
 	char			carry;
 	int				lives_since_check;
 	int				number;
 }					t_process;
-
 
 typedef struct		s_code
 {
@@ -64,6 +66,7 @@ typedef struct		s_arena
 	int				lives_since_last_check;
 	int				check_count;
 	int				winner;
+	int				s_proc;
 }					t_arena;
 
 
@@ -187,7 +190,7 @@ void			op_aff(t_vm *vm, t_process *process);
 /*
 ** op_get_params.c
 */
-
+int				big_end_toi(unsigned char *arena, int pc, int size);
 void			op_get_params(t_vm *vm, t_process *process);
 
 /*
