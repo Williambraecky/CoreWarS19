@@ -6,62 +6,11 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/08 17:15:14 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:31:06 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "online.h"
-
-void	game_start_serv(t_server *serv, struct sockaddr_in *address)
-{
-	int	i;
-	int	j;
-
-	(void)address;
-	printf("Starting the game\n");
-	i = -1;
-	while (++i < MAX_PLAYERS)
-	{
-		ft_memcpy(serv->buffer, "Starting the game\n\0", 25);
-		send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
-		j = -1;
-		while (++j < MAX_PLAYERS)
-		{
-			ft_memcpy(serv->buffer, serv->champ[j].filename, O_BUFFSIZE);
-			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
-			ft_memcpy(serv->buffer, serv->champ[j].code, O_BUFFSIZE);
-			send(serv->client_socket[i], serv->buffer, O_BUFFSIZE, 0);
-		}
-	}
-}
-
-void	ft_init_serv(t_server *serv, struct sockaddr_in *address, int *i)
-{
-	*i = -1;
-	while (++(*i) <= MAX_PLAYERS)
-	{
-		serv->client_socket[*i] = 0;
-		ft_memset(serv->champ[*i].filename, 0, MAX_O_SIZ);
-		ft_memset(serv->champ[*i].code, 0, MAX_O_SIZ);
-	}
-	if ((serv->master_socket = socket(AF_INET, SOCK_STREAM, 0)) == 0)
-		ft_o_exit("\nERROR : creating the socket\n");
-	serv->opt = TRUE;
-	if (setsockopt(serv->master_socket, SOL_SOCKET, SO_REUSEADDR,
-				(char *)&serv->opt, sizeof(serv->opt)) < 0)
-		ft_o_exit("\nERROR : fixing the port\n");
-	ft_memset(&(*address), '0', sizeof(*address));
-	ft_memset(serv->buffer, '0', O_BUFFSIZE);
-	address->sin_family = AF_INET;
-	address->sin_addr.s_addr = INADDR_ANY;
-	address->sin_port = htons(PORT);
-	if (bind(serv->master_socket, (struct sockaddr*)address,
-				sizeof(*address)) < 0)
-		ft_o_exit("\nERROR : bind failed\n");
-	if (listen(serv->master_socket, (MAX_PLAYERS + 1) * 4) < 0)
-		ft_o_exit("\nERROR : Failed to listen\n");
-	serv->addrlen = (socklen_t)(sizeof(*address));
-}
 
 void	ft_set_fd(t_server *serv)
 {
