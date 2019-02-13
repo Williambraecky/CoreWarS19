@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:09:17 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/03 16:25:19 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:27:43 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static void	free_labels(t_asm *asm_t)
 		i = 0;
 		while (i < asm_t->nb_labels)
 			ft_strdel((char**)&(asm_t->labels[i++].name));
-		ft_memdel((void**)asm_t->labels);
+		ft_memdel((void**)&asm_t->labels);
 	}
 	if (asm_t->replace)
 	{
 		i = 0;
 		while (i < asm_t->nb_replace)
 			ft_strdel((char**)&(asm_t->replace[i++].name));
-		ft_memdel((void**)asm_t->replace);
+		ft_memdel((void**)&asm_t->replace);
 	}
 }
 
