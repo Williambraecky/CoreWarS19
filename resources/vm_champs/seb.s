@@ -4,7 +4,7 @@
 			sti		r1, %:live, %1
 live:		live	%19
 			ld		116, r16
-#			ld		%1879310724, r3
+			ld		%1879310724, r3
 			ld		%388, r3
 			ld		%4, r1
 			ld		35, r4

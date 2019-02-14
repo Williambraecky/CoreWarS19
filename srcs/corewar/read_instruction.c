@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:42:30 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/13 15:41:29 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/14 10:05:00 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static const t_instruct		g_op_list[17] = {
 
 t_instruct	read_instruction(t_vm *vm, int pc)
 {
-
+	if (vm->arena.arena[pc] != 0 && vm->arena.total_cycle < 50)
+		printf("instruct read : %d\n", vm->arena.arena[pc]);
 	if (vm->arena.arena[pc] > 16)
 		return (g_op_list[0]);
 	else
