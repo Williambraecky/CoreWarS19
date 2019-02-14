@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:10 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/13 14:16:59 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/14 14:34:42 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ static int	check_type_code(t_vm *vm, t_process *process, int i)
 	ret = 1;
 	code = vm->arena.arena[(process->pc + 1) % MEM_SIZE >> (6 - 2 * i)] & 0x03;
 	code = (code == 3 ? 4: code);
-	if (!(code & process->instruction.types[i]))
+	printf("code = %d\n", code);
+	printf("type = %d\n", process->instruction.types[i]);
+	if (!(code && process->instruction.types[i]))
 		return (0);
 	process->instruction.types[i] = (char)code;
+	printf("test\n");
 	return (1);
 }
 
@@ -35,6 +38,7 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 	{
 		if (!check_type_code(vm, process, i))
 		{
+			printf("ret = 1.0\n");
 			process->instruction.types[0] = -1;
 			return (0);
 		}
@@ -45,9 +49,11 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 		if ((vm->arena.arena[(process->pc + 1) % MEM_SIZE >> (6 - 2 * i)]) & 0x03)
 		{
 			process->instruction.types[0] = -1;
+			printf("ret = 1.1\n");
 			return (0);
 		}
 	}
+	printf("ret 0\n");
 	return (1);
 }
 
@@ -94,8 +100,10 @@ void		op_get_params(t_vm *vm, t_process *process)
 	t_instruct	inst;
 
 	inst = process->instruction;
+	printf("code octet = %d\n", inst.code_octet);
 	if (inst.code_octet && !check_code_octet(vm, process))
 		return ;
+	printf("pass over if\n");
 	adv = 1 + inst.code_octet;
 	i = 0;
 	while (i < inst.nb_arg)
