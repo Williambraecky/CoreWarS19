@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/13 15:31:06 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/18 14:00:35 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	ft_set_fd(t_server *serv)
 
 void	ft_new_co(t_server *serv)
 {
-	int	i;
+	char	*inbr;
+	int		i;
 
 	i = -1;
 	while (++i < MAX_PLAYERS)
@@ -43,7 +44,9 @@ void	ft_new_co(t_server *serv)
 			serv->client_socket[i] = serv->new_socket;
 			printf("player %d connected \n", i);
 			ft_memcpy(serv->buffer, "you are now connected as player [\0", 35);
-			ft_strcat((char*)serv->buffer, ft_itoa(i));
+			inbr = ft_itoa(i);
+			ft_strcat((char*)serv->buffer, inbr);
+			free(inbr);
 			ft_strcat((char*)serv->buffer, "]");
 			send(serv->new_socket, serv->buffer, O_BUFFSIZE, 0);
 			break ;
@@ -51,7 +54,7 @@ void	ft_new_co(t_server *serv)
 	}
 	if (i == MAX_PLAYERS)
 	{
-		strcpy((char*)serv->buffer, "ERROR : too many players\0");
+		ft_strcpy((char*)serv->buffer, "ERROR : too many players\0");
 		send(serv->new_socket, serv->buffer, 30, 0);
 		close(serv->new_socket);
 	}
