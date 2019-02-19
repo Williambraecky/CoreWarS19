@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/13 15:40:11 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/19 07:18:23 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			op_st(t_vm *vm, t_process *process)
 	if (type[0] != -1)
 	{
 		val = process->instruction.value;
+		//printf("val[1] dans st : %d\n", val[1]);
 		if (type[1] == T_REG)
 			process->registre[val[1]] = process->registre[val[0]];
 		else
@@ -338,11 +339,13 @@ void			op_fork(t_vm *vm, t_process *process)
 	if (n_proc == vm->arena.s_proc)
 	{
 		// quoi comme message ?
+		//printf("UN REALLOC\n"); //TODEL
 		if (!(vm->arena.process = realloc(vm->arena.process,
-					vm->arena.s_proc * 2)))
+					sizeof(t_process) * vm->arena.s_proc * 2)))
 			error_exit(vm, "allocation failed");
 		vm->arena.s_proc *= 2;
 	}
+	//printf("%d\n", vm->arena.s_proc);
 	ft_memcpy((t_process *)&(vm->arena.process[n_proc]), (t_process*)process, sizeof(t_process));
 	vm->arena.process[n_proc].pc = (process->pc +\
 			(process->instruction.value[0] % IDX_MOD)) & 0xFFF;
@@ -420,7 +423,7 @@ void			op_lfork(t_vm *vm, t_process *process)
 	if (n_proc == vm->arena.s_proc)
 	{
 		if (!(vm->arena.process = realloc(vm->arena.process,
-					vm->arena.s_proc * 2)))
+					sizeof(t_process) * vm->arena.s_proc * 2)))
 			error_exit(vm, "Error: new process allocation failed");
 		vm->arena.s_proc *= 2;
 	}

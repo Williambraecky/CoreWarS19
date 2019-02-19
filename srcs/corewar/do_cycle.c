@@ -6,11 +6,13 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 10:23:27 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/14 10:00:08 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/19 07:18:30 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static int salut = 0; //TODEL
 
 void		manage_processes(t_vm *vm)
 {
@@ -24,13 +26,16 @@ void		manage_processes(t_vm *vm)
 		{
 			if (pro[i].instruction.op_code == 0)
 				pro[i].instruction = read_instruction(vm, pro[i].pc);
-			if (pro[i].instruction.cycle_exec >= 0 && vm->arena.total_cycle < 50)
-				printf("cycle = %d, cycle exec = %d\n", vm->arena.total_cycle ,pro[i].instruction.cycle_exec);
+			/*if (pro[i].instruction.cycle_exec >= 0 && vm->arena.total_cycle < 50)
+				printf("cycle = %d, cycle exec = %d\n", vm->arena.total_cycle ,pro[i].instruction.cycle_exec);*/
 			pro[i].instruction.cycle_exec--;
 			if (pro[i].instruction.cycle_exec == 0)
 			{
-				if (vm->arena.total_cycle < 50)
+				/*if (vm->arena.total_cycle < 50)
+				{
+					printf("PROCESS PC %d\n", pro[i].pc);
 					printf("ca rentre!\n");
+				}*/
 				op_get_params(vm, &pro[i]);
 				if (vm->arena.total_cycle < 50)
 				{
@@ -38,8 +43,13 @@ void		manage_processes(t_vm *vm)
 					printf("value 2 = %d\n", pro[i].instruction.value[1]);
 					printf("value 3 = %d\n", pro[i].instruction.value[2]);
 				}
-				pro[i].instruction.op(vm, pro[i]);
+				//printf("au pc 0 : %hhd\n", vm->arena.arena[1]);
+				pro[i].instruction.op(vm, &pro[i]);
+				//printf("au pc 0 : %hhd\n", vm->arena.arena[1]);
 				ft_bzero(&pro[i].instruction, sizeof(t_instruct));
+				salut++; //TODEL
+				//if (salut == 2)
+				//	exit(1); //TODEL
 			}
 		}
 }

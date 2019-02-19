@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 17:22:36 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/19 06:06:30 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			init_process(t_vm *vm)
 
 	i = -1;
 	vm->arena.process = (t_process *)malloc(sizeof(t_process) * NBR_PROCESS);
+	vm->arena.s_proc = NBR_PROCESS;
 	pro = vm->arena.process;
 	while (++i < vm->nbr_champ)
 	{
@@ -76,6 +77,7 @@ void			paste_memory(t_vm *vm)
 	while (++i < vm->nbr_champ)
 	{
 		start_index = (i * MEM_SIZE / vm->nbr_champ);
+		vm->arena.process[i].pc = start_index;
 		j = 0;
 		while (j < vm->champs[i].code.header.prog_size)
 		{
