@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 07:18:23 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/19 19:17:40 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void			op_live(t_vm *vm, t_process *process)
 			(vm->champs[i].lives)++;
 			(vm->champs[i].lives_since_last_check)++;
 			vm->arena.winner = i;
+			//printf("index winner %d\n", i);
 			(vm->arena.lives_since_last_check)++;
-			ft_printf("un processus dit que le joueur %s est en vie\n",\
-					vm->champs[i].code.header.prog_name);
+			/*ft_printf("un processus dit que le joueur %s est en vie\n",\
+					vm->champs[i].code.header.prog_name);*/
 			break ;
 		}
 		i++;
@@ -99,7 +100,7 @@ static void		lit_end_tovm(unsigned char *arena, int pc, int value)
 	i = 0;
 	while (i < 4)
 	{
-		arena[(pc + i) % MEM_SIZE] = (value >> (24 - i)) & 0xFF;
+		arena[(pc + i) % MEM_SIZE] = (value >> (24 - i * 8)) & 0xFF;
 		i++;
 	}
 }
@@ -323,6 +324,7 @@ void			op_sti(t_vm *vm, t_process *process)
 						(process->pc + val[i]) & 0xFFF, 4);
 			i++;
 		}
+		//printf("valeur du val[0] dans sti : %d\n", val[0]);
 		sum = val[1] + val[2];
 		lit_end_tovm(vm->arena.arena,
 				(process->pc + sum % IDX_MOD) & 0xFFF, val[0]);

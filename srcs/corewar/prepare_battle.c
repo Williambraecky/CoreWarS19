@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 06:06:30 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:32:24 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			init_process(t_vm *vm)
 	{
 		set_process(vm, &vm->arena.process[i]);
 		pro[i].index_champ = vm->champs[i].number;
-		pro[i].registre[0] = vm->champs[i].number;
+		pro[i].registre[1] = vm->champs[i].number;
 	}
 }
 

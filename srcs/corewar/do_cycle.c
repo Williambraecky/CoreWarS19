@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 10:23:27 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 07:18:30 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:39:26 by cvan-bee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		manage_processes(t_vm *vm)
 					printf("ca rentre!\n");
 				}*/
 				op_get_params(vm, &pro[i]);
-				if (vm->arena.total_cycle < 50)
+				if (vm->arena.total_cycle < 100)
 				{
 					printf("value 1 = %d\n", pro[i].instruction.value[0]);
 					printf("value 2 = %d\n", pro[i].instruction.value[1]);
