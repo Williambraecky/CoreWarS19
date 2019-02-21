@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:47:45 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 14:59:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:22:27 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	process_token(t_asm *asm_t, t_token token, size_t *i)
 		process_label(asm_t, token, i);
 	else
 		process_instruction(asm_t, token, i);
-	if (token.type != LABEL && asm_t->tokens[*i].type != ENDLINE)
+	if ((token.type != LABEL && asm_t->tokens[*i].type != ENDLINE)
+	|| (token.type == LABEL && asm_t->tokens[*i].type == LABEL))
 		syntax_error(asm_t, asm_t->tokens[*i]);
 }
 
