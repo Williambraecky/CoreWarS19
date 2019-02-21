@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:42:46 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 17:50:03 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:13:58 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int			parse_dump(t_vm *vm, char **argv, int argc, int index)
 
 int			parse_n(t_vm *vm, char **argv, int index)
 {
-	if (!ft_strcmp(*argv, "-n"))
+	if (!ft_strcmp(argv[index], "-n"))
 	{
-		argv += 1;
-		vm->n = ft_atoi(*argv);
+		index++;
+		vm->n = ft_atoi(argv[index]);
 		if (vm->n < 1)
 			error_exit(vm, "Wrong player number value.");
 		index++;
@@ -75,7 +75,7 @@ char		**parse_command(t_vm *vm, char **argv, int argc, int index)
 	else if (parse_sounds(vm, argv, index))
 		index++;
 	else if (parse_n(vm, argv, index))
-		index += 2;
+		index += 3;
 	else if (parse_visu(vm, argv, index))
 		index++;
 	else if (argv[index][0] == '-')

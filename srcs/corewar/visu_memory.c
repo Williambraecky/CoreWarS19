@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 18:19:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/06 13:46:20 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:14:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		print_player(t_vm *vm, WINDOW *window, int index)
 	champ = vm->champs[index];
 	decal = index * 5;
 	wmove(window, y_ref++ + decal, 2);
-	wprintw(window, "Player -%d: ", champ.number);
+	wprintw(window, "Player - %d: ", champ.number);
 	wattron(window, COLOR_PAIR(index + 1));
 	wprintw(window,"%s", champ.code.header.prog_name);
 //	wprintw(window,"%d\n", champ.code.header.prog_size);
