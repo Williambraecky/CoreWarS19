@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/05 15:01:59 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:01:32 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			instruction_of_type(char *line, size_t i)
 {
-	return (ft_strchr(LABEL_CHARS, line[i]) != NULL);
+	return (line[i] && ft_strchr(LABEL_CHARS, line[i]) != NULL);
 }
 
 t_token		instruction_make_token(char *line, size_t i)

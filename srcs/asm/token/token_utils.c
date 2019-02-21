@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 12:34:47 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 21:15:11 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:06:13 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char		*g_string_table[] =
 	"INDIRECT_LABEL",
 	"SEPARATOR",
 	"COMMENT",
-	"END"
+	"END",
+	NULL
 };
 
 /*
@@ -61,7 +62,7 @@ char		*type_get_string(t_type type)
 	size_t	i;
 
 	i = 0;
-	while (i < 15)
+	while (g_string_table[i])
 	{
 		if (g_type_table[i] == type)
 			return (g_string_table[i]);
