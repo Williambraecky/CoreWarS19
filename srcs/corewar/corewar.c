@@ -6,20 +6,27 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/06 14:25:32 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:03:52 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int		issue(t_vm vm)
+{
+	if (vm.nbr_champ < 1)
+		error_exit(&vm, "Pas de champion dans l'arene!");
+	return (0);
+}
 
 void		time_for_battle(t_vm *vm, WINDOW **windows)
 {
 	int		index;
 
 	vm->visu ? 0 : introduce_champs(*vm);
-	while (vm->arena.nbr_process_alive)
+	while (vm->arena.nbr_process_alive && dump_check(*vm))
 	{
-		vm->visu_pause == 0 ? do_cycle(vm) : 1;
+		vm->visu_pause == 1 ? do_cycle(vm) : 1;
 		vm->visu ? print_visu(vm, windows, 1) : 0;
 	}
 	index = vm->arena.winner;
@@ -40,13 +47,15 @@ int			main(int argc, char **argv)
 	WINDOW	*window[5];
 	char	name[PROG_NAME_LENGTH];
 	int		i;
+	int		index;
 
 	if (argc < 2)
 		return (error_usage());
 	ft_memset((void *)&vm, 0, sizeof(t_vm));
 	init_vm(&vm);
-	argv++;
-	argv = parse_command(&vm, argv);
+	index = 1;
+	argv = parse_command(&vm, argv, argc, index);
+	issue(vm);
 	i = PROG_NAME_LENGTH;
 	while (i--)
 		name[i] = vm.champs[0].code.header.prog_name[i];

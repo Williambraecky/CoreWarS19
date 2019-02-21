@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 17:19:40 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:41:24 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		parse_code(t_vm *vm,  unsigned char *buff)
 		vm->champs[vm->nbr_champ].code.prog[j++] = buff[i++];
 }
 
-void		read_champ(t_vm *vm, char **argv, int mode)
+void		read_champ(t_vm *vm, char **argv, int index, int mode)
 {
 	int				fd;
 	t_champ			*champ;
@@ -66,7 +66,7 @@ void		read_champ(t_vm *vm, char **argv, int mode)
 		champ->number = vm->n;
 	else
 		champ->number = find_number(vm);
-	if ((fd = open(*argv, O_RDONLY)) < 0)
+	if ((fd = open(argv[index], O_RDONLY)) < 0)
 		error_exit(vm, "Error: can't read source file.");
 	if ((read(fd, buff, size_code) != sizeof(buff) - CHAMP_MAX_SIZE))
 		error_exit(vm, "Error: file too small to be a valide .cor file.");

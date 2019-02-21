@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:28:19 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/06 14:11:36 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:58:15 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void		init_visu(WINDOW **window)
 	init_color(COLOR_MAGENTA, 999, 999, 0);
 	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
 	box(window[0], 0, 0);
-//	box(stdscr, 0, 0);
 	keypad(stdscr, TRUE);
 }
 

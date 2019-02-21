@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/02/14 09:49:05 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:44:36 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ unsigned int	n_bytes_to_uint(unsigned char *header, unsigned int nbr)
 		header++;
 		i++;
 	}
-	printf("ret = %d\n", ret);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:10 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 07:18:25 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:49:04 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,11 @@ static int	check_type_code(t_vm *vm, t_process *process, int i)
 	int		code;
 
 	ret = 1;
-	//printf("process pc : %d\n", process->pc + 1);
-	//printf("pc : %hhd\n", process->pc); 
 	code = vm->arena.arena[(process->pc + 1) % MEM_SIZE] >> (6 - 2 * i) & 0x03;
 	code = (code == 3 ? 4: code);
-	//printf("code = %d\n", code);
-	//printf("type = %d\n", process->instruction.types[i]);
 	if (!(code & process->instruction.types[i]))
 		return (0);
 	process->instruction.types[i] = (char)code;
-	//printf("test\n");
 	return (1);
 }
 
@@ -40,7 +35,6 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 	{
 		if (!check_type_code(vm, process, i))
 		{
-			//printf("ret = 1.0\n");
 			process->instruction.types[0] = -1;
 			return (0);
 		}
@@ -51,8 +45,6 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 		if (vm->arena.arena[(process->pc + 1) % MEM_SIZE] >> (6 - 2 * i) & 0x03)
 		{
 			process->instruction.types[0] = -1;
-			//printf("ret = 1.1\n");
-			//exit(1);
 			return (0);
 		}
 		i++;
@@ -104,18 +96,13 @@ void		op_get_params(t_vm *vm, t_process *process)
 	t_instruct	inst;
 
 	inst = process->instruction;
-	//printf("code octet = %d\n", inst.code_octet);
 	if (inst.code_octet && !check_code_octet(vm, process))
 		return ;
-	//printf("pass over if\n");
 	adv = 1 + inst.code_octet;
 	i = 0;
-	while (i < inst.nb_arg)
+	while (i < 3)
 	{
 		j = sizearg(process->instruction.types[i], inst.label_size ? 2: 4);
-		//DEBUG
-		//if (process->instruction.op_code == 1)
-		//	printf("PC OU ON VA ALLER %d\n", adv);
 		process->instruction.value[i] = big_end_toi(vm->arena.arena, process->pc + adv, j);
 		adv += j;
 		if (process->instruction.types[i] == T_REG &&
