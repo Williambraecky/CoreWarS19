@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 07:18:18 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:40:05 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef COREWAR_H
@@ -97,7 +97,7 @@ typedef struct		s_vm
  ** parse_command.c
  */
 
-char			**parse_command(t_vm *vm, char ** argv);
+char			**parse_command(t_vm *vm, char ** argv, int argc, int index);
 
 /*
  ** sounds.c
@@ -124,7 +124,7 @@ int				dump_check(t_vm vm);
  ** read_champ.c
  */
 
-void			read_champ(t_vm *vm, char **argv, int mode);
+void			read_champ(t_vm *vm, char **argv, int index, int mode);
 
 /*
  ** prepare_battle.c
