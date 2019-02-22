@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 13:25:57 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/22 17:44:45 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void			op_null(t_vm *vm, t_process *process)
 	 * on peut mettre + process->instruction.adv au lieu +1 mais dans tous les
 	 * cas vaut 1
 	 */
+	int	i;
 
-	vm->arena.arena_owner[process->pc] *= -1;
+	i = vm->visu;
+
 	process->pc = (process->pc + 1) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
+	
 }
 
 /*
@@ -61,9 +63,7 @@ void			op_live(t_vm *vm, t_process *process)
 		i++;
 	}
 	//pareil, on peut mettre process->instruction.adv au lieu de 5
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + 5) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 /*
@@ -90,9 +90,7 @@ void			op_ld(t_vm *vm, t_process *process)
 		process->carry = (val[0] == 0);
 		process->registre[val[1]] = val[0];
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 /* lit_end_tovm et big_end_toi (qui est pour l'instant dans op_get_params)
@@ -107,7 +105,7 @@ static void		lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
 	while (i < 4)
 	{
 		vm->arena.arena[(pc + i) % MEM_SIZE] = (value >> (24 - i * 8)) & 0xFF;
-		vm->arena.arena_owner[(pc + i) % MEM_SIZE] = champ_index;
+		vm->arena.arena_owner[(pc + i) % MEM_SIZE] = -1 * champ_index;
 		i++;
 	}
 }
@@ -128,9 +126,7 @@ void			op_st(t_vm *vm, t_process *process)
 			lit_end_tovm(vm, (process->pc + val[1] % IDX_MOD) & 0xFFF,
 				process->registre[val[0]], process->index_champ);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 /*
@@ -163,7 +159,9 @@ void			op_sub(t_vm *vm, t_process *process)
 	int			*val;
 	t_arg_type	*type;
 	int			sub;
+	int			i;
 
+	i = vm->visu;
 	type = process->instruction.types;
 	if (type[0] != -1)
 	{
@@ -172,9 +170,7 @@ void			op_sub(t_vm *vm, t_process *process)
 		process->registre[val[2]] = sub;
 		process->carry = (sub == 0);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_and(t_vm *vm, t_process *process)
@@ -202,9 +198,7 @@ void			op_and(t_vm *vm, t_process *process)
 		process->registre[val[2]] = and;
 		process->carry = (and == 0);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_or(t_vm *vm, t_process *process)
@@ -232,9 +226,7 @@ void			op_or(t_vm *vm, t_process *process)
 		process->registre[val[2]] = or;
 		process->carry = (or == 0);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_xor(t_vm *vm, t_process *process)
@@ -262,22 +254,20 @@ void			op_xor(t_vm *vm, t_process *process)
 		process->registre[val[2]] = xor;
 		process->carry = (xor == 0);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_zjmp(t_vm *vm, t_process *process)
 {
 	int		new_pc;
+	int	i;
 
+	i = vm->visu;
 	if (process->carry == 1)
 		new_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF;
 	else
 		new_pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = new_pc;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_ldi(t_vm *vm, t_process *process)
@@ -309,9 +299,7 @@ void			op_ldi(t_vm *vm, t_process *process)
 		process->registre[val[2]] = big_end_toi(vm->arena.arena,
 				(process->pc + sum % IDX_MOD) & 0xFFF, REG_SIZE);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_sti(t_vm *vm, t_process *process)
@@ -344,9 +332,7 @@ void			op_sti(t_vm *vm, t_process *process)
 		lit_end_tovm(vm, (process->pc + sum % IDX_MOD) & 0xFFF,
 			val[0], process->index_champ);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_fork(t_vm *vm, t_process *process)
@@ -373,9 +359,7 @@ void			op_fork(t_vm *vm, t_process *process)
 	vm->arena.process[n_proc].lives_since_check = 0;
 	(vm->arena.nbr_process)++;
 	(vm->arena.nbr_process_alive)++;
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 /*
@@ -397,9 +381,7 @@ void			op_lld(t_vm *vm, t_process *process)
 		process->carry = (val[0] == 0);
 		process->registre[val[1]] = val[0];
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 /*
@@ -432,9 +414,7 @@ void			op_lldi(t_vm *vm, t_process *process)
 		process->registre[val[2]] = big_end_toi(vm->arena.arena,
 				process->pc + sum & 0xFFF, 4);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_lfork(t_vm *vm, t_process *process)
@@ -461,23 +441,21 @@ void			op_lfork(t_vm *vm, t_process *process)
 	vm->arena.process[n_proc].lives_since_check = 0;
 	(vm->arena.nbr_process)++;
 	(vm->arena.nbr_process_alive)++;
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_aff(t_vm *vm, t_process *process)
 {
 	t_arg_type	*type;
 	int			val;
+	int			i;
 
+	i = vm->visu;
 	type = process->instruction.types;
 	if (type[0] != -1)
 	{
 		val = process->instruction.value[0];
 		ft_printf("%c", (char)(process->registre[val]));
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
