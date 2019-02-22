@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 12:26:25 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/22 13:25:57 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			op_null(t_vm *vm, t_process *process)
 	vm->arena.arena_owner[process->pc] *= -1;
 }
 
-/* 
+/*
  * vm->arena.winner veut l'index du champ winner pas son number.
  * le process se dit en vie, meme si le num du joueur est un joueur inexistant
  */
@@ -52,10 +52,10 @@ void			op_live(t_vm *vm, t_process *process)
 			(vm->champs[i].lives_since_last_check)++;
 			vm->arena.winner = i;
 			(vm->arena.lives_since_last_check)++;
-			if (vm->visu == 0)
-				ft_printf("un processus dit que le joueur %d %s est en vie\n",\
-					process->instruction.value[0],\
-					vm->champs[i].code.header.prog_name);
+			// if (vm->visu == 0)
+			// 	ft_printf("un processus dit que le joueur %d %s est en vie\n",\
+			// 		process->instruction.value[0],\
+			// 		vm->champs[i].code.header.prog_name);
 			break ;
 		}
 		i++;
@@ -272,7 +272,7 @@ void			op_zjmp(t_vm *vm, t_process *process)
 	int		new_pc;
 
 	if (process->carry == 1)
-		new_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF; 
+		new_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF;
 	else
 		new_pc = (process->pc + process->instruction.adv) % MEM_SIZE;
 	vm->arena.arena_owner[process->pc] *= -1;
@@ -309,9 +309,9 @@ void			op_ldi(t_vm *vm, t_process *process)
 		process->registre[val[2]] = big_end_toi(vm->arena.arena,
 				(process->pc + sum % IDX_MOD) & 0xFFF, REG_SIZE);
 	}
-	vm->arena.arena_owner[process->pc] *= -1; 
+	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1; 
+	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_sti(t_vm *vm, t_process *process)
@@ -352,19 +352,20 @@ void			op_sti(t_vm *vm, t_process *process)
 void			op_fork(t_vm *vm, t_process *process)
 {
 	int		n_proc;
+	int		old_proc;
 
 	n_proc = vm->arena.nbr_process;
 	if (n_proc == vm->arena.s_proc)
 	{
-		// quoi comme message ?
-		//printf("UN REALLOC\n"); //TODEL
+		old_proc = process->number;
 		if (!(vm->arena.process = realloc(vm->arena.process,
-					sizeof(t_process) * vm->arena.s_proc * 2)))
+				sizeof(t_process) * (vm->arena.s_proc * 2))))
 			error_exit(vm, "allocation failed");
 		vm->arena.s_proc *= 2;
+		process = &(vm->arena.process[old_proc - 1]);
 	}
-	//printf("%d\n", vm->arena.s_proc);
-	ft_memcpy((t_process *)&(vm->arena.process[n_proc]), (t_process*)process, sizeof(t_process));
+	ft_memcpy((t_process *)&(vm->arena.process[n_proc]),
+		(t_process*)process, sizeof(t_process));
 	vm->arena.process[n_proc].pc = (process->pc +\
 			(process->instruction.value[0] % IDX_MOD)) & 0xFFF;
 	vm->arena.process[n_proc].number = n_proc;
@@ -442,7 +443,6 @@ void			op_lfork(t_vm *vm, t_process *process)
 	int		old_proc;
 
 	n_proc = vm->arena.nbr_process;
-	ft_printf("Fork for champ %d\n", process->index_champ);
 	if (n_proc == vm->arena.s_proc)
 	{
 		old_proc = process->number;
@@ -450,7 +450,7 @@ void			op_lfork(t_vm *vm, t_process *process)
 					sizeof(t_process) * (vm->arena.s_proc * 2))))
 			error_exit(vm, "Error: new process allocation failed");
 		vm->arena.s_proc *= 2;
-		process = &vm->arena.process[old_proc];
+		process = &vm->arena.process[old_proc - 1];
 	}
 	ft_memcpy((t_process *)&(vm->arena.process[n_proc]), (t_process*)process,\
 			sizeof(t_process));
