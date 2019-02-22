@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 18:09:55 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:49:58 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct		s_vm
 	int				visu_speed;
 	char			sounds;
 	char			sounds_death;
+	char			sounds_born;
 }					t_vm;
 
 /*
@@ -101,6 +102,8 @@ char				**parse_command(t_vm *vm, char **argv, int argc, int index);
 */
 
 int					play_victory(t_vm *vm);
+int					play_death(t_vm *vm);
+int					play_born(t_vm *vm);
 
 /*
 ** error.c

@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 17:44:45 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:52:34 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void			op_live(t_vm *vm, t_process *process)
 			(vm->champs[i].lives_since_last_check)++;
 			vm->arena.winner = i;
 			(vm->arena.lives_since_last_check)++;
-			// if (vm->visu == 0)
-			// 	ft_printf("un processus dit que le joueur %d %s est en vie\n",\
-			// 		process->instruction.value[0],\
-			// 		vm->champs[i].code.header.prog_name);
+			if (vm->visu == 0)
+			 	ft_printf("un processus dit que le joueur %d %s est en vie\n",\
+			 		process->instruction.value[0],\
+			 		vm->champs[i].code.header.prog_name);
 			break ;
 		}
 		i++;
@@ -360,6 +360,7 @@ void			op_fork(t_vm *vm, t_process *process)
 	(vm->arena.nbr_process)++;
 	(vm->arena.nbr_process_alive)++;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
+	vm->sounds_born = 1;
 }
 
 /*
@@ -442,6 +443,7 @@ void			op_lfork(t_vm *vm, t_process *process)
 	(vm->arena.nbr_process)++;
 	(vm->arena.nbr_process_alive)++;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
+	vm->sounds_born = 1;
 }
 
 void			op_aff(t_vm *vm, t_process *process)

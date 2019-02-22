@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:44:09 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/05 15:56:48 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:40:38 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void		kill_process(t_vm *vm)
 		{
 			process->alive = 0;
 			vm->arena.nbr_process_alive--;
+			vm->sounds_death = 1;
 		}
 		process->lives_since_check = 0;
-		vm->sounds_death = 1;
 	}
 }
 

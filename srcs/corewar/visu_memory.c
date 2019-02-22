@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 18:19:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 18:14:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:33:07 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		print_data(t_vm *vm, WINDOW *window)
 	decal = vm->nbr_champ * 7;
 	werase(window);
 	wmove(window, 3, 30);
-	vm->visu_pause ? 
+	!vm->visu_pause ? 
 		wprintw(window, "%s", "~*'*~ PAUSE! ~*'*~"):
 		wprintw(window, "%s", "~*'*~ FIGHT! ~*'*~");
 	wmove(window, 5, 2);
