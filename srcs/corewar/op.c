@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 17:51:24 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 12:26:25 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,22 +431,26 @@ void			op_lldi(t_vm *vm, t_process *process)
 		process->registre[val[2]] = big_end_toi(vm->arena.arena,
 				process->pc + sum & 0xFFF, 4);
 	}
-	vm->arena.arena_owner[process->pc] *= -1; 
+	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1; 
+	vm->arena.arena_owner[process->pc] *= -1;
 }
 
 void			op_lfork(t_vm *vm, t_process *process)
 {
 	int		n_proc;
+	int		old_proc;
 
 	n_proc = vm->arena.nbr_process;
+	ft_printf("Fork for champ %d\n", process->index_champ);
 	if (n_proc == vm->arena.s_proc)
 	{
+		old_proc = process->number;
 		if (!(vm->arena.process = realloc(vm->arena.process,
-					sizeof(t_process) * vm->arena.s_proc * 2)))
+					sizeof(t_process) * (vm->arena.s_proc * 2))))
 			error_exit(vm, "Error: new process allocation failed");
 		vm->arena.s_proc *= 2;
+		process = &vm->arena.process[old_proc];
 	}
 	ft_memcpy((t_process *)&(vm->arena.process[n_proc]), (t_process*)process,\
 			sizeof(t_process));

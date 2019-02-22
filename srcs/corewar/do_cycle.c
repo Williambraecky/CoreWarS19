@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cycle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 10:23:27 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 17:52:33 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 12:11:18 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,20 @@
 void		manage_processes(t_vm *vm)
 {
 	int			i;
-	t_process	*pro;
 
-	pro = vm->arena.process;
 	i = vm->arena.nbr_process;
 	while (i--)
-		if (pro[i].alive)
+		if (vm->arena.process[i].alive)
 		{
-			if (pro[i].instruction.op_code == 0)
-				pro[i].instruction = read_instruction(vm, pro[i].pc);
-			pro[i].instruction.cycle_exec--;
-			if (pro[i].instruction.cycle_exec == 0)
+			if (vm->arena.process[i].instruction.op_code == 0)
+				vm->arena.process[i].instruction =
+					read_instruction(vm, vm->arena.process[i].pc);
+			vm->arena.process[i].instruction.cycle_exec--;
+			if (vm->arena.process[i].instruction.cycle_exec == 0)
 			{
-				op_get_params(vm, &pro[i]);
-				if (vm->arena.total_cycle < 100)
-				{
-/*					printf("value 1 = %d\n", pro[i].instruction.value[0]);
-					printf("value 2 = %d\n", pro[i].instruction.value[1]);
-					printf("value 3 = %d\n", pro[i].instruction.value[2]);
-*/				}
-				pro[i].instruction.op(vm, &pro[i]);
-				ft_bzero(&pro[i].instruction, sizeof(t_instruct));
+				op_get_params(vm, &vm->arena.process[i]);
+				vm->arena.process[i].instruction.op(vm, &vm->arena.process[i]);
+				ft_bzero(&vm->arena.process[i].instruction, sizeof(t_instruct));
 			}
 		}
 }

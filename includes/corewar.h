@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 17:40:05 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/22 11:59:53 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef COREWAR_H
+
 # define COREWAR_H
 # define NBR_PROCESS                10
-# include "../../libft/includes/libft.h"
+# include "libft.h"
 # include "common.h"
 # include "struct.h"
 # include <curses.h>
-
 
 typedef char		t_arg_type;
 typedef struct		s_instruct
@@ -31,7 +32,6 @@ typedef struct		s_instruct
 	int				label_size;
 	int				adv;
 }					t_instruct;
-
 
 typedef struct		s_process
 {
@@ -52,7 +52,6 @@ typedef struct		s_code
 	unsigned char	prog[CHAMP_MAX_SIZE];
 }					t_code;
 
-
 typedef struct		s_arena
 {
 	unsigned char	arena[MEM_SIZE];
@@ -69,7 +68,6 @@ typedef struct		s_arena
 	int				s_proc;
 }					t_arena;
 
-
 typedef struct		s_champ
 {
 	t_code			code;
@@ -77,7 +75,6 @@ typedef struct		s_champ
 	int				lives;
 	int				lives_since_last_check;
 }					t_champ;
-
 
 typedef struct		s_vm
 {
@@ -94,74 +91,73 @@ typedef struct		s_vm
 }					t_vm;
 
 /*
- ** parse_command.c
- */
+** parse_command.c
+*/
 
-char			**parse_command(t_vm *vm, char ** argv, int argc, int index);
+char			**parse_command(t_vm *vm, char **argv, int argc, int index);
 
 /*
- ** sounds.c
- */
+** sounds.c
+*/
 
 int				play_victory(t_vm *vm);
 int				play_death(t_vm *vm);
 
 /*
- ** error.c
- */
+** error.c
+*/
 
 void			error_exit(t_vm *vm, char *txt);
 int				error_usage(void);
 
 /*
- ** utils.c
- */
+** utils.c
+*/
 
 int				find_number(t_vm *vm);
 int				dump_check(t_vm vm);
 
 /*
- ** read_champ.c
- */
+** read_champ.c
+*/
 
 void			read_champ(t_vm *vm, char **argv, int index, int mode);
 
 /*
- ** prepare_battle.c
- */
+** prepare_battle.c
+*/
 
 void			check_error(t_vm *vm);
 void			prepare_battle(t_vm *vm);
 
 /*
- ** create_process.c
- */
+** create_process.c
+*/
 
 //t_process		*create_process(t_vm *vm);
 void			set_process(t_vm *vm, t_process *process);
 
 /*
- ** init_vm.c
- */
+** init_vm.c
+*/
 
 void			init_vm(t_vm *vm);
 
-
 /*
- ** introduce_champs.c
- */
+** introduce_champs.c
+*/
 
 void			introduce_champs(t_vm vm);
 
 /*
- ** do_cycle.c
- */
+** do_cycle.c
+*/
 
 void			do_cycle(t_vm *vm);
 
 /*
- ** read_instruction.c
- */
+** read_instruction.c
+*/
 
 t_instruct		read_instruction(t_vm *vm, int pc);
 
@@ -190,6 +186,7 @@ void			op_aff(t_vm *vm, t_process *process);
 /*
 ** op_get_params.c
 */
+
 int				big_end_toi(unsigned char *arena, int pc, int size);
 void			op_get_params(t_vm *vm, t_process *process);
 
