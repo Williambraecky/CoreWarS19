@@ -53,18 +53,18 @@ void		print_19ai(WINDOW *window)
 {
 	char	*line[12];
 
-	line[0] = "     -hNNNNNN-  ommmmmmmmmh/              -h: -dNNNNh.";
-	line[1] = "  `:hMMMMMMMM:  sMMMMMMMMMMMd+`          /mNNo``yNNNNm:";
-	line[2] = " :hNNNNMMMMMM:  /mMMMNsooomMMMm-       `oNNNNNh. +NNNNNo`";
-	line[3] = "`.....:MMMMMM:   `+mMMNs. yMMMM/      .yNNNNNNNm: -dNNNNy.";
-	line[4] = "      .MMMMMM:     `/hddh/hMMMM/     -dNNNd:sNNNNo``sNNNNm:";
-	line[5] = "      .MMMMMM:            yMMMM/    /mNNNs`  +mNNNy. /mNNNNo`";
-	line[6] = "      .MMMMMM:   `````````hMMMM/  `sNNNm+     -dNNNm: -hNNNNy.";
-	line[7] = "      .MMMMMM:  `+dmmmmmmmNMMMM/ .hNNNd-       `sNNNNo``sNNNNd:";
-	line[8] = "      .MMMMMM:    .oNMMMMMMMMMM/-dNNNy.          /mNNNh. /mNNNNo";
-	line[9] = "      .MMMMMM:      ./+++++++++sNNNNo`            -dNNNm: .hNNNNy.";
-	line[10] = "      .MMMMMM:               `sNNNNh+++++++++/     `sNNNNo `oNNNNm: ";
-	line[11] = "      .MMMMMM:              `hNNNNNNNNNNNNNNNNy`     /mNNNy` :mNNNN+";
+	line[0] = "      -hNNNNNN-  ommmmmmmmmh/              -h: -dNNNNh.";
+	line[1] = "   `:hMMMMMMMM:  sMMMMMMMMMMMd+`          /mNNo``yNNNNm:";
+	line[2] = "  :hNNNNMMMMMM:  /mMMMNsooomMMMm-       `oNNNNNh. +NNNNNo`";
+	line[3] = " `.....:MMMMMM:   `+mMMNs. yMMMM/      .yNNNNNNNm: -dNNNNy.";
+	line[4] = "\t.MMMMMM:     `/hddh/hMMMM/     -dNNNd:sNNNNo``sNNNNm:";
+	line[5] = "\t.MMMMMM:            yMMMM/    /mNNNs`  +mNNNy. /mNNNNo`";
+	line[6] = "\t.MMMMMM:   `````````hMMMM/  `sNNNm+     -dNNNm: -hNNNNy.";
+	line[7] = "\t.MMMMMM:  `+dmmmmmmmNMMMM/ .hNNNd-       `sNNNNo``sNNNNd:";
+	line[8] = "\t.MMMMMM:    .oNMMMMMMMMMM/-dNNNy.\t   /mNNNh. /mNNNNo";
+	line[9] = "\t.MMMMMM:      ./+++++++++sNNNNo`\t    -dNNNm: .hNNNNy.";
+	line[10] = "\t.MMMMMM:\t\t`sNNNNh+++++++++/     `sNNNNo `oNNNNm: ";
+	line[11] = "\t.MMMMMM:\t       `hNNNNNNNNNNNNNNNNy`     /mNNNy` :mNNNN+";
 	print_on_window(window, line, 12);
 	wrefresh(window);
 }

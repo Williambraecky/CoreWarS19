@@ -56,7 +56,7 @@ void		read_champ(t_vm *vm, char **argv, int index, int mode)
 	int				fd;
 	t_champ			*champ;
 	size_t			size_code;
-	unsigned char	buff[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
+	unsigned char	bf[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
 
 	size_code = sizeof(t_header);
 	champ = &vm->champs[vm->nbr_champ];
@@ -68,12 +68,12 @@ void		read_champ(t_vm *vm, char **argv, int index, int mode)
 		champ->number = find_number(vm);
 	if ((fd = open(argv[index], O_RDONLY)) < 0)
 		error_exit(vm, "Error: can't read source file.");
-	if ((read(fd, buff, size_code) != sizeof(buff) - CHAMP_MAX_SIZE))
+	if ((read(fd, bf, size_code) != sizeof(bf) - CHAMP_MAX_SIZE))
 		error_exit(vm, "Error: file too small to be a valide .cor file.");
-	parse_header(vm, buff);
+	parse_header(vm, bf);
 	size_code = CHAMP_MAX_SIZE;
-	if (read(fd, buff, size_code + 1) != champ->code.header.prog_size)
+	if (read(fd, bf, size_code + 1) != champ->code.header.prog_size)
 		error_exit(vm, "Error: code size differs from what its header says.");
-	parse_code(vm, buff);
+	parse_code(vm, bf);
 	vm->nbr_champ++;
 }

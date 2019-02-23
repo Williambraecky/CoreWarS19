@@ -30,9 +30,7 @@ void			op_null(t_vm *vm, t_process *process)
 	int	i;
 
 	i = vm->visu;
-
 	process->pc = (process->pc + 1) % MEM_SIZE;
-	
 }
 
 /*

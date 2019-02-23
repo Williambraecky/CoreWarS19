@@ -73,7 +73,7 @@ char		**parse_command(t_vm *vm, char **argv, int argc, int index)
 	else if (parse_dump(vm, argv, argc, index))
 		index += 2;
 	else if (parse_sounds(vm, argv, index))
-		index++;
+		index += 1;
 	else if (parse_n(vm, argv, index))
 		index += 3;
 	else if (parse_visu(vm, argv, index))
@@ -83,7 +83,7 @@ char		**parse_command(t_vm *vm, char **argv, int argc, int index)
 	else if (index < argc)
 	{
 		read_champ(vm, argv, index, 0);
-		index++;
+		index += 1;
 	}
 	else
 		return (new_pos);

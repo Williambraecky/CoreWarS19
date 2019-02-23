@@ -48,7 +48,7 @@ cccyan = "\033[0;96m"
 ccreset = "\033[0;0m"
 cclightgray = "\033[0;37m"
 
-all:  $(NAME_ASM) $(NAME_VM) $(NAME_SERV) $(NAME_CLIENT)
+all:  lib $(NAME_ASM) $(NAME_VM) $(NAME_SERV) $(NAME_CLIENT)
 
 $(OBJFOLDER)/%.o:$(SRCSFOLDER)/%.c
 	@printf $(ccblue)
