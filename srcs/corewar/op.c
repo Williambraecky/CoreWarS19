@@ -6,12 +6,11 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 18:52:34 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:01:00 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
 
 /*
  * partout ou on a % MEM_SIZE peut etre faire & 0xFFF car MEM_SIZE 4096
@@ -117,7 +116,6 @@ void			op_st(t_vm *vm, t_process *process)
 	if (type[0] != -1)
 	{
 		val = process->instruction.value;
-		//printf("val[1] dans st : %d\n", val[1]);
 		if (type[1] == T_REG)
 			process->registre[val[1]] = process->registre[val[0]];
 		else
@@ -257,15 +255,15 @@ void			op_xor(t_vm *vm, t_process *process)
 
 void			op_zjmp(t_vm *vm, t_process *process)
 {
-	int		new_pc;
-	int	i;
+	int		n_pc;
+	int		i;
 
 	i = vm->visu;
 	if (process->carry == 1)
-		new_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF;
+		n_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF;
 	else
-		new_pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	process->pc = new_pc;
+		n_pc = (process->pc + process->instruction.adv) % MEM_SIZE;
+	process->pc = n_pc;
 }
 
 void			op_ldi(t_vm *vm, t_process *process)
@@ -376,7 +374,8 @@ void			op_lld(t_vm *vm, t_process *process)
 		val = process->instruction.value;
 		if (type[0] == T_IND)
 			//remplacer 4 par REG_SIZE
-			val[0] = big_end_toi(vm->arena.arena, (process->pc + val[0]) & 0xFFF, REG_SIZE);
+			val[0] = big_end_toi(vm->arena.arena,
+				(process->pc + val[0]) & 0xFFF, REG_SIZE);
 		process->carry = (val[0] == 0);
 		process->registre[val[1]] = val[0];
 	}

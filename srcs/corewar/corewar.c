@@ -6,13 +6,13 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 17:16:27 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:51:17 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		issue(t_vm vm)
+int			issue(t_vm vm)
 {
 	if (vm.nbr_champ < 1)
 		error_exit(&vm, "Pas de champion dans l'arene!");

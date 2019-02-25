@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:28:19 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 14:58:15 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:56:18 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void		init_visu(WINDOW **window)
 {
 	initscr();
 	start_color();
-	window[0] = newwin(14, 74, 1, 198); //19
-	window[1] = newwin(66, 195, 16, 3); //memory
-	window[2] = newwin(66, 74, 15, 197); // data
-	window[5] = newwin(66, 74, 15, 197); // data vide
-	window[3] = newwin(63, 65, 18, 207); //winner
-	window[4] = newwin(12, 197, 1, 1); //header
+	window[0] = newwin(14, 74, 1, 198);
+	window[1] = newwin(66, 195, 16, 3);
+	window[2] = newwin(66, 74, 15, 197);
+	window[5] = newwin(66, 74, 15, 197);
+	window[3] = newwin(63, 65, 18, 207);
+	window[4] = newwin(12, 197, 1, 1);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_RED, COLOR_BLACK);
 	init_pair(3, COLOR_BLUE, COLOR_BLACK);
@@ -60,7 +60,6 @@ void		print_data2(WINDOW *window)
 	werase(window);
 	wrefresh(window);
 }
-
 
 void		print_visu(t_vm *vm, WINDOW **window, int mode)
 {

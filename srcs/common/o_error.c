@@ -6,12 +6,12 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 23:28:43 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/01/30 23:30:17 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:50:55 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "online.h"
-# include "common.h"
+#include "online.h"
+#include "common.h"
 
 void	ft_o_exit(char *str)
 {

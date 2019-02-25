@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 10:20:28 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/19 18:32:24 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:51:37 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void			init_process(t_vm *vm)
 
 void			paste_memory(t_vm *vm)
 {
-	int		i;
-	unsigned int		j;
-	int		start_index;
+	int				i;
+	unsigned int	j;
+	int				start_index;
 
 	i = -1;
 	while (++i < MEM_SIZE)

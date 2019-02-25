@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/21 17:41:24 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:55:35 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		parse_header(t_vm *vm, unsigned char *buff)
 		vm->champs[vm->nbr_champ].code.header.comment[j++] = buff[i++];
 }
 
-void		parse_code(t_vm *vm,  unsigned char *buff)
+void		parse_code(t_vm *vm, unsigned char *buff)
 {
 	unsigned int		i;
 	int					j;

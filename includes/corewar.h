@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 18:49:58 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/25 10:45:52 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void				prepare_battle(t_vm *vm);
 ** create_process.c
 */
 
-//t_process		*create_process(t_vm *vm);
 void				set_process(t_vm *vm, t_process *process);
 
 /*
@@ -229,6 +228,6 @@ void				print_data(t_vm *vm, WINDOW *window);
 void				print_winner(t_vm *vm, WINDOW *window);
 void				print_header(WINDOW *window);
 void				print_memory(t_vm *vm, WINDOW *window);
-void				print_on_window(WINDOW * window, char **line, int index);
+void				print_on_window(WINDOW *window, char **line, int index);
 
 #endif
