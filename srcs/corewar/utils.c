@@ -42,7 +42,7 @@ int				dump_check(t_vm vm)
 		return (0);
 }
 
-void		lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
+void			lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
 {
 	int		i;
 
