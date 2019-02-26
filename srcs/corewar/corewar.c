@@ -27,7 +27,7 @@ void		time_for_battle(t_vm *vm, WINDOW **windows)
 	while (vm->arena.nbr_process_alive && dump_check(*vm))
 	{
 		vm->visu ? reset_p_color(vm) : 0;
-		vm->visu_pause == 1 ? do_cycle(vm) : 1;
+		(!vm->visu || vm->visu_pause) ? do_cycle(vm) : 1;
 		vm->visu ? setup_p_color(vm) : 0;
 		vm->visu ? print_visu(vm, windows, 1) : 0;
 	}

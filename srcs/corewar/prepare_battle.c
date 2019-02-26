@@ -56,7 +56,7 @@ void			init_process(t_vm *vm)
 	while (++i < vm->nbr_champ)
 	{
 		set_process(vm, &vm->arena.process[i]);
-		pro[i].index_champ = vm->champs[i].number;
+		pro[i].index_champ = i + 1;
 		pro[i].registre[1] = vm->champs[i].number;
 	}
 }
@@ -83,7 +83,6 @@ void			paste_memory(t_vm *vm)
 		{
 			vm->arena.arena[j + start_index] = vm->champs[i].code.prog[j];
 			vm->arena.arena_owner[j + start_index] = i + 1;
-			vm->arena.arena_owner[j + start_index] *= (j == 0 ? -1 : 1);
 			j++;
 		}
 	}

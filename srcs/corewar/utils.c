@@ -41,3 +41,16 @@ int				dump_check(t_vm vm)
 	else
 		return (0);
 }
+
+void		lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		vm->arena.arena[(pc + i) % MEM_SIZE] = (value >> (24 - i * 8)) & 0xFF;
+		vm->arena.arena_owner[(pc + i) % MEM_SIZE] = -1 * champ_index;
+		i++;
+	}
+}

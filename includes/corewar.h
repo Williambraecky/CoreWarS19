@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:34:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/25 10:45:52 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/26 13:55:10 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int					issue(t_vm vm);
 
 int					find_number(t_vm *vm);
 int					dump_check(t_vm vm);
-
+void				lit_end_tovm(t_vm *vm, int pc, int value, int champ_index);
 /*
 ** read_champ.c
 */
