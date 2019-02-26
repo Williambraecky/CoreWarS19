@@ -33,6 +33,9 @@ void		kill_process(t_vm *vm)
 
 void		check_end_cycle(t_vm *vm)
 {
+	int		i;
+
+	i = -1;
 	if (vm->arena.cycle_since_check >= vm->arena.cycle_to_die)
 	{
 		kill_process(vm);
@@ -46,5 +49,7 @@ void		check_end_cycle(t_vm *vm)
 			vm->arena.check_count++;
 		vm->arena.cycle_since_check = 0;
 		vm->arena.lives_since_last_check = 0;
+		while (++i < vm->nbr_champ)
+			vm->champs[i].lives_since_last_check = 0;
 	}
 }

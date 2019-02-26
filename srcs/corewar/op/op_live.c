@@ -22,7 +22,7 @@ void			op_live(t_vm *vm, t_process *process)
 	{
 		if (vm->champs[i].number == process->instruction.value[0])
 		{
-			(vm->champs[i].lives)++;
+			vm->champs[i].lives = vm->arena.total_cycle;
 			(vm->champs[i].lives_since_last_check)++;
 			vm->arena.winner = i;
 			(vm->arena.lives_since_last_check)++;
