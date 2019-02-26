@@ -27,9 +27,9 @@ void			op_live(t_vm *vm, t_process *process)
 			vm->arena.winner = i;
 			(vm->arena.lives_since_last_check)++;
 			if (vm->visu == 0)
-			 	ft_printf("Un processus dit que le joueur %d %s est en vie\n",\
-			 		process->instruction.value[0],\
-			 		vm->champs[i].code.header.prog_name);
+				ft_printf("Un processus dit que le joueur %d %s est en vie\n",\
+				process->instruction.value[0],\
+				vm->champs[i].code.header.prog_name);
 			break ;
 		}
 		i++;

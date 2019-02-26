@@ -14,7 +14,6 @@
 
 void			op_lldi(t_vm *vm, t_process *process)
 {
-
 	int			*val;
 	t_arg_type	*type;
 	int			i;
