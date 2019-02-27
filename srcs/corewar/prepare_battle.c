@@ -20,7 +20,7 @@ void			check_error(t_vm *vm)
 	while (++i < vm->nbr_champ - 1)
 	{
 		if (vm->champs[i].number == vm->champs[i + 1].number)
-			error_exit(vm, "Same numbers assigned to multiple Champions.");
+			error_exit(vm, "Error: same numbers assigned to multiple Champs.");
 	}
 }
 

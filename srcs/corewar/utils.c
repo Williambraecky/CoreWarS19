@@ -28,7 +28,7 @@ int				find_number(t_vm *vm)
 	while (++i < MAX_PLAYERS)
 		if (list[i] == 0)
 			return (i + 1);
-	error_exit(vm, "Too many players.");
+	error_exit(vm, "Error: too many players.");
 	return (1);
 }
 

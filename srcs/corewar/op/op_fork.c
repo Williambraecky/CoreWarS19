@@ -23,7 +23,7 @@ void			op_fork(t_vm *vm, t_process *process)
 		old_proc = process->number;
 		if (!(vm->arena.process = realloc(vm->arena.process,
 				sizeof(t_process) * (vm->arena.s_proc * 2))))
-			error_exit(vm, "allocation failed");
+			error_exit(vm, "Error: process allocation failed.");
 		vm->arena.s_proc *= 2;
 		process = &(vm->arena.process[old_proc - 1]);
 	}

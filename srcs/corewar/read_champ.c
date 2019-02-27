@@ -21,14 +21,14 @@ void		parse_header(t_vm *vm, unsigned char *buff)
 
 	magic = n_bytes_to_uint(buff, 4);
 	if (magic != COREWAR_EXEC_MAGIC)
-		error_exit(vm, "Error. Not a valid .cor file.");
+		error_exit(vm, "Error: not a valid .cor file.");
 	i = 4;
 	j = 0;
 	while (j < PROG_NAME_LENGTH)
 		vm->champs[vm->nbr_champ].code.header.prog_name[j++] = buff[i++];
 	vm->champs[vm->nbr_champ].code.header.prog_name[j] = 0;
 	if ((prog_size = n_bytes_to_uint(&(buff[i + 4]), 4)) > CHAMP_MAX_SIZE)
-		error_exit(vm, "Error. Champion has too long code.");
+		error_exit(vm, "Error: champion has too long code.");
 	vm->champs[vm->nbr_champ].code.header.prog_size = prog_size;
 	i += 8;
 	j = 0;
