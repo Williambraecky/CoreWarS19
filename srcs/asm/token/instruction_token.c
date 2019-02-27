@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:32:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/21 14:01:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/27 12:19:16 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ static int	process_instruction_args(t_asm *asm_t, t_op *op, size_t *i,
 	t_token	current;
 
 	param_count = 0;
-	while (type_is_param(asm_t->tokens[*i].type))
+	while (1)
 	{
 		current = asm_t->tokens[*i];
+		if (!type_is_param(current.type))
+			syntax_error(asm_t, current);
 		if (!instruction_check_param(op, current, param_count))
 			invalid_parameter_type_error(asm_t, param_count,
 				current.type, op->name);
