@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:08:21 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 22:02:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/27 12:13:23 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	exit_error(t_asm *asm_t, char *error)
 
 void	syntax_error(t_asm *asm_t, t_token token)
 {
-	if (token.type != END || asm_t->flags & END_SYNTAX_ERR)
+	if(token.type == ENDLINE)
+		ft_printf_fd(1, "Syntax error at token [TOKEN][%.3d:%.3d] %s\n",
+		token.pos.y, token.pos.x, type_get_string(token.type));
+	else if (token.type != END || asm_t->flags & END_SYNTAX_ERR)
 		ft_printf_fd(1, "Syntax error at token [TOKEN][%.3d:%.3d] %s \"%s\"\n",
 		token.pos.y, token.pos.x, type_get_string(token.type), token.string);
 	else
