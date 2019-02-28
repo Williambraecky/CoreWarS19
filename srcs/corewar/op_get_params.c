@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_get_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:10 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/28 14:06:55 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:04:17 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static int	check_type_code(t_vm *vm, t_process *process, int i)
 	code = vm->arena.arena[(process->pc + 1) % MEM_SIZE] >> (6 - 2 * i) & 0x03;
 	code = (code == 3 ? 4 : code);
 	if (!(code & process->instruction.types[i]))
-		ret = 0;//return (0);
+		ret = 0;
 	process->instruction.types[i] = (char)code;
 	process->instruction.adv += sizearg(process->instruction.types[i],
-			process->instruction.label_size ? 2: 4);
+			process->instruction.label_size ? 2 : 4);
 	return (ret);
 }
 
@@ -48,19 +48,10 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 		if (!check_type_code(vm, process, i))
 		{
 			process->instruction.types[0] = -1;
-			ret = 0;//return (0);
+			ret = 0;
 		}
 		i++;
 	}
-	/*while (i < 4)
-	{
-		if (vm->arena.arena[(process->pc + 1) % MEM_SIZE] >> (6 - 2 * i) & 0x03)
-		{
-			process->instruction.types[0] = -1;
-			return (0);
-		}
-		i++;
-	}*/
 	return (ret);
 }
 
@@ -104,7 +95,6 @@ void		op_get_params(t_vm *vm, t_process *process)
 				process->instruction.value[i] > REG_NUMBER))
 		{
 			process->instruction.types[0] = -1;
-			//return ;
 		}
 	}
 	process->instruction.adv = adv;
