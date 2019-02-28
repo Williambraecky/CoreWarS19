@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:44:09 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 18:40:38 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:30:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void		check_end_cycle(t_vm *vm)
 {
 	int		i;
 
-	i = -1;
 	if (vm->arena.cycle_since_check >= vm->arena.cycle_to_die)
 	{
 		kill_process(vm);
@@ -49,7 +48,8 @@ void		check_end_cycle(t_vm *vm)
 			vm->arena.check_count++;
 		vm->arena.cycle_since_check = 0;
 		vm->arena.lives_since_last_check = 0;
-		while (++i < vm->nbr_champ)
+		i = vm->nbr_champ;
+		while (i--)
 			vm->champs[i].lives_since_last_check = 0;
 	}
 }

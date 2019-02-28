@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:30:43 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/28 15:01:05 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:43:17 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_init_serv(t_server *serv, struct sockaddr_in *address, int *i)
 	address->sin_family = AF_INET;
 	address->sin_addr.s_addr = INADDR_ANY;
 	address->sin_port = htons(PORT);
-	if (bind(serv->master_socket, (struct sockaddr*)address,
+	if (bind(serv->master_socket, (t_sockaddr*)address,
 				sizeof(*address)) < 0)
 		ft_o_exit("\nERROR : bind failed\n");
 	if (listen(serv->master_socket, (MAX_PLAYERS + 1) * 4) < 0)

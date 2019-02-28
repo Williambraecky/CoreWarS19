@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/28 14:12:04 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:41:25 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	ft_new_co(t_server *serv)
 	}
 }
 
-void	ft_get_msg(t_server *serv, struct sockaddr_in *address, int i)
+void	ft_get_msg(t_server *serv, t_sockaddr_in *address, int i)
 {
 	int	j;
 
-	getpeername(serv->sd, (struct sockaddr*)address, &(serv->addrlen));
+	getpeername(serv->sd, (t_sockaddr*)address, &(serv->addrlen));
 	serv->buffer[serv->n] = 0;
 	if (serv->champ[i].filename[0] == 0)
 		ft_get_champ_filename(serv, i);
@@ -88,14 +88,14 @@ void	ft_get_msg(t_server *serv, struct sockaddr_in *address, int i)
 	}
 }
 
-void	ft_find_fd(t_server *serv, struct sockaddr_in *address, int i)
+void	ft_find_fd(t_server *serv, t_sockaddr_in *address, int i)
 {
 	serv->sd = serv->client_socket[i];
 	if (FD_ISSET(serv->sd, &(serv->readfds)))
 	{
 		if ((serv->n = read(serv->sd, serv->buffer, MAX_O_SIZ)) == 0)
 		{
-			getpeername(serv->sd, (struct sockaddr*)address, &(serv->addrlen));
+			getpeername(serv->sd, (t_sockaddr*)address, &(serv->addrlen));
 			close(serv->sd);
 			serv->client_socket[i] = 0;
 			ft_memset(serv->champ[i].filename, 0, MAX_O_SIZ);
@@ -108,9 +108,9 @@ void	ft_find_fd(t_server *serv, struct sockaddr_in *address, int i)
 
 int		main(void)
 {
-	int					i;
-	struct sockaddr_in	address;
-	t_server			serv;
+	int				i;
+	t_sockaddr_in	address;
+	t_server		serv;
 
 	ft_init_serv(&serv, &address, &i);
 	while (TRUE)
@@ -122,7 +122,7 @@ int		main(void)
 		if (FD_ISSET(serv.master_socket, &serv.readfds))
 		{
 			if ((serv.new_socket = accept(serv.master_socket,
-							(struct sockaddr*)&address, &serv.addrlen)) < 0)
+							(t_sockaddr*)&address, &serv.addrlen)) < 0)
 				ft_o_exit("\nERROR : accept failed\n");
 			ft_new_co(&serv);
 		}

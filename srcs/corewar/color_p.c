@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_p.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:17:21 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/22 17:38:46 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:29:06 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		setup_p_color(t_vm *vm)
 	int		index;
 
 	i = vm->arena.s_proc;
-	while (i-- > 0)
+	while (i--)
 	{
 		if (vm->arena.process[i].alive)
 		{

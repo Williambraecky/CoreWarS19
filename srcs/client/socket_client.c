@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:20 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/13 15:28:38 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:22:34 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	ft_init_client(t_client *client, char **argv)
 		ft_o_exit("\nERROR : invalid ip\n");
 }
 
-void	ft_init_o_champ(t_client *client, unsigned char *filename)
+void	ft_init_o_champ(t_client *client, t_u8 *filename)
 {
-	int				i;
-	int				fd;
-	unsigned char	buff[1001];
-	int				n;
+	int		i;
+	int		fd;
+	t_u8	buff[1001];
+	int		n;
 
 	ft_memset(buff, 0, 1000);
 	if ((fd = open((char *)filename, O_RDONLY)) == -1)

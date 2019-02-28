@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 18:19:41 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/25 10:58:23 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:38:26 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void		print_memory(t_vm *vm, WINDOW *window)
 
 	werase(window);
 	wmove(window, 1, 1);
-	i = -1;
-	while (++i < MEM_SIZE)
+	i = 0;
+	while (i < MEM_SIZE)
 	{
 		sign = (vm->arena.arena_owner[i] < 0 ? 1 : 0);
 		color = setup_color(vm, i);
@@ -44,6 +44,7 @@ void		print_memory(t_vm *vm, WINDOW *window)
 			wprintw(window, "\n ");
 		else
 			wprintw(window, " ");
+		i++;
 	}
 	wrefresh(window);
 }
@@ -73,9 +74,9 @@ void		print_players(t_vm *vm, WINDOW *window)
 {
 	int	i;
 
-	i = -1;
-	while (++i < vm->nbr_champ)
-		print_player(vm, window, i);
+	i = 0;
+	while (i < vm->nbr_champ)
+		print_player(vm, window, i++);
 }
 
 void		print_data(t_vm *vm, WINDOW *window)

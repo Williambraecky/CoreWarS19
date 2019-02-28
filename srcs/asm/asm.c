@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:23:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/02/04 22:02:46 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:48:36 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	write_champ(t_asm *asm_t)
 {
-	int				fd;
-	unsigned int	size;
+	int		fd;
+	t_u32	size;
 
 	if (!asm_t->filename)
 		exit_error(asm_t, "Out of memory");

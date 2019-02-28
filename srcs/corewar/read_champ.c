@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   read_champ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 08:54:06 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/25 10:55:35 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:46:14 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void		parse_header(t_vm *vm, unsigned char *buff)
+void		parse_header(t_vm *vm, t_u8 *buff)
 {
-	unsigned int	magic;
-	int				i;
-	int				j;
-	unsigned int	prog_size;
+	t_u32	magic;
+	int		i;
+	int		j;
+	t_u32	prog_size;
 
 	magic = n_bytes_to_uint(buff, 4);
 	if (magic != COREWAR_EXEC_MAGIC)
@@ -36,11 +36,11 @@ void		parse_header(t_vm *vm, unsigned char *buff)
 		vm->champs[vm->nbr_champ].code.header.comment[j++] = buff[i++];
 }
 
-void		parse_code(t_vm *vm, unsigned char *buff)
+void		parse_code(t_vm *vm, t_u8 *buff)
 {
-	unsigned int		i;
-	int					j;
-	int					k;
+	t_u32	i;
+	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;
@@ -53,10 +53,10 @@ void		parse_code(t_vm *vm, unsigned char *buff)
 
 void		read_champ(t_vm *vm, char **argv, int index, int mode)
 {
-	int				fd;
-	t_champ			*champ;
-	size_t			size_code;
-	unsigned char	bf[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
+	int		fd;
+	t_champ	*champ;
+	size_t	size_code;
+	t_u8	bf[16 + PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE];
 
 	size_code = sizeof(t_header);
 	champ = &vm->champs[vm->nbr_champ];

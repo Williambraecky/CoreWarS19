@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:27:52 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/28 14:20:27 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:23:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_create_file(t_client client, int i)
 {
-	int		fd;
-	int		to_print;
+	int	fd;
+	int	to_print;
 
 	printf("filename : %s\n", (char*)client.champ[i].filename);
 	if ((fd = open((char*)client.champ[i].filename,

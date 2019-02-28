@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:33:10 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/28 15:04:17 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:32:05 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_code_octet(t_vm *vm, t_process *process)
 	return (ret);
 }
 
-int			big_end_toi(unsigned char *arena, int pc, int size)
+int			big_end_toi(t_u8 *arena, int pc, int size)
 {
 	int		ret;
 	int		i;

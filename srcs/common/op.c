@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/02/25 10:51:08 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:27:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,3 @@ t_op	g_op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
-
-unsigned int	n_bytes_to_uint(unsigned char *header, unsigned int nbr)
-{
-	unsigned int		i;
-	unsigned int		ret;
-	unsigned int		mask;
-
-	ret = 0;
-	if (nbr > 4)
-		exit(0);
-	i = 0;
-	while (i < nbr)
-	{
-		ret = ret << 8;
-		mask = (unsigned int)*header;
-		ret = ret | mask;
-		header++;
-		i++;
-	}
-	return (ret);
-}

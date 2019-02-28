@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:56:23 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/08 16:26:41 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:37:06 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int				find_number(t_vm *vm)
 	char	list[MAX_PLAYERS];
 	int		i;
 
-	i = -1;
-	while (++i < MAX_PLAYERS)
+	i = MAX_PLAYERS;
+	while (i--)
 		list[i] = 0;
-	i = -1;
-	while (++i < vm->nbr_champ)
+	i = vm->nbr_champ;
+	while (i--)
 		if (vm->champs[i].number <= MAX_PLAYERS)
 			list[vm->champs[i].number - 1] = 1;
-	i = -1;
-	while (++i < MAX_PLAYERS)
-		if (list[i] == 0)
-			return (i + 1);
+	i = 0;
+	while (i < MAX_PLAYERS)
+		if (list[i++] == 0)
+			return (i);
 	error_exit(vm, "Error: too many players.");
 	return (1);
 }
@@ -38,8 +38,7 @@ int				dump_check(t_vm vm)
 		return (1);
 	else if (vm.arena.total_cycle < vm.dump)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 void			lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
@@ -59,6 +58,5 @@ int				mod(int value)
 {
 	if (value < 0)
 		return (MEM_SIZE + (value % MEM_SIZE));
-	else
-		return (value % MEM_SIZE);
+	return (value % MEM_SIZE);
 }

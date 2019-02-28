@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.s19.be>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/02/19 07:18:20 by cvan-bee         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:11:15 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define OP_H
 
 /*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
+** Defines
 */
 
 # define IND_SIZE				2
@@ -50,7 +49,7 @@
 # define MAX_CHECKS				10
 
 /*
-** cc je suis un commentaire
+** Operations
 */
 
 typedef char		t_arg_type;
@@ -74,7 +73,7 @@ struct				s_op
 };
 
 /*
-** moi aussi
+** Header
 */
 
 # define PROG_NAME_LENGTH		(128)
