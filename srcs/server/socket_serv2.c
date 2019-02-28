@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:30:43 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/28 14:14:53 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:01:05 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_get_champ_filename(t_server *serv, int i)
 
 	tr = 0;
 	ind = -1;
-	while(serv->buffer[++ind] != 0)
+	inds = 0;
+	while (serv->buffer[++ind] != 0)
 	{
 		if (serv->buffer[ind] == '/')
 		{
@@ -28,6 +29,12 @@ void	ft_get_champ_filename(t_server *serv, int i)
 			tr = 1;
 		}
 	}
+	serv->buffer[ind - 4] = i + 48;
+	serv->buffer[ind - 3] = '.';
+	serv->buffer[ind - 2] = 'c';
+	serv->buffer[ind - 1] = 'o';
+	serv->buffer[ind] = 'r';
+	serv->buffer[ind + 1] = '\0';
 	ft_memcpy(serv->champ[i].filename, serv->buffer + inds, 250);
 }
 
