@@ -6,11 +6,30 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:30:43 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/13 15:31:21 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:14:53 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "online.h"
+
+void	ft_get_champ_filename(t_server *serv, int i)
+{
+	int		inds;
+	int		tr;
+	int		ind;
+
+	tr = 0;
+	ind = -1;
+	while(serv->buffer[++ind] != 0)
+	{
+		if (serv->buffer[ind] == '/')
+		{
+			inds = ind + 1;
+			tr = 1;
+		}
+	}
+	ft_memcpy(serv->champ[i].filename, serv->buffer + inds, 250);
+}
 
 void	game_start_serv(t_server *serv, struct sockaddr_in *address)
 {

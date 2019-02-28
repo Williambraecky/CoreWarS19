@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:15:21 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/18 14:00:35 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:12:04 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_get_msg(t_server *serv, struct sockaddr_in *address, int i)
 	getpeername(serv->sd, (struct sockaddr*)address, &(serv->addrlen));
 	serv->buffer[serv->n] = 0;
 	if (serv->champ[i].filename[0] == 0)
-		ft_memcpy(serv->champ[i].filename, serv->buffer, MAX_O_SIZ);
+		ft_get_champ_filename(serv, i);
 	else
 	{
 		if (!ft_strstr((char*)serv->buffer, "START_CODE_CHAMPION"))

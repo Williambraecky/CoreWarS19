@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:27:52 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/13 15:28:52 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:20:27 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	ft_launch_vm(t_client client)
 	int		i;
 
 	i = 0;
-	ft_strcat(cmd, "./corewar ");
+	ft_strcat(cmd, "./corewar -visu ");
 	while (++i <= MAX_PLAYERS)
 	{
 		ft_strcat(cmd, (char*)client.champ[i].filename);
 		ft_strcat(cmd, " ");
 	}
 	system(cmd);
+	exit(0);
 }
 
 void	ft_game_start_cli(t_client client)

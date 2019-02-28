@@ -6,7 +6,7 @@
 /*   By: nrouvroy <nrouvroy@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 15:14:45 by nrouvroy          #+#    #+#             */
-/*   Updated: 2019/02/13 15:32:26 by nrouvroy         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:15:33 by nrouvroy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void						game_start_serv(t_server *serv, struct
 		sockaddr_in *address);
 void						ft_init_serv(t_server *serv, struct sockaddr_in
 		*address, int *i);
+void	ft_get_champ_filename(t_server *serv, int i);
 #endif
