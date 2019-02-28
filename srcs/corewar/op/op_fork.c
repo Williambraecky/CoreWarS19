@@ -29,8 +29,8 @@ void			op_fork(t_vm *vm, t_process *process)
 	}
 	ft_memcpy((t_process *)&(vm->arena.process[n_proc]),
 		(t_process*)process, sizeof(t_process));
-	vm->arena.process[n_proc].pc = (process->pc +\
-			(process->instruction.value[0] % IDX_MOD)) & 0xFFF;
+	vm->arena.process[n_proc].pc = mod(process->pc +\
+			(process->instruction.value[0] % IDX_MOD));
 	vm->arena.process[n_proc].number = n_proc;
 	vm->arena.process[n_proc].instruction.op_code = 0;
 	vm->arena.process[n_proc].lives_since_check = 0;

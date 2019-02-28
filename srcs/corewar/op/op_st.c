@@ -24,7 +24,7 @@ void			op_st(t_vm *vm, t_process *process)
 		if (type[1] == T_REG)
 			process->registre[val[1]] = process->registre[val[0]];
 		else
-			lit_end_tovm(vm, (process->pc + val[1] % IDX_MOD) & 0xFFF,
+			lit_end_tovm(vm, mod(process->pc + val[1] % IDX_MOD),
 				process->registre[val[0]], process->index_champ);
 	}
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;

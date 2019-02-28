@@ -24,7 +24,7 @@ void			op_ld(t_vm *vm, t_process *process)
 		if (type[0] == T_IND)
 		{
 			val[0] = big_end_toi(vm->arena.arena,
-					(process->pc + val[0] % IDX_MOD) & 0xFFF, REG_SIZE);
+					mod(process->pc + val[0] % IDX_MOD), REG_SIZE);
 		}
 		process->carry = (val[0] == 0);
 		process->registre[val[1]] = val[0];

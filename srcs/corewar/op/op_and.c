@@ -30,7 +30,7 @@ void			op_and(t_vm *vm, t_process *process)
 				val[i] = process->registre[val[i]];
 			else if (type[i] == T_IND)
 				val[i] = big_end_toi(vm->arena.arena,
-						(process->pc + val[i]) & 0xFFF, REG_SIZE);
+						mod(process->pc + val[i]), REG_SIZE);
 			i++;
 		}
 		and = val[0] & val[1];

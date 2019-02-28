@@ -75,7 +75,6 @@ void		print_visu(t_vm *vm, WINDOW **window, int mode)
 	}
 	else
 	{
-		werase(window[2]);
 		print_data2(window[5]);
 		print_19ai(window[0]);
 		print_memory(vm, window[1]);

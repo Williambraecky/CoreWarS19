@@ -30,7 +30,7 @@ void			op_or(t_vm *vm, t_process *process)
 				val[i] = process->registre[val[i]];
 			else if (type[i] == T_IND)
 				val[i] = big_end_toi(vm->arena.arena,
-						(process->pc + val[i]) & 0xFFF, 4);
+						mod(process->pc + val[i]), 4);
 			i++;
 		}
 		or = val[0] | val[1];

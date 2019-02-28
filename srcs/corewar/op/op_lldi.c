@@ -30,13 +30,13 @@ void			op_lldi(t_vm *vm, t_process *process)
 				val[i] = process->registre[val[i]];
 			else if (type[i] == T_IND)
 				val[i] = big_end_toi(vm->arena.arena,
-						(process->pc + val[i]) & 0xFFF, 4);
+						mod(process->pc + val[i]), 4);
 			i++;
 		}
 		sum = val[0] + val[1];
 		process->carry = (sum == 0 ? 1 : 0);
 		process->registre[val[2]] = big_end_toi(vm->arena.arena,
-				process->pc + sum & 0xFFF, 4);
+				mod(process->pc + sum), 4);
 	}
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
 }

@@ -30,11 +30,11 @@ void			op_sti(t_vm *vm, t_process *process)
 				val[i] = process->registre[val[i]];
 			else if (type[i] == T_IND)
 				val[i] = big_end_toi(vm->arena.arena,
-						(process->pc + val[i]) & 0xFFF, 4);
+						mod(process->pc + val[i]), 4);
 			i++;
 		}
 		sum = val[1] + val[2];
-		lit_end_tovm(vm, (process->pc + sum % IDX_MOD) & 0xFFF,
+		lit_end_tovm(vm, mod(process->pc + sum % IDX_MOD),
 			val[0], process->index_champ);
 	}
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;

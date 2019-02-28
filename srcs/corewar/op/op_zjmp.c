@@ -19,7 +19,7 @@ void			op_zjmp(t_vm *vm, t_process *process)
 
 	i = vm->visu;
 	if (process->carry == 1)
-		n_pc = (process->pc + process->instruction.value[0] % IDX_MOD) & 0xFFF;
+		n_pc = mod(process->pc + process->instruction.value[0] % IDX_MOD);
 	else
 		n_pc = (process->pc + process->instruction.adv) % MEM_SIZE;
 	process->pc = n_pc;

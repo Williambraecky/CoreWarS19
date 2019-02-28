@@ -54,3 +54,11 @@ void			lit_end_tovm(t_vm *vm, int pc, int value, int champ_index)
 		i++;
 	}
 }
+
+int				mod(int value)
+{
+	if (value < 0)
+		return (MEM_SIZE + (value % MEM_SIZE));
+	else
+		return (value % MEM_SIZE);
+}
