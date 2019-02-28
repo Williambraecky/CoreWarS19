@@ -26,7 +26,5 @@ void			op_add(t_vm *vm, t_process *process)
 		process->registre[val[2]] = sum;
 		process->carry = (sum == 0);
 	}
-	vm->arena.arena_owner[process->pc] *= -1;
 	process->pc = (process->pc + process->instruction.adv) % MEM_SIZE;
-	vm->arena.arena_owner[process->pc] *= -1;
 }
