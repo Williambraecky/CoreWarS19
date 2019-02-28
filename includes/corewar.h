@@ -120,6 +120,7 @@ int					issue(t_vm vm);
 int					find_number(t_vm *vm);
 int					dump_check(t_vm vm);
 void				lit_end_tovm(t_vm *vm, int pc, int value, int champ_index);
+int					mod(int value);
 /*
 ** read_champ.c
 */
@@ -164,7 +165,7 @@ void				do_cycle(t_vm *vm);
 t_instruct			read_instruction(t_vm *vm, int pc);
 
 /*
-** op.c
+** op
 */
 
 void				op_null(t_vm *vm, t_process *process);
