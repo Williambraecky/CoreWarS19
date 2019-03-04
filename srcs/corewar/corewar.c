@@ -6,7 +6,7 @@
 /*   By: sde-spie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 11:33:59 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/27 11:21:22 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/03/04 11:25:51 by sde-spie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			issue(t_vm vm)
 {
 	if (vm.nbr_champ < 1)
-		error_exit(&vm, "No champ in there arena! Cowards...");
+		error_exit(&vm, "No champ in the arena! Cowards...");
 	return (0);
 }
 
