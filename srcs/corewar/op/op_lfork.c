@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op.c                                               :+:      :+:    :+:   */
+/*   op_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:15:36 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/25 11:01:00 by sde-spie         ###   ########.fr       */
+/*   Updated: 2019/03/05 13:36:58 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			op_lfork(t_vm *vm, t_process *process)
 					sizeof(t_process) * (vm->arena.s_proc * 2))))
 			error_exit(vm, "Error: process allocation failed.");
 		vm->arena.s_proc *= 2;
-		process = &vm->arena.process[old_proc - 1];
+		process = &vm->arena.process[old_proc];
 	}
 	ft_memcpy((t_process *)&(vm->arena.process[n_proc]), (t_process*)process,\
 			sizeof(t_process));

@@ -6,7 +6,7 @@
 /*   By: sde-spie <sde-spie@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:13:08 by sde-spie          #+#    #+#             */
-/*   Updated: 2019/02/28 15:30:07 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/03/05 14:18:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			set_process(t_vm *vm, t_process *process)
 	int			i;
 
 	i = REG_NUMBER;
-	vm->arena.nbr_process++;
 	vm->arena.nbr_process_alive++;
 	process->index_arena = 0;
 	process->index_champ = 0;
@@ -27,5 +26,5 @@ void			set_process(t_vm *vm, t_process *process)
 	process->pc = 0;
 	process->carry = 0;
 	process->lives_since_check = 0;
-	process->number = vm->arena.nbr_process;
+	process->number = vm->arena.nbr_process++;
 }
